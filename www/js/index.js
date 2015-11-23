@@ -21,7 +21,7 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
 		// Load first page into container
-		loadPage("topics.html");
+		loadPage("topics.html",null,null);
     }
 };
 
@@ -43,7 +43,7 @@ function loadPage(url, onleave, onenter) {
     xmlhttp.onreadystatechange=function(){
         if(xmlhttp.readyState === 4){
             if (xmlhttp.status === 200) {
-                document.getElementById('container').innerHTML = xmlhttp.responseText;
+                document.getElementById('interface').innerHTML = xmlhttp.responseText;
 
                 // If onenter function specified
                 if (onenter) {
@@ -51,7 +51,7 @@ function loadPage(url, onleave, onenter) {
                 }
             }
             else {
-                document.getElementById('container').innerHTML = "Error loading page " + url;
+                document.getElementById('interface').innerHTML = "Error loading page " + url;
             }
         }
     };
