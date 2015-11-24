@@ -37,7 +37,7 @@ body {
 
 /* Portrait layout (default) */
 .app {
-    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    background:url(../visuals/logo.png) no-repeat center top; /* 170px x 200px */
     position:absolute;             /* position in the center of the screen */
     left:50%;
     top:50%;
@@ -89,7 +89,7 @@ html{margin:0;padding:0;border:0;font-size:100.01%}body{background-color:#9cf}a,
 width:790px; 
 margin:0 auto;
 }
-/*#span-16{float:left;width:100%;}*/
+
 #topNavBar{position:relative;top:0;left:0;width:790px;height:64px;overflow:hidden}
 #navSign{position:absolute;top:7px;left:38px;width:752px;height:50px;border-radius:10px 0 0 10px;background-color:#0079C1}
 #bgColour{position:absolute;top:30px;left:11px;width:35px;height:35px}
@@ -106,7 +106,7 @@ p.emMid{text-align:center;font-style:italic}
 
 ol,ul{margin:0 1.5em 1.5em 3.6em;}ul{list-style-type:disc}ol{list-style-type:decimal}li{padding-bottom:0.9em}table{border-collapse:separate;border-spacing:0;margin-bottom:1.4em;width:100%}table,td,th{vertical-align:middle}td,th{text-align:left;font-weight:400;float:none!important;padding:4px 10px 4px 5px}
 
-#navLeftPipe,.grass{background-color:transparent;background-image:url(../img/iSprite150226.png);background-repeat:no-repeat;background-position:0 0}
+#navLeftPipe,.grass{background-color:transparent;background-image:url(../visuals/iSprite150226.png);background-repeat:no-repeat;background-position:0 0}
 
 #Div3DBannerFX,#pageInfoFX{display:block;position:absolute;top:57px;width:790px;height:490px;overflow:hidden}
 #pageInfoFX{display:none}
@@ -126,7 +126,7 @@ img.imgWhiteBorder{border:2px solid #fff;border-radius:12px}img.imgOnWhite{borde
 
 .ArrowSignInMenu,.ArrowSign{width:147px;height:36px;cursor:pointer}#curPgB{width:141px;height:30px;top:20px;background:#FFF;border:3px solid #000}.arraLabel{position:absolute;top:3px;left:3px;width:126px;height:30px;font-size:18px;font-weight:600;text-align:center;line-height:28px;text-decoration:none!important;color:#FFF;pointer-events:none;cursor:pointer}.ArrowSign:hover{text-decoration:none!important}.menuArrowSign{position:absolute;top:7px}#menuArrowSign1{left:85px}#menuArrowSign2{left:240px}#menuArrowSign3{left:395px}#menuArrowSign4{left:550px}#vocB{position:absolute;top:6px;right:10px;width:34px;height:34px;cursor:pointer;margin:0;padding:0;border-radius:35px;border:2px solid #FFF;}#vocG{position:absolute;top:9px;left:7px;width:20px;height:19px}
 
-#homeButton{position:absolute;top:7px;left:10px;width:60px;height:36px;background-color:transparent;background-image:url(../img/langSprite.png);background-position:-777px 0;background-repeat:no-repeat;cursor:pointer;margin:0;padding:0;}#homeButton:hover{background-position:-838px 0;}
+#homeButton{position:absolute;top:7px;left:10px;width:60px;height:36px;background-color:transparent;background-image:url(../visuals/langSprite.png);background-position:-777px 0;background-repeat:no-repeat;cursor:pointer;margin:0;padding:0;}#homeButton:hover{background-position:-838px 0;}
 
-#cornerFlag{position:absolute;top:3px;left:3px;width:30px;height:30px;background-color:transparent;background-image:url(../img/langSprite.png);background-position:-900px 0;background-repeat:no-repeat;z-index:0;}
+#cornerFlag{position:absolute;top:3px;left:3px;width:30px;height:30px;background-color:transparent;background-image:url(../visuals/langSprite.png);background-position:-900px 0;background-repeat:no-repeat;z-index:0;}
 
