@@ -58,3 +58,4 @@ function loadPage(url, onleave, onenter) {
     xmlhttp.open("GET", url , true);
     xmlhttp.send();
 }
+function changeCol(myCol){document.getElementById("bgColour").style.setProperty("background-color",myCol)}
