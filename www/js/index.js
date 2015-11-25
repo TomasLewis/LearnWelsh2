@@ -117,8 +117,8 @@ function loadPage(url, onleave, onenter) {
 				newScript.src = 'topics.js';
 				newScript.id=url;
 				document.getElementById('game').appendChild(newScript);
-				document.write("<p>Write to doc</p>");
-				document.write("<p>"+ document.getElementById('game').innerHTML +"</p>");
+				i=document.getElementById('game').innerHTML;
+				document.write("<p>"+ i +"</p>");
             }
             else {
                 document.getElementById('game').innerHTML = "Error loading page " + url;
