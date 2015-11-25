@@ -1,6 +1,7 @@
 function goBack(){first()}
 
 function landed(){
+alert('topics js, landed function start');
 j=arra147+'<div class="arraLabel"></div>';
 for(i=1;i<9;i++)myString=Categories[i-1],$("#cat"+i+"Arrow").html(j).find(".arraLabel").text(myString);
 for(i=11;i<19;i++)void 0!=Categories[i-3]&&(myString=Categories[i-3],myString.length>10?$("#cat"+i+"Arrow").html(j).find(".arraLabel").css("font-size","14px").text(myString):$("#cat"+i+"Arrow").html(j).find(".arraLabel").text(myString));
@@ -42,4 +43,4 @@ function second(){function e(){var e,n,o=!1,r=!1;for($("#topicSigns").empty(),ht
 modStringsEN='["Choose a set of topics by clicking on a sign","Choose a topic by words or sentences","WORDS or SENTENCES","words","sentences","for primary / elementary","for secondary","pictures","Show me topics for","AGE","Choose a topic from a group","CATEGORIES","You have chosen the topic xxx","Go to the lesson with this topic (or go straight to the games)","Start the lesson","Straight to the games","Choose a word based topic by clicking on a sign","Choose a sentence based topic by clicking on a sign","You are here:","BEGINNERS","INTERMEDIATE","Choose a topic from this category by clicking on a sign","Choose a topic"]';
 modStrings=jQuery.parseJSON(modStringsEN);
 
-var Categories,sC,cV,dispLv,numTopics,myTopic,names=[],descriptions=[],displaynames=[],displayname,bw,bh,topicXML,firstScreen,firstView,currentFile='topics.html';"en"==shortCode?(Categories=["Activity","Animals","Body","Colours","Family","Food","Go","Grammar","Holidays","Home","Numbers","People","Place","School","Time","World"],"primary"==level&&Categories.splice(8,1)):"es"==shortCode&&(Categories=["Actividad","Alimentos","Animales","Colores","El cuerpo","El hogar","El mundo","El tiempo","Familia","Gramática","La escuela","Lugares","Números","Personas","Vacaciones","Viajar"],"primary"==level&&Categories.splice(14,1)),$(document).ready(function(){landed()});
+var Categories,sC,cV,dispLv,numTopics,myTopic,names=[],descriptions=[],displaynames=[],displayname,bw,bh,topicXML,firstScreen,firstView,currentFile='topics.html';"en"==shortCode?(Categories=["Activity","Animals","Body","Colours","Family","Food","Go","Grammar","Holidays","Home","Numbers","People","Place","School","Time","World"],"primary"==level&&Categories.splice(8,1)):"es"==shortCode&&(Categories=["Actividad","Alimentos","Animales","Colores","El cuerpo","El hogar","El mundo","El tiempo","Familia","Gramática","La escuela","Lugares","Números","Personas","Vacaciones","Viajar"],"primary"==level&&Categories.splice(14,1)),$(document).ready( alert('topics js, doc ready');function(){landed()});
