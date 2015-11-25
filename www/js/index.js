@@ -104,21 +104,7 @@ function loadPage(url, onleave, onenter) {
 
                 // If onenter function specified
                 //if (onenter) { onenter(url,jsurl); }
-				//var headID = document.getElementsByTagName("head")[0];         
-				var newScript = document.createElement('script');
 				
-				//newScript.type = 'text/javascript';
-				//newScript.src = jsurl;
-				//newScript.id=url;
-				//headID.appendChild(newScript);
-				
-				///newScript = document.createElement('script'); 
-				newScript.type = 'text/javascript';
-				newScript.src = 'topics.js';
-				newScript.id=url;
-				document.getElementById('game').appendChild(newScript);
-				i=document.getElementById('game').innerHTML;
-				document.write("<p>"+ i +"</p>");
             }
             else {
                 document.getElementById('game').innerHTML = "Error loading page " + url;
