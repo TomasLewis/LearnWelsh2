@@ -114,7 +114,7 @@ function loadPage(url, onleave, onenter) {
 				
 				//newScript = document.createElement('script');
 				newScript.type = 'text/javascript';
-				newScript.src = '/js/topics.js';
+				newScript.src = 'topics.js';
 				//newScript.id=url;
 				document.getElementById('game').appendChild(newScript);
 	
