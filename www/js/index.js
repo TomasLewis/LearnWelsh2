@@ -102,10 +102,10 @@ function loadPage(url, onleave, onenter) {
         if(xmlhttp.readyState === 4){
             if (xmlhttp.status === 200) {
                 document.getElementById('game').innerHTML = xmlhttp.responseText;
-
-                // If onenter function specified
-                //if (onenter) { onenter(url); }
 				dynamicJSload("js/topics.js");
+                // If onenter function specified
+                if (onenter) { onenter(url); }
+				
 				
             }
             else {
@@ -118,9 +118,8 @@ function loadPage(url, onleave, onenter) {
 }
 function onStart(url){
 	//load js file associated with this page
-	//landed();
+	landed();
 }
-
 
 function changeCol(myCol){document.getElementById("bgColour").style.setProperty("background-color",myCol)}
 
