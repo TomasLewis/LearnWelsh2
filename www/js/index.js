@@ -73,6 +73,7 @@ function loadPage(url, onleave, onenter) {
                 document.getElementById('game').innerHTML = xmlhttp.responseText;
 				//dynamicJSload("js/topics.js");
 				landed2();
+				landed();
                 // If onenter function specified
                 if (onenter) { onenter(url); }
 				
