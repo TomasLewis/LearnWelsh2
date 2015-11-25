@@ -51,22 +51,17 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
 		
-		console.log(navB);
+		//console.log(navB);
 		$("#navSign").html(navB);
-		modStrings=jQuery.parseJSON(modStringsEN);
+		//modStrings=jQuery.parseJSON(modStringsEN);
 		//
-		console.log(modStrings[0]);
+		//console.log(modStrings[0]);
         document.addEventListener('deviceready', this.onDeviceReady, false);
-		$( document ).ready( this.onBrowserTestReady);
+		//$( document ).ready( this.onBrowserTestReady);
     },
     // deviceready Event Handler
     //
-	onBrowserTestReady: function() {
-	console.log('I see you3');
-	$.ajax({url: "http://static-iclanguage.net/temp/topics.php",data:'1',type:'POST',dataType:'html', success: function(data){
-        $("#game").html(data);
-    }});
-	},
+	//onBrowserTestReady: function() {$.ajax({url: "http://static-iclanguage.net/temp/topics.php",data:'1',type:'POST',dataType:'html', success: function(data){$("#game").html(data);}});},
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
@@ -76,7 +71,7 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
 		// Load first page into container
-		loadPage("topics.html",null,"onStartPage");
+		loadPage("topics.html",null,"onStartPage","topics.js");
     }
 };
 
@@ -85,20 +80,24 @@ var app = {
  *
  * @param url           The url to load
  */
-function loadPage(url, onleave, onenter) {
-console.log('what about here @ loadPage');
+function loadPage(url, onleave, onenter,jsurl) {
     // If onleave function specified
     if (onleave) {
         onleave();
     }
 
     var xmlhttp = new XMLHttpRequest();
-
     // Callback function when XMLHttpRequest is ready
     xmlhttp.onreadystatechange=function(){
         if(xmlhttp.readyState === 4){
             if (xmlhttp.status === 200) {
-                document.getElementById('interface').innerHTML = xmlhttp.responseText;
+                document.getElementById('game').innerHTML = xmlhttp.responseText;
+				//load js file associated with this page
+				var headID = document.getElementsByTagName("head")[0];         
+				var newScript = document.createElement('script');
+				newScript.type = 'text/javascript';
+				newScript.src = 'js/'+ jsurl;
+				headID.appendChild(newScript);
 
                 // If onenter function specified
                 if (onenter) {
@@ -113,10 +112,29 @@ console.log('what about here @ loadPage');
     xmlhttp.open("GET", url , true);
     xmlhttp.send();
 }
+
 function onStartPage(){
 //navBar buttons
-		
-
-console.log('here i am');
+	console.log('here i am');
 }
 function changeCol(myCol){document.getElementById("bgColour").style.setProperty("background-color",myCol)}
+
+
+function includeJS(jsFile) {
+    $('head').append($('<script>').attr('type', 'text/javascript').attr('src', jsFile));
+}
+function loadjscssfile(filename, filetype){
+ if (filetype=="js"){ //if filename is a external JavaScript file
+  var fileref=document.createElement('script')
+  fileref.setAttribute("type","text/javascript")
+  fileref.setAttribute("src", filename)
+ }
+ else if (filetype=="css"){ //if filename is an external CSS file
+  var fileref=document.createElement("link")
+  fileref.setAttribute("rel", "stylesheet")
+  fileref.setAttribute("type", "text/css")
+  fileref.setAttribute("href", filename)
+ }
+ if (typeof fileref!="undefined")
+  document.getElementsByTagName("head")[0].appendChild(fileref)
+}
