@@ -79,8 +79,8 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
 		// Load first page into container
-		//loadPage("topics","onEnd","onStart");
-		window.location.href="topics.html"
+		loadPage("topics","onEnd","onStart");
+		//window.location.href="topics.html"
     }
 };
 
@@ -105,7 +105,7 @@ function loadPage(url, onleave, onenter) {
 
                 // If onenter function specified
                 //if (onenter) { onenter(url,jsurl); }
-				dynamicJSload("js\\topics.js");
+				//dynamicJSload("js\\topics.js");
 				
             }
             else {
