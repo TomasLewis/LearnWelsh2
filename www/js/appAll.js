@@ -46,7 +46,6 @@ $("#pageInfoFX").css("display","none");
 });
 
 $("#back").on("click",function(){clickS.play();location.reload()});
-landed();
 
 });
 

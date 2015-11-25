@@ -138,3 +138,32 @@ function dynamicJSload(url)
     script.src = url;
     document.getElementsByTagName("head")[0].appendChild(script);
 }
+
+function landed(){
+j=arra147+'<div class="arraLabel"></div>';
+for(i=1;i<9;i++)myString=Categories[i-1],$("#cat"+i+"Arrow").html(j).find(".arraLabel").text(myString);
+for(i=11;i<19;i++)void 0!=Categories[i-3]&&(myString=Categories[i-3],myString.length>10?$("#cat"+i+"Arrow").html(j).find(".arraLabel").css("font-size","14px").text(myString):$("#cat"+i+"Arrow").html(j).find(".arraLabel").text(myString));
+$("#catWords").html(j).find(".arraLabel").text(modStrings[3]);
+$("#catSentences").html(j).find(".arraLabel").text(modStrings[4]);
+if(level=="primary"){$("#numPics").text(10);myString=modStrings[20]}else{$("#numPics").text(20);myString=modStrings[19]}
+$("#switchL").html(j).find(".arraLabel").css("font-size","15px").text(myString);
+
+if(level=="primary"){$("#1920").text(modStrings[19])}else{$("#1920").text(modStrings[20])}
+if(topicsSelected=="0"){j=noTopic}else{j=displaytopic}
+j+="<br />";
+if(level=="primary"){ j+=modStrings[5]}else{ j+=modStrings[6] }
+$("#sCurrentTopicText").html(j);
+
+
+$("#sRedLeft").append(modStrings[22]),
+$("#18").text(modStrings[18]),
+$("#switchLevelText").text(modStrings[8]),
+
+$("#2").text(modStrings[2]);
+$("#1").text(modStrings[1]);
+$("#10").text(modStrings[10]);
+$("#11").text(modStrings[11]);
+$("#7").text(modStrings[7]);
+$("#catWords").find(".arraLabel").text(modStrings[3]);
+firstScreen=$("#content").html(),firstView=!0;
+}
