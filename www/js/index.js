@@ -24,7 +24,7 @@ if(shortCode=='en'){
 	testToolTip='Test how well you\'ve learned the topic with our tests';
 	vocToolTip ='Vocabulary pages';
 	vocCorrectedLink=vocabLink+'?level='+level;
- noTopic='No topic selected';
+ noTopic='No topic selected!';
  primLevel='primary';
  secLevel='secondary';
 } else if(shortCode=='es'){
@@ -92,9 +92,7 @@ function loadPage(url, onleave, onenter) {
 	var hurl=url+".html";
 	
     // If onleave function specified
-    if (onleave) {
-        onleave(url);
-    }
+    //if (onleave) { onleave(url);}
 
     var xmlhttp = new XMLHttpRequest();
     // Callback function when XMLHttpRequest is ready
