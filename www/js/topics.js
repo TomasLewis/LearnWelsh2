@@ -26,7 +26,8 @@ $("#10").text(modStrings[10]);
 $("#11").text(modStrings[11]);
 $("#7").text(modStrings[7]);
 $("#catWords").find(".arraLabel").text(modStrings[3]);
-firstScreen=$("#content").html(),firstView=!0,first()
+firstScreen=$("#content").html(),firstView=!0;
+//first()
 }
 function first(){
 0==firstView&&$("#content").html(firstScreen),firstView=!1,$("#loading").remove(),$("#sign_middle2").css("left","504px"),names.length=0,descriptions.length=0,displaynames.length=0,$("#back").css("visibility","hidden"),defaultStatusString=modStrings[0],setStatusString(defaultStatusString),
