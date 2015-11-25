@@ -104,8 +104,8 @@ function loadPage(url, onleave, onenter) {
                 document.getElementById('game').innerHTML = xmlhttp.responseText;
 
                 // If onenter function specified
-                if (onenter) { onenter(url); }
-				//dynamicJSload("js\\topics.js");
+                //if (onenter) { onenter(url); }
+				dynamicJSload("js/topics.js");
 				
             }
             else {
@@ -118,7 +118,7 @@ function loadPage(url, onleave, onenter) {
 }
 function onStart(url){
 	//load js file associated with this page
-	landed();
+	//landed();
 }
 
 
