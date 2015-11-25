@@ -1,5 +1,6 @@
 function goBack(){first()}
 function landed2(){ alert ("You called landed2 within topics js");}
+function landed3(){ alert ("You called landed3 within topics js!");}
 function landed(){
 j=arra147+'<div class="arraLabel"></div>';
 for(i=1;i<9;i++)myString=Categories[i-1],$("#cat"+i+"Arrow").html(j).find(".arraLabel").text(myString);
@@ -27,6 +28,7 @@ $("#11").text(modStrings[11]);
 $("#7").text(modStrings[7]);
 $("#catWords").find(".arraLabel").text(modStrings[3]);
 firstScreen=$("#content").html(),firstView=!0;
+alert ("You called landed within topics js");
 //first()
 }
 function first(){

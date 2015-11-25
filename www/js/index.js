@@ -89,10 +89,24 @@ function loadPage(url, onleave, onenter) {
 }
 function onStart(url){
 	//
-	landed();
+	landed3();
 }
 
 function changeCol(myCol){document.getElementById("bgColour").style.setProperty("background-color",myCol)}
 
-
+function dynamicJSload(url)
+{
+    var script = document.createElement('script');
+    script.type = "text/javascript";
+    if (script.readyState)
+    {
+        script.onreadystatechange = function(){
+            if (script.readyState == "complete" || script.readyState == "loaded"){
+                script.onreadystatechange = null;
+            }
+        };
+    }
+    script.src = url;
+    document.getElementsByTagName("head")[0].appendChild(script);
+}
 
