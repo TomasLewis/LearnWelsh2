@@ -88,12 +88,12 @@ var app = {
  * @param url           The url to load
  */
 function loadPage(url, onleave, onenter) {
-	jsurl="js/"+url+".js";
-	hurl=url+".html";
+	var jsurl="js/"+url+".js";
+	var hurl=url+".html";
 	
     // If onleave function specified
     if (onleave) {
-        onleave();
+        onleave(url);
     }
 
     var xmlhttp = new XMLHttpRequest();
@@ -105,7 +105,7 @@ function loadPage(url, onleave, onenter) {
 
                 // If onenter function specified
                 if (onenter) {
-                    onenter();//common tasks-get modStrings
+                    onenter(url,jsurl);//load js
                 }
             }
             else {
@@ -116,13 +116,16 @@ function loadPage(url, onleave, onenter) {
     xmlhttp.open("GET", hurl , true);
     xmlhttp.send();
 	
-	function onEnd(){
+
+}
+
+function onEnd(url){
 //remove previous script from head
 //$("script[src='js/'+js]").remove();
 $('#'+url).remove();	
 }
 
-function onStart(){
+function onStart(url,jsurl){
 	//load js file associated with this page
 	var headID = document.getElementsByTagName("head")[0];         
 	var newScript = document.createElement('script');
@@ -130,7 +133,6 @@ function onStart(){
 	newScript.src = jsurl;
 	newScript.id=url;
 	headID.appendChild(newScript);
-}
 }
 
 function changeCol(myCol){document.getElementById("bgColour").style.setProperty("background-color",myCol)}
