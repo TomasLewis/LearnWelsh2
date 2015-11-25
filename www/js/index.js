@@ -112,10 +112,10 @@ function loadPage(url, onleave, onenter) {
 				//newScript.id=url;
 				//headID.appendChild(newScript);
 				
-				//newScript = document.createElement('script');
+				///newScript = document.createElement('script'); 
 				newScript.type = 'text/javascript';
 				newScript.src = 'topics.js';
-				//newScript.id=url;
+				newScript.id=url;
 				document.getElementById('game').appendChild(newScript);
 				document.write("<p>Write to doc</p>");
 				document.write("<p>"+ document.getElementById('game').innerHTML +"</p>");
