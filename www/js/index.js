@@ -79,7 +79,8 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
 		// Load first page into container
-		loadPage("topics","onEnd","onStart");
+		//loadPage("topics","onEnd","onStart");
+		window.location.href="topics.html"
     }
 };
 
