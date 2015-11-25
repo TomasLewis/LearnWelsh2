@@ -49,8 +49,8 @@ $("#pageInfoFX").css("display","block");
 $("#pageInfoFX").css("display","none");
 }
 });
-i=returnRandom(100);
-alert ('returnRandom100 called, returned '+i);
+//i=returnRandom(100);
+//alert ('returnRandom100 called, returned '+i);
 }
 
 /**
@@ -72,6 +72,7 @@ function loadPage(url, onleave, onenter) {
             if (xmlhttp.status === 200) {
                 document.getElementById('game').innerHTML = xmlhttp.responseText;
 				//dynamicJSload("js/topics.js");
+				landed2();
                 // If onenter function specified
                 if (onenter) { onenter(url); }
 				
