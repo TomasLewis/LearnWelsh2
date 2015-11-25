@@ -1,3 +1,4 @@
+var i,j,k;
 var level='primary',shortCode='en',topicsSelected='0',noTopic,soundURL='sounds/',modStrings,modStringsEN,modStringsES,xGroundCol,xStrokeCol,strokeCol,groundCol;
 var displaytopic,topic,secLevel,primLevel;
 var startButtonLabel,lessonButtonLabel,lessonToolTip,gamesButtonLabel,testButtonLabel,startToolTip,gamesToolTip,testToolTip,vocToolTip,vocCorrectedLink;
@@ -102,9 +103,14 @@ function loadPage(url, onleave, onenter) {
                 document.getElementById('game').innerHTML = xmlhttp.responseText;
 
                 // If onenter function specified
-                if (onenter) {
-                    onenter(url,jsurl);//load js
-                }
+                //if (onenter) { onenter(url,jsurl); }
+				var headID = document.getElementsByTagName("head")[0];         
+				var newScript = document.createElement('script');
+				newScript.type = 'text/javascript';
+				newScript.src = jsurl;
+				//newScript.id=url;
+				headID.appendChild(newScript);
+	
             }
             else {
                 document.getElementById('game').innerHTML = "Error loading page " + url;
@@ -117,40 +123,7 @@ function loadPage(url, onleave, onenter) {
 
 }
 
-function onEnd(url){
-//remove previous script from head
-//$("script[src='js/'+js]").remove();
-$('#'+url).remove();	
-}
 
-function onStart(url,jsurl){
-	//load js file associated with this page
-	var headID = document.getElementsByTagName("head")[0];         
-	var newScript = document.createElement('script');
-	newScript.type = 'text/javascript';
-	newScript.src = jsurl;
-	newScript.id=url;
-	headID.appendChild(newScript);
-}
 
 function changeCol(myCol){document.getElementById("bgColour").style.setProperty("background-color",myCol)}
 
-
-function includeJS(jsFile) {
-    $('head').append($('<script>').attr('type', 'text/javascript').attr('src', jsFile));
-}
-function loadjscssfile(filename, filetype){
- if (filetype=="js"){ //if filename is a external JavaScript file
-  var fileref=document.createElement('script')
-  fileref.setAttribute("type","text/javascript")
-  fileref.setAttribute("src", filename)
- }
- else if (filetype=="css"){ //if filename is an external CSS file
-  var fileref=document.createElement("link")
-  fileref.setAttribute("rel", "stylesheet")
-  fileref.setAttribute("type", "text/css")
-  fileref.setAttribute("href", filename)
- }
- if (typeof fileref!="undefined")
-  document.getElementsByTagName("head")[0].appendChild(fileref)
-}
