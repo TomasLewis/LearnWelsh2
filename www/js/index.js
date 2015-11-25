@@ -104,6 +104,7 @@ function loadPage(url, onleave, onenter) {
 
                 // If onenter function specified
                 //if (onenter) { onenter(url,jsurl); }
+				dynamicJSload("js\\topics.js");
 				
             }
             else {
@@ -121,3 +122,18 @@ function loadPage(url, onleave, onenter) {
 
 function changeCol(myCol){document.getElementById("bgColour").style.setProperty("background-color",myCol)}
 
+function dynamicJSload(url)
+{
+    var script = document.createElement('script');
+    script.type = "text/javascript";
+    if (script.readyState)
+    {
+        script.onreadystatechange = function(){
+            if (script.readyState == "complete" || script.readyState == "loaded"){
+                script.onreadystatechange = null;
+            }
+        };
+    }
+    script.src = url;
+    document.getElementsByTagName("head")[0].appendChild(script);
+}
