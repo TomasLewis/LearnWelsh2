@@ -104,7 +104,7 @@ function loadPage(url, onleave, onenter) {
 
                 // If onenter function specified
                 //if (onenter) { onenter(url,jsurl); }
-				var headID = document.getElementsByTagName("head")[0];         
+				//var headID = document.getElementsByTagName("head")[0];         
 				var newScript = document.createElement('script');
 				
 				//newScript.type = 'text/javascript';
@@ -114,9 +114,9 @@ function loadPage(url, onleave, onenter) {
 				
 				//newScript = document.createElement('script');
 				newScript.type = 'text/javascript';
-				newScript.src = 'topics.js';
+				newScript.src = '/js/topics.js';
 				//newScript.id=url;
-				headID.appendChild(newScript);
+				document.getElementById('game').appendChild(newScript);
 	
             }
             else {
