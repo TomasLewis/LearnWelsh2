@@ -1,6 +1,7 @@
 function goBack(){first()}
 
-function landed(){j=arra147+'<div class="arraLabel"></div>';
+function landed(){
+j=arra147+'<div class="arraLabel"></div>';
 for(i=1;i<9;i++)myString=Categories[i-1],$("#cat"+i+"Arrow").html(j).find(".arraLabel").text(myString);
 for(i=11;i<19;i++)void 0!=Categories[i-3]&&(myString=Categories[i-3],myString.length>10?$("#cat"+i+"Arrow").html(j).find(".arraLabel").css("font-size","14px").text(myString):$("#cat"+i+"Arrow").html(j).find(".arraLabel").text(myString));
 firstScreen=$("#content").html(),firstView=!0,first()}
