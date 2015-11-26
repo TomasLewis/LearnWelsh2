@@ -47,7 +47,10 @@ clickS.play(),level="primary"==level?secLevel:primLevel;loadPage("topics");
 
 }),
 
-$("[id^=cat]").on("touchstart",function(){chngArraSign($(this),"#FFF","#000")}).on("touchend",function(){chngArraSign($(this),groundCol,strokeCol);second});
+$("[id^=cat]").on("touchstart",function(){chngArraSign($(this),"#FFF","#000")}).on("touchend",function(){
+//chngArraSign($(this),groundCol,strokeCol);
+second();
+});
 
 }
 
