@@ -57,9 +57,9 @@ function second(){
 
 clickS.play(),$("#content").empty(),html="",$("#sign_middle2").css("left","440px");
 
-i=$(this).attr("id"),
+var i=$(this).attr("id"),
 
-"catSentences"==i||"catWords"==i?(sC="catSentences"==i?"sentences":"words",cV="texttype"):(sC=$(this).text(),cV="category"),0==names.length&&(numTopics=topicsJSON.topic.length,
+"catSentences"==i||"catWords"==i?(sC="catSentences"==i?"sentences":"words",cV="texttype"):(sC=$(this).text(),cV="category"),0==names.length&&(numTopics=topicsJSON.topic.length;
 
 $.each(topicsJSON.topic,function(e,t){
 
@@ -67,8 +67,6 @@ $.each(topicsJSON.topic,function(e,t){
 
 })),
 numTopics=names.length;
-alert( 'numTopics='+numTopics+', names= '+names);
-
 
 html+='<div style="position:absolute;left:-1px;top:80px;width:757px;height:12px;"><div class="pipeH"></div></div>',
 html+='<div style="position:absolute;left:-1px;top:228px;width:757px;height:12px;"><div class="pipeH"></div></div>',
@@ -77,7 +75,10 @@ html+='<div id="forwardArra"><div id="forwardGraphic">'+triArra(14,"#000",0),
 html+='</div></div><div id="backwardArra"><div id="backpic">'+triArra(14,"#000",1),
 html+="</div>",
 $("#content").append(html),
-$("#back").css("visibility","visible"),
+$("#back").css("visibility","visible");
+
+alert( 'sC= '+sC+', cV= '+cV+', numTopics='+numTopics+', names= '+names);
+
 numTopics=numToShow=names.length,numTopics>9&&(numToShow=9),topicsScreen=0,startIndex=0,e(),
 
 $("#forwardArra,#backwardArra").on("touchstart",function(){$(this).find("#bgFill").css("fill","red")}),
