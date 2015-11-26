@@ -45,6 +45,7 @@ clickS.play(),level="primary"==level?secLevel:primLevel;loadPage("topics");
 }),
 
 $("[id^=cat]").on("touchstart",function(){chngArraSign($(this),"#FFF","#000")}).on("touchend",function(){
+sC=$(this).text();
 second();
 });
 
@@ -56,7 +57,7 @@ clickS.play(),$("#content").empty(),html="",$("#sign_middle2").css("left","440px
 
 i=$(this).attr("id"),
 
-"catSentences"==i||"catWords"==i?(sC="catSentences"==i?"sentences":"words",cV="texttype"):(sC=$(this).text(),cV="category"),0==names.length&&(numTopics=topicsJSON.topic.length,
+"catSentences"==i||"catWords"==i?(sC="catSentences"==i?"sentences":"words",cV="texttype"):(cV="category"),0==names.length&&(numTopics=topicsJSON.topic.length,
 
 $.each(topicsJSON.topic,function(e,t){
 
