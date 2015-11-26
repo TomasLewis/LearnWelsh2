@@ -70,8 +70,35 @@ $("#back").css("visibility","visible");
 //alert( 'sC= '+sC+', cV= '+cV+', numTopics='+numTopics+', names= '+names);
 
 function n(){
-var e,n=false,r=false,o;$("#topicSigns").empty();html="";num=0;j=20;yLoc=20;xLoc=j;for(i=startIndex;i<numToShow;i++){num+=1;if(names[i]){myString=names[i];t=myString;s=t.length;if(t.substr(s-1,1)=="?"){t=t.substring(0,s-1)}t=resourceurl+"visuals/assets/topic-thumbs/"+t+".png";html+='<div class="greenTopSign" name="'+myString+'" title="'+displaynames[i]+'" style="position:absolute;left:'+xLoc+"px;top:"+yLoc+"px;width:222px;height:126px;border:4px solid white;border-radius:15px;"+shadow+"background:"+signGreen+';cursor:pointer;">';html+='<div style="position:absolute;left:8px;top:6px;width:66px;height:66px;border:2px solid #fff;border-radius:7px;overflow:hidden;"><img src="'+t+'" width="66px" height="66px"/></div>';html+='<div style="position:absolute;right:6px;top:8px;width:130px;height:70px;overflow:hidden;color:white;"><p style="text-align:left;line-height:16px;font-size:13px;">'+descriptions[i]+"</p></div>";html+='<div class="arraSign" id="topicArraContent">'+arra206+'<div class="arraLabel206">';if(shortCode=="en"){html+=names[i]}else{html+=displaynames[i]}html+="</div></div></div>";xLoc+=244;if(num==3){xLoc=j;num=0;yLoc+=148}}}html+="</div>";$("#topicSigns").append(html);$(".arraLabel206").each(function(t){e=$(".arraLabel206")[t].scrollWidth;if(e>182){for(var n=16;n>8;n--){$(this).css("font-size",String(n+"px"));e=$(".arraLabel206")[t].scrollWidth;if(e<=182){break}}}});$("#forwardArra").css("visibility","hidden");$("#backwardArra").css("visibility","hidden");switch(topicsScreen){case 0:if(numTopics>9){n=true}break;default:r=true;o=(topicsScreen+1)*9;if(numTopics>o){n=true}}if(n==true){$("#forwardArra").css({visibility:"visible","z-index":"999"})}if(r==true){$("#backwardArra").css({visibility:"visible","z-index":"999"})}
+var e,n=false,r=false,o;
+$("#topicSigns").empty();
+html="";num=0;j=20;yLoc=20;xLoc=j;
+for(i=startIndex;i<numToShow;i++){
+num+=1;if(names[i]){
+myString=names[i];t=myString;s=t.length;if(t.substr(s-1,1)=="?"){t=t.substring(0,s-1)}t=resourceurl+"visuals/assets/topic-thumbs/"+t+".png";
+html+='<div class="greenTopSign" name="'+myString+'" title="'+displaynames[i]+'" style="position:absolute;left:'+xLoc+"px;top:"+yLoc+"px;width:222px;height:126px;border:4px solid white;border-radius:15px;"+shadow+"background:"+signGreen+';cursor:pointer;">';
+html+='<div style="position:absolute;left:8px;top:6px;width:66px;height:66px;border:2px solid #fff;border-radius:7px;overflow:hidden;"><img src="'+t+'" width="66px" height="66px"/></div>';html+='<div style="position:absolute;right:6px;top:8px;width:130px;height:70px;overflow:hidden;color:white;"><p style="text-align:left;line-height:16px;font-size:13px;">'+descriptions[i]+"</p></div>";html+='<div class="arraSign" id="topicArraContent">'+arra206+'<div class="arraLabel206">';
+if(shortCode=="en"){html+=names[i]}else{html+=displaynames[i]}
+html+="</div></div></div>";
+xLoc+=244;
+if(num==3){xLoc=j;num=0;yLoc+=148}
+
+}
+
+}
+
+html+="</div>";
+$("#topicSigns").append(html);
+$(".arraLabel206").each(function(t){e=$(".arraLabel206")[t].scrollWidth;if(e>182){for(var n=16;n>8;n--){$(this).css("font-size",String(n+"px"));e=$(".arraLabel206")[t].scrollWidth;if(e<=182){break}}}});
+$("#forwardArra").css("visibility","hidden");
+$("#backwardArra").css("visibility","hidden");
+switch(topicsScreen){case 0:if(numTopics>9){n=true}break;default:r=true;o=(topicsScreen+1)*9;if(numTopics>o){n=true}}
+
+if(n==true){$("#forwardArra").css({visibility:"visible","z-index":"999"})}
+if(r==true){$("#backwardArra").css({visibility:"visible","z-index":"999"})}
+
 $("[id^=topicArraContent]").off().on("mouseenter",function(){chngArraSign($(this),"#FFF","#000")}).on("mouseleave",function(){chngArraSign($(this),groundCol,strokeCol)});
+
 }
 
 numTopics=numToShow=names.length,numTopics>9&&(numToShow=9),topicsScreen=0,startIndex=0,n(),
