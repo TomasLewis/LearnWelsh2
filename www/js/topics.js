@@ -61,9 +61,8 @@ $("#content").empty(),html="",$("#sign_middle2").css("left","440px"),
 html+='<div style="position:absolute;left:-1px;top:80px;width:757px;height:12px;"><div class="pipeH"></div></div>',
 html+='<div style="position:absolute;left:-1px;top:228px;width:757px;height:12px;"><div class="pipeH"></div></div>',
 html+='<div style="position:absolute;left:-1px;top:378px;width:757px;height:12px;"><div class="pipeH"></div></div><div id="topicSigns"></div>',
-html+='<div id="forwardArra"><div id="forwardGraphic">'+triArra(14,"#000",0),
-html+='</div></div><div id="backwardArra"><div id="backpic">'+triArra(14,"#000",1),
-html+="</div>",
+//html+='<div id="forwardArra"><div id="forwardGraphic">'+triArra(14,"#000",0)+'</div></div>',
+//html+='<div id="backwardArra"><div id="backpic">'+triArra(14,"#000",1)+'</div></div>',
 $("#content").append(html),
 $("#back").css("visibility","visible");
 
@@ -87,7 +86,6 @@ if(num==3){xLoc=j;num=0;yLoc+=148}
 
 }
 
-html+="</div>";
 $("#topicSigns").append(html);
 $(".arraLabel206").each(function(t){e=$(".arraLabel206")[t].scrollWidth;if(e>182){for(var n=16;n>8;n--){$(this).css("font-size",String(n+"px"));e=$(".arraLabel206")[t].scrollWidth;if(e<=182){break}}}});
 $("#forwardArra").css("visibility","hidden");
