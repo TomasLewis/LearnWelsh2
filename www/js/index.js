@@ -70,7 +70,6 @@ function loadPage(url) {
             if (xmlhttp.status === 200) {
                 document.getElementById('game').innerHTML = xmlhttp.responseText;
 				
-				//landed2();
 				landed();
                 // If onenter function specified
                 //if (onenter) { onenter(); }
