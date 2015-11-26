@@ -29,6 +29,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+		//global prep
 		prepApp();
 		// Load first page into container
 		loadPage("topics");
@@ -39,6 +40,8 @@ function prepApp(){
 if(level=="primary"){numPics=10;}else{numPics=20;}if(topicsSelected=="0"){myString=noTopic}else{myString=displaytopic}$("#currentTopic").text(myString);
 clickS=new Howl({urls:[soundURL+"interface/click1.mp3"]});highPop=new Howl({urls:[soundURL+"interface/highPop.mp3"]});wrong=new Howl({urls:[soundURL+"interface/wrong.mp3"]});
 
+dynamicJSload("js/topics.js");
+
 $("#infoButton").on("click",function(){
 clickS.play();
 console.log('click');
@@ -48,8 +51,6 @@ $("#pageInfoFX").css("display","block");
 $("#pageInfoFX").css("display","none");
 }
 });
-//i=returnRandom(100);
-//alert ('returnRandom100 called, returned '+i);
 }
 
 /**
@@ -60,9 +61,9 @@ $("#pageInfoFX").css("display","none");
 function loadPage(url) {
 	var jsurl="js/"+url+".js";
 	var hurl=url+".html";
-	dynamicJSload("js/topics.js");
+	
     // If onleave function specified
-    if (onleave) { onleave(url);}
+   // if (onleave) { onleave(url);}
 
     var xmlhttp = new XMLHttpRequest();
     // Callback function when XMLHttpRequest is ready
@@ -74,7 +75,7 @@ function loadPage(url) {
 				landed2();
 				landed();
                 // If onenter function specified
-                if (onenter) { onenter(); }
+                //if (onenter) { onenter(); }
 				
 				
             }
@@ -85,10 +86,6 @@ function loadPage(url) {
     };
     xmlhttp.open("GET", hurl , true);
     xmlhttp.send();
-}
-function onStart(){
-	//
-	landed3();
 }
 
 function changeCol(myCol){document.getElementById("bgColour").style.setProperty("background-color",myCol)}
