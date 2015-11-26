@@ -68,9 +68,10 @@ function loadPage(url) {
     xmlhttp.onreadystatechange=function(){
         if(xmlhttp.readyState === 4){
             if (xmlhttp.status === 200) {
+				window["topics"]();
                 document.getElementById('game').innerHTML = xmlhttp.responseText;
 				
-				landed();
+
                 // If onenter function specified
                 //if (onenter) { onenter(); }
 				
