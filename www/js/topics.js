@@ -8,8 +8,6 @@ var Categories,sC,cV,dispLv,numTopics,myTopic,names=[],descriptions=[],displayna
 topicsJSON=jQuery.parseJSON(topicsENprimary);
 "en"==shortCode?(Categories=["Activity","Animals","Body","Colours","Family","Food","Go","Grammar","Holidays","Home","Numbers","People","Place","School","Time","World"],"primary"==level&&Categories.splice(8,1)):"es"==shortCode&&(Categories=["Actividad","Alimentos","Animales","Colores","El cuerpo","El hogar","El mundo","El tiempo","Familia","Gramática","La escuela","Lugares","Números","Personas","Vacaciones","Viajar"],"primary"==level&&Categories.splice(14,1));
 
-
-
 j=arra147+'<div class="arraLabel"></div>';
 for(i=1;i<9;i++)myString=Categories[i-1],$("#cat"+i+"Arrow").html(j).find(".arraLabel").text(myString);
 for(i=11;i<19;i++)void 0!=Categories[i-3]&&(myString=Categories[i-3],myString.length>10?$("#cat"+i+"Arrow").html(j).find(".arraLabel").css("font-size","14px").text(myString):$("#cat"+i+"Arrow").html(j).find(".arraLabel").text(myString));
@@ -47,7 +45,6 @@ clickS.play(),level="primary"==level?secLevel:primLevel;loadPage("topics");
 }),
 
 $("[id^=cat]").on("touchstart",function(){chngArraSign($(this),"#FFF","#000")}).on("touchend",function(){
-//chngArraSign($(this),groundCol,strokeCol);
 second();
 });
 
@@ -55,11 +52,11 @@ second();
 
 function second(){
 
-clickS.play(),$("#content").empty(),html="",$("#sign_middle2").css("left","440px");
+clickS.play(),$("#content").empty(),html="",$("#sign_middle2").css("left","440px"),
 
-var i=$(this).attr("id"),
+i=$(this).attr("id"),
 
-"catSentences"==i||"catWords"==i?(sC="catSentences"==i?"sentences":"words",cV="texttype"):(sC=$(this).text(),cV="category"),0==names.length&&(numTopics=topicsJSON.topic.length;
+"catSentences"==i||"catWords"==i?(sC="catSentences"==i?"sentences":"words",cV="texttype"):(sC=$(this).text(),cV="category"),0==names.length&&(numTopics=topicsJSON.topic.length,
 
 $.each(topicsJSON.topic,function(e,t){
 
