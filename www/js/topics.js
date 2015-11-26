@@ -55,10 +55,21 @@ second();
 
 function second(){
 
-clickS.play(),i=$(this).attr("id"),"catSentences"==i||"catWords"==i?(sC="catSentences"==i?"sentences":"words",cV="texttype"):(sC=$(this).text(),cV="category"),0==names.length&&(numTopics=topicsJSON.topic.length,$.each(topicsJSON.topic,function(i,e){"category"==cV?-1!=e.category.indexOf(sC)&&(names.push(e.name),displaynames.push("en"==shortCode?e.name:e.displayname),descriptions.push(e.description)):-1!=e.texttype.indexOf(sC)&&(names.push(e.name),displaynames.push("en"==shortCode?e.name:e.displayname),descriptions.push(e.description))})),numTopics=names.length;
+clickS.play(),$("#content").empty(),html="",$("#sign_middle2").css("left","440px");
+
+i=$(this).attr("id"),
+
+"catSentences"==i||"catWords"==i?(sC="catSentences"==i?"sentences":"words",cV="texttype"):(sC=$(this).text(),cV="category"),0==names.length&&(numTopics=topicsJSON.topic.length,
+
+$.each(topicsJSON.topic,function(e,t){
+
+"category"==cV?-1!=t.category.indexOf(sC)&&(names.push(t.name),displaynames.push("en"==shortCode?t.name:t.displayname),descriptions.push(t.description)):-1!=t.texttype.indexOf(sC)&&(names.push(t.name),displaynames.push("en"==shortCode?t.name:t.displayname),descriptions.push(t.description))
+
+})),
+numTopics=names.length;
 alert( 'numTopics='+numTopics+', names= '+names);
 
-$("#content").empty(),html="",$("#sign_middle2").css("left","440px");
+
 html+='<div style="position:absolute;left:-1px;top:80px;width:757px;height:12px;"><div class="pipeH"></div></div>',
 html+='<div style="position:absolute;left:-1px;top:228px;width:757px;height:12px;"><div class="pipeH"></div></div>',
 html+='<div style="position:absolute;left:-1px;top:378px;width:757px;height:12px;"><div class="pipeH"></div></div><div id="topicSigns"></div>',
