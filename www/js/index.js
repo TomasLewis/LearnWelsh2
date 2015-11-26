@@ -31,8 +31,7 @@ var app = {
     receivedEvent: function(id) {
 		prepApp();
 		// Load first page into container
-		loadPage("topics","onEnd","onStart");
-		//window.location.href="topics.html"
+		loadPage("topics");
     }
 };
 
@@ -58,12 +57,12 @@ $("#pageInfoFX").css("display","none");
  *
  * @param url           The url to load
  */
-function loadPage(url, onleave, onenter) {
+function loadPage(url) {
 	var jsurl="js/"+url+".js";
 	var hurl=url+".html";
-	
+	dynamicJSload("js/topics.js");
     // If onleave function specified
-    //if (onleave) { onleave(url);}
+    if (onleave) { onleave(url);}
 
     var xmlhttp = new XMLHttpRequest();
     // Callback function when XMLHttpRequest is ready
@@ -71,11 +70,11 @@ function loadPage(url, onleave, onenter) {
         if(xmlhttp.readyState === 4){
             if (xmlhttp.status === 200) {
                 document.getElementById('game').innerHTML = xmlhttp.responseText;
-				//dynamicJSload("js/topics.js");
+				
 				landed2();
 				landed();
                 // If onenter function specified
-                if (onenter) { onenter(url); }
+                if (onenter) { onenter(); }
 				
 				
             }
@@ -87,7 +86,7 @@ function loadPage(url, onleave, onenter) {
     xmlhttp.open("GET", hurl , true);
     xmlhttp.send();
 }
-function onStart(url){
+function onStart(){
 	//
 	landed3();
 }
