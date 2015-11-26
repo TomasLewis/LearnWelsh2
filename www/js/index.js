@@ -68,10 +68,10 @@ function loadPage(url) {
     xmlhttp.onreadystatechange=function(){
         if(xmlhttp.readyState === 4){
             if (xmlhttp.status === 200) {
+				
+                document.getElementById('game').innerHTML = xmlhttp.responseText;
 				//window["topics"]();
 				topics();
-                document.getElementById('game').innerHTML = xmlhttp.responseText;
-				
 
                 // If onenter function specified
                 //if (onenter) { onenter(); }
