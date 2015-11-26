@@ -40,8 +40,6 @@ function prepApp(){
 if(level=="primary"){numPics=10;}else{numPics=20;}if(topicsSelected=="0"){myString=noTopic}else{myString=displaytopic}$("#currentTopic").text(myString);
 clickS=new Howl({urls:[soundURL+"interface/click1.mp3"]});highPop=new Howl({urls:[soundURL+"interface/highPop.mp3"]});wrong=new Howl({urls:[soundURL+"interface/wrong.mp3"]});
 
-dynamicJSload("js/topics.js");
-
 $("#infoButton").on("click",function(){
 clickS.play();
 console.log('click');
@@ -72,7 +70,7 @@ function loadPage(url) {
             if (xmlhttp.status === 200) {
                 document.getElementById('game').innerHTML = xmlhttp.responseText;
 				
-				landed2();
+				//landed2();
 				landed();
                 // If onenter function specified
                 //if (onenter) { onenter(); }
@@ -89,20 +87,4 @@ function loadPage(url) {
 }
 
 function changeCol(myCol){document.getElementById("bgColour").style.setProperty("background-color",myCol)}
-
-function dynamicJSload(url)
-{
-    var script = document.createElement('script');
-    script.type = "text/javascript";
-    if (script.readyState)
-    {
-        script.onreadystatechange = function(){
-            if (script.readyState == "complete" || script.readyState == "loaded"){
-                script.onreadystatechange = null;
-            }
-        };
-    }
-    script.src = url;
-    document.getElementsByTagName("head")[0].appendChild(script);
-}
 
