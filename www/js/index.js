@@ -37,7 +37,7 @@ var app = {
 };
 
 function prepApp(){
-	//
+	var uiz;
 	i=screenHeight/screenWidth;
 	
 	if(i > 0.6875){
@@ -45,11 +45,12 @@ function prepApp(){
 	} else if (i <= 0.6875) {
 		uiz=screenHeight/550;
 	}
-	console.log('screenWidth='+screenWidth+',screenHeight='+screenHeight+',uiz='+uiz );
+
 $('#container').css({ 
   '-ms-transform'  : 'scale(' + uiz + ')', 
   'transform'  : 'scale(' + uiz + ')'
 });
+alert('screenWidth='+screenWidth+',screenHeight='+screenHeight+',uiz='+uiz );
 
 if(level=="primary"){numPics=10;}else{numPics=20;}if(topicsSelected=="0"){myString=noTopic}else{myString=displaytopic}$("#currentTopic").text(myString);
 clickS=new Howl({urls:[soundURL+"interface/click1.mp3"]});highPop=new Howl({urls:[soundURL+"interface/highPop.mp3"]});wrong=new Howl({urls:[soundURL+"interface/wrong.mp3"]});
