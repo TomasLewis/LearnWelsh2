@@ -41,14 +41,18 @@ function prepApp(){
 	i=screenHeight/screenWidth;
 	
 	if(i > 0.6875){
+	//ipad
 		uiz=screenWidth/800;
 	} else if (i <= 0.6875) {
+	//widescreen
 		uiz=screenHeight/550;
 	}
+	
+	newTop=newTop+'px';
 
 $('#container').css({ 
   '-ms-transform'  : 'scale(' + uiz + ')', 
-  'transform'  : 'scale(' + uiz + ')'
+  'transform'  : 'scale(' + uiz + ')',
 });
 alert('screenWidth='+screenWidth+',screenHeight='+screenHeight+',uiz='+uiz );
 

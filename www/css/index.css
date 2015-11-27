@@ -76,9 +76,10 @@ font-weight:800;
 html{margin:0;padding:0;border:0;font-size:100.01%}a,body,div,em,form,h1,h2,h3,h4,h5,h6,iframe,img,li,object,ol,p,span,table,tbody,td,th,tr,ul{margin:0;padding:0;border:0;font-size:100%;vertical-align:baseline;font-family:'OpenSans',sans-serif}
 
 #container{
+position:relative;top:0;left:0;
 width:790px; 
 margin:0 auto;
-
+transform-origin:center top;
 }
 
 #topNavBar{position:relative;top:0;left:0;width:790px;height:64px;overflow:hidden}
