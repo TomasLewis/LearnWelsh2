@@ -37,18 +37,48 @@ var app = {
 };
 
 function prepApp(){
+	//
+	i=screenHeight/screenWidth;
+	
+	if(i > 0.6875){
+		uiz=screenWidth/800;
+	} else if (i <= 0.6875) {
+		uiz=screenHeight/550;
+	}
+	console.log('screenWidth='+screenWidth+',screenHeight='+screenHeight+',uiz='+uiz );
+$('#container').css({ 
+  '-ms-transform'  : 'scale(' + uiz + ')', 
+  'transform'  : 'scale(' + uiz + ')'
+});
+
 if(level=="primary"){numPics=10;}else{numPics=20;}if(topicsSelected=="0"){myString=noTopic}else{myString=displaytopic}$("#currentTopic").text(myString);
 clickS=new Howl({urls:[soundURL+"interface/click1.mp3"]});highPop=new Howl({urls:[soundURL+"interface/highPop.mp3"]});wrong=new Howl({urls:[soundURL+"interface/wrong.mp3"]});
 
 $("#infoButton").on("click",function(){
 clickS.play();
-console.log('click');
 if( $("#pageInfoFX").css("display")=="none" ){
 $("#pageInfoFX").css("display","block");
 } else {
 $("#pageInfoFX").css("display","none");
 }
 });
+//nav Buttons
+$(".menuArrowSign").on("touchend",function(){
+clickS.play();
+i=$(this).attr("id");
+console.log('i='+i);
+if(i=='menuArrowSign1'){
+j="topics";
+}else if(i=="menuArrowSign2"){
+j="tutorial";
+}else if(i=="menuArrowSign3"){
+j="games";
+}else if(i=="menuArrowSign4"){
+j="test";
+}
+loadPage(j);
+
+ })
 }
 
 /**
@@ -59,7 +89,7 @@ $("#pageInfoFX").css("display","none");
 function loadPage(url) {
 	var jsurl="js/"+url+".js";
 	var hurl=url+".html";
-	
+	console.log('loadPage function, url = '+url);
     // If onleave function specified
    // if (onleave) { onleave(url);}
 
