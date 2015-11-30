@@ -1,28 +1,69 @@
 <style>
-.noUnderline{color:#FFF !important;text-decoration:none !important;}
-#content{position:absolute;height:467px;text-align:center;border-bottom-right-radius:25px;border-bottom-left-radius:25px;width:756px;}
-#sign_leftPipe,#sign_rightPipe,#sign_middle1{position:absolute;left:125px;width:12px;height:474px;z-index:0;}
-#sign_middle1{left:368px;}#sign_rightPipe{left:614px;}
-.arraSign{position:absolute;bottom:10px;left:10px;}
-.gameGreen{position:absolute;width:225px;height:190px;border:4px solid white;border-radius:15px;background:#00703C}
-.thumbs{position:absolute;left:8px;top:8px;width:110px;height:110px;cursor:pointer;overflow:hidden}
-.desc{position:absolute;right:6px;top:8px;width:95px;height:120px;overflow:hidden;color:white;text-align:left;line-height:16px;font-size:11px;}
+#content{position:absolute;height:467px;text-align:center;border-bottom-right-radius:25px;border-bottom-left-radius:25px;width:756px;} #sign_leftPipe,#sign_rightPipe,#sign_middle1,#sign_middle2{position:absolute;left:115px;width:12px;height:471px;z-index:0;}#sign_middle1{left:299px;}#sign_middle2{left:504px;}#sign_rightPipe{left:655px;}#hPipe1,#hPipe2,#hPipe3,#hPipe4,#hPipe5,#hPipe6{position:absolute;left:-2px;top:100px;width:760px;height:12px;z-index:0;}#hPipe2{top:350px;}#hPipe3,#hPipe4{width:500px;}#hPipe3{top:56px;}#hPipe4{top:156px;}#hPipe5{left:40px;top:285px;width:718px;}#hPipe6{left:40px;top:375px;width:718px;}#selectionSign{position:absolute;left:190px;top:15px;width:360px;height:425px;background:#00703C;border:5px solid white;border-radius:15px;color:white;box-shadow:2px 2px 7px #333;}#selSignGraphic{position:absolute;left:100px;bottom:10px;width:125px;height:248px;background:url("visuals/assets/tutorial-sprites.png")0 0;}#hSeparator{position:absolute;left:0;top:55px;width:360px;height:5px;background:white;}#selButtonFull,#introButton,#goGames,#topicsSign{cursor:pointer;} #selButtonFull{position:absolute;left:47px;top:75px;width:260px;height:75px;background:#0079C1;border:3px solid white;border-radius:9px;font-weight:600;color:white;box-shadow:2px 2px 7px #333;}#selButtonFull:hover{background:black;}#selButGraphic{position:absolute;right:10px;top:9px;width:67px;height:57px;background:url("visuals/assets/tutorial-sprites.png")-177px -131px;}#introButton{position:absolute;left:10px;top:218px;width:125px;height:35px;background:#00703C;border:2px solid white;border-radius:9px;font-weight:600;color:white;line-height:32px;font-size:14px;}#introButton:hover{background:#663300;} #goGames{position:absolute;right:15px;top:185px;width:150px;height:60px;background:white;padding:10px 0 0 0;text-align:center;color:black;font-size:15px;font-weight:600;border:2px solid black;border-radius:10px;}#goGames:hover{background:black;color:white;border-color:white;}#topicsSign{position:absolute;left:22px;bottom:11px;width:50px;height:76px;background:#EFB538;padding:5px;text-align:center;color:black;font-size:14px;font-weight:400;border:2px solid black;border-radius:5px;} 
+
+#topicsSign:hover{background:white;}#topicsGraphic{position:absolute;left:5px;top:5px;width:50px;height:50px;background:url("visuals/assets/tutorial-sprites.png")-126px -131px;}#infoSign,#navSignTest,#contentSign{position:absolute;border:5px solid white;border-radius:15px;left:18px;width:235px;box-shadow:2px 2px 7px #333;}#infoSign{top:10px;height:200px;background:#663300;}#navSignTest{display:block;top:235px;height:200px;background:#00703C;left:18px;width:231px;}#contentSign{left:270px;top:10px;width:465px;height:435px;background:#0079C1;border-color:#FFF;color:#FFF;}
+
+.navArraSelected,#introBlueAgain{position:relative;left:0;top:0;width:206px;height:34px;color:#FFF;font-size:18px;font-weight:600;line-height:33px;cursor:pointer;}
+.navArraSelected{background:white;border:2px solid black;color:black;width:202px;height:30px;line-height:29px;cursor:inherit;text-align:left;}
+
+#a1,#a2,#a3,#a4{position:absolute;left:15px;}#a1{top:10px;}#a2{top:55px;}#a3{top:103px;}#a4{top:152px;}#starBoxRight,#starBoxWrong{position:absolute;background:#0079C1;border:3px solid #FFF;border-radius:5px;height:40px;font-size:24px;padding:5px;}#starBoxRight img,#starBoxWrong img{vertical-align:middle;position:relative;}#starOverPic{position:relative;padding-top:6px;}@media screen and (-webkit-min-device-pixel-ratio:0){#starOverPic{margin-top:0;padding-top:0;}} #starBoxWrong{background:white;border:3px solid red;color:black;}#starBC{margin-top:6px;} 
+
+#smilieGraphic1,#smilieGraphic2,#smilieGraphic3,#smilieGraphic4{position:absolute;left:10px;top:10px;width:150px;height:150px;background:url("visuals/assets/smilie-sprites.png");margin-left:15px;}#smilieGraphic1{background-position:0 0;}#smilieGraphic2{background-position:-152px 0;}#smilieGraphic3{background-position:-304px 0;}#smilieGraphic4{background-position:-456px 0;}#sign2_count{position:absolute;top:-10px;left:-45px;width:90px;height:50px;background:#663300;border:3px solid white;border-radius:10px;box-shadow:2px 2px 7px #333;color:white;font-size:24px;line-height:50px;}#pipe2_phone{position:absolute;top:-15px;right:36px;width:12px;height:165px;z-index:0;box-shadow:2px 2px 7px #333;} #sign2_phone{position:absolute;top:140px;right:21px;width:35px;height:60px;background:#663300;border:3px solid white;border-radius:5px;box-shadow:2px 2px 7px #333;cursor:pointer;}
+
+#sign2_phone:hover{background:black;}#sign2_phoneGraphic{width:17px;height:45px;position:absolute;top:7px;left:9px;}
+
+#introBlueTitle,#introBlueText,.introBlueGoArra{position:absolute;color:#FFF;font-weight:600;}
+
+#introBlueTitle{left:0;top:20px;width:465px;height:35px;font-size:30px;}#introBlueText{left:30px;top:80px;width:405px;height:270px;font-size:16px;text-align:left;line-height:34px;}
+
+.introBlueGoArra{left:30px;bottom:20px;width:405px;height:65px;background:url("visuals/assets/tutorial-sprites.png")-126px 0;font-size:30px;line-height:62px;cursor:pointer;color:black;}
+
+.introBlueGoArra:hover{background-position:-126px -65px;}
+
+#introBlueAgain{position:absolute;left:130px;top:auto;bottom:110px;}
+
+#infoBrownTitle,#infoBrownText{color:#fff;font-size:20px;line-height:25px;font-weight:600}#infoBrownTitle{margin:10px 15px 15px 15px;}#infoBrownText{text-align:left;margin:0 15px;font-size:16px;}.introPicG{position:absolute;right:84px;top:15px;border:2px solid white;background:black;width:310px;height:310px;padding:3px;}
+
+#introLabel{position:absolute;left:10px;top:338px;width:445px;text-align:center;font-weight:400;height:92px;overflow:hidden;}
+
+#introPrev,#introNext{position:absolute;width:40px;height:21px;bottom:140px;cursor:pointer;background:#0079C1;border:2px solid #FFF;border-radius:5px;padding:8px;box-shadow:2px 2px 7px #333;}
+
+#introPrev{left:-8px;}#introNext{right:-9px;}
+#introPrev:hover,#introNext:hover{background:#000;}
+
+#introPrevGraphic,#introNextGraphic{width:40px;height:19px;background:url("visuals/assets/tutorial-sprites.png")-246px -193px}
+#introNextGraphic{background-position:-246px -172px}
+
+#wrongBgSign{position:absolute;left:15px;top:10px;width:720px;height:435px;background:#663300;color:white;border:5px solid white;border-radius:15px;box-shadow:2px 2px 7px #333;}
+
+#wrongTitle,#wrongText1,#wrongRightAnswer,#wrongTextTwo,#wrongAnswer2,#okText{position:absolute;left:20px;width:350px;}#wrongTitle{top:25px;height:35px;font-size:28px;font-weight:600;}#wrongText1,#wrongTextTwo{top:80px;height:75px;font-size:20px;line-height:24px;font-weight:600;}#wrongTextTwo{top:220px;}#wrongRightAnswer,#wrongAnswer2{top:130px;height:150px;font-size:28px;line-height:30px;color:yellow;}#wrongAnswer2{top:290px;}#okText{top:340px;height:40px;font-size:18px;line-height:28px;font-weight:600;}
+#wrongOKbtn{position:absolute;left:170px;bottom:12px;width:50px;height:35px;background:#0079C1;border:3px solid #fff;color:#fff;font-size:22px;line-height:38px;font-weight:600;box-shadow:2px 2px 7px #333;cursor:pointer;}#wrongOKbtn:hover{background:white;border:3px solid black;color:black;} 
+#wrongPic{position:absolute;right:10px;top:40px;width:310px;height:310px;border:2px solid white;background:black;padding:5px;}
+ 
+#yesNoLabel{position:absolute;left:7px;bottom:10px;width:383px;height:70px;text-align:center;border:2px solid #fff;border-radius:7px;padding:0 7px;}
+#yesNoLabelText{width:369px;}
+ 
+#starsPrimary,#starsSecondary{position:absolute;right:6px;width:33px;top:9px;height:320px;}#starsSecondary{width:74px;}#star1,#star2,#star3,#star4,#star5,#star6,#star7,#star8,#star9,#star10,#WIIstar1,#WIIstar2,#WIIstar3,#WIIstar4,#WIIstar5,#WIIstar6,#WIIstar7,#WIIstar8,#WIIstar9,#WIIstar10{position:absolute;width:33px;height:32px;}#star1,#star2,#star3,#star4,#star5,#star6,#star7,#star8,#star9,#star10{left:0;}#WIIstar1,#WIIstar2,#WIIstar3,#WIIstar4,#WIIstar5{left:0;}#WIIstar6,#WIIstar7,#WIIstar8,#WIIstar9,#WIIstar10{left:40px;}#WIIstar1,#WIIstar6,#WIIstar11,#WIIstar16{top:0;}#WIIstar2,#WIIstar7,#WIIstar12,#WIIstar17{top:33px;}#WIIstar3,#WIIstar8,#WIIstar13,#WIIstar18{top:66px;}#WIIstar4,#WIIstar9,#WIIstar14,#WIIstar19{top:99px;}#WIIstar5,#WIIstar10,#WIIstar15,#WIIstar20{top:132px;}#star1,#star11{top:0;}#star2,#star12{top:33px;}#star3,#star13{top:66px;}#star4,#star14{top:99px;}#star5,#star15{top:132px;}#star6,#star16{top:165px;}#star7,#star17{top:198px;}#star8,#star18{top:231px;}#star9,#star19{top:264px;}#star10,#star20{top:297px;}.star-grey,.star-right,.star-wrong{background:url("visuals/assets/tutorial-sprites.png")-349px -132px;width:33px;height:32px;}.star-right{background-position:-385px -132px;}.star-wrong{background-position:-420px -132px;}#contentSignPic5{ position:absolute;left:150px;top:10px;border:1px solid white;background:black;width:150px;height:150px;padding:3px; }#starsPrimaryWII,#starsSecondaryWII{position:absolute;right:12px;width:76px;top:9px;height:160px;}#starsSecondaryWII{ width:152px; }#speaker-1,#speaker-2,#speaker-3,#speaker-4,#speaker-5{position:absolute;left:-1px;width:45px;height:47px; background:#0079C1;border:1px solid #FFF;cursor:pointer;}#speaker-1:hover,#speaker-2:hover,#speaker-3:hover,#speaker-4:hover,#speaker-5:hover{background:#000}#labels1,#labels2,#labels3,#labels4,#labels5{position:absolute;left:44px;width:416px;height:47px;padding-left:4px;background:#0079C1;border:1px solid #FFF;cursor:pointer;}#labels1:hover,#labels2:hover,#labels3:hover,#labels4:hover,#labels5:hover{background:white;color:black;}.phoneGraphicWII{background:url("visuals/assets/tutorial-sprites.png")-146px -182px;width:24px;height:19px;margin:14px 0 0 11px;}#labelText1,#labelText2,#labelText3,#labelText4,#labelText5{width:408px;font-size:19px;line-height:38px;text-align:left;font-family:"Comic Sans MS","cursive","Open Sans";overflow:hidden;}#sign3_timerText,#sign_count{font-family:Courier,monospace;}
+
+#sign3_timerText{position:absolute;right:12px;bottom:2px;width:230px;height:30px;color:white;font-size:22px;font-weight:600;text-align:right;display:none}
+
+#sign3_helpButton{position:absolute;bottom:9px;left:150px;width:150px;height:30px;background:#0079C1;border:2px solid #FFF;color:#FFF;font-size:18px;font-weight:600;}#sign3_helpButton:hover{background:white;border:2px solid red;color:black;}#sign3_inputText{position:absolute;top:220px;left:7px;width:400px;height:40px;}#sign3_keyboard{position:absolute;top:280px;left:9px;width:440px;}#sign3_yes{position:absolute;top:220px;right:7px;width:40px;height:40px;background:#0079C1;border:2px solid #FFF;cursor:pointer;}#sign3_yes:hover{background:white;border:2px solid black;}#graphic3_yes{background:url("visuals/assets/tutorial-sprites.png")-288px -131px;width:30px;height:24px;margin:7px 0 0 5px;}input[type=text]{border: 2px solid black;width:380px;height:26px;padding:7px;background:white;color:black;font-size:23px;font-family:Arial,Helvetica,"Open Sans";}.keyText{ position:absolute;left:0;top:5px;width:36px;height:36px;}#sign_count{position:absolute;top:14px;left:14px;width:80px;height:80px;background:#663300;border:3px solid white;border-radius:80px;box-shadow:2px 2px 7px #333;;line-height:80px;font-size:22px;font-weight:600;color:white;}.arraSign{position:relative;}.arraLabel206a{color:#FFF}
 </style>
 
-<div id="sign_leftPipe"><div class="pipeV"></div></div>
-<div id="sign_middle1"><div class="pipeV"></div></div>
-<div id="sign_rightPipe"><div class="pipeV"></div></div>
+<div id="content"><div id="hPipe1"><div class="pipeH"></div></div><div id="hPipe2"><div class="pipeH"></div></div><div id="selectionSign">
+<div class="sH1" id="1"></div><div id="hSeparator"></div><div id="selSignGraphic"></div><div id="selButtonFull"><div id="0" style="font-size:20px;margin:8px 0 0 14px;text-align:left;"></div><div id="selButGraphic"></div></div>
 
-<div id="content">
-<div style="position:absolute;left:-3px;top:105px;height:12px;width:101%;"><div class="pipeH"></div></div>
-<div style="position:absolute;left:-3px;top:330px;height:12px;width:101%;"><div class="pipeH"></div></div>
-<div id="gameSigns"></div><!-- insert game signs -->
+<div id="introButton"></div>
+<div id="goGames"></div>
+<div id="topicsSign"><div id="topicsGraphic"></div><div id="3" style="position:absolute;width:50px;bottom:5px;text-align:center;"></div></div>
+
+</div>
 </div>
 
 
 <div id="pageInfoFX"><div id="pageInfo">
-
-<h2>How to use the tests</h2>
+<div id="close">X</div>
+<h1>How to use the tests</h1>
 <p class="emMid"><img class="imgOnWhite" width="400" height="272" src="visuals/site/Welsh/screenshots/400/learn-welsh-mix-and-match.png" /></p>
 <p>Click on the name of a game to go to that game page with the topic you have selected. On the game page there are instructions on how to play the game in addition to a chance to change the topic you want to play with.</p>
 

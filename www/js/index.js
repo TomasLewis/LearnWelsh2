@@ -41,20 +41,16 @@ function prepApp(){
 	i=screenHeight/screenWidth;
 	
 	if(i > 0.6875){
-	//ipad
 		uiz=screenWidth/800;
 	} else if (i <= 0.6875) {
-	//widescreen
 		uiz=screenHeight/550;
 	}
-	
-	newTop=newTop+'px';
 
 $('#container').css({ 
   '-ms-transform'  : 'scale(' + uiz + ')', 
-  'transform'  : 'scale(' + uiz + ')',
+  'transform'  : 'scale(' + uiz + ')'
 });
-alert('screenWidth='+screenWidth+',screenHeight='+screenHeight+',uiz='+uiz );
+//alert('screenWidth='+screenWidth+',screenHeight='+screenHeight+',uiz='+uiz );
 
 if(level=="primary"){numPics=10;}else{numPics=20;}if(topicsSelected=="0"){myString=noTopic}else{myString=displaytopic}$("#currentTopic").text(myString);
 clickS=new Howl({urls:[soundURL+"interface/click1.mp3"]});highPop=new Howl({urls:[soundURL+"interface/highPop.mp3"]});wrong=new Howl({urls:[soundURL+"interface/wrong.mp3"]});
@@ -67,11 +63,14 @@ $("#pageInfoFX").css("display","block");
 $("#pageInfoFX").css("display","none");
 }
 });
+
 //nav Buttons
-$(".menuArrowSign").on("touchend",function(){
+$(".menuArrowSign").on("touchstart",function(){
 clickS.play();
+chngArraSign($(this),"#FFF","#000");
+}).on("touchend",function(){
+chngArraSign($(this),groundCol,strokeCol);
 i=$(this).attr("id");
-console.log('i='+i);
 if(i=='menuArrowSign1'){
 j="topics";
 }else if(i=="menuArrowSign2"){
@@ -95,22 +94,31 @@ function loadPage(url) {
 	var jsurl="js/"+url+".js";
 	var hurl=url+".html";
 	console.log('loadPage function, url = '+url);
+	if(!topic){
+		if(url!="topics"){
+			alert("Please choose a topic first");
+			return;
+	}
+	}
     // If onleave function specified
    // if (onleave) { onleave(url);}
 
     var xmlhttp = new XMLHttpRequest();
-    // Callback function when XMLHttpRequest is ready
     xmlhttp.onreadystatechange=function(){
         if(xmlhttp.readyState === 4){
             if (xmlhttp.status === 200) {
 				
                 document.getElementById('game').innerHTML = xmlhttp.responseText;
 				window[url]();
-				//topics();
 
-                // If onenter function specified
-                //if (onenter) { onenter(); }
-				
+                //post load
+				if(topic){$("#currentTopic").text(topic)}
+				//close button on infoButton
+				$("#close").on("touchstart",function(){
+$(this).css({"color":"#000","background":"#fff"}); }).on("touchend",function(){
+$(this).css({"color":"#444","background":"#aaa"});
+$("#pageInfoFX").css("display","none")});
+
 				
             }
             else {
