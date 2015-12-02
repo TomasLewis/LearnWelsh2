@@ -98,7 +98,8 @@ prepareActivityArrays();
 if(rippleTest==true){
 isThisH=new Howl({urls:[isThis],autoplay:!1,onend:function(){yesNoLabAndButtons()}});
 }else{
-isThisH=new Media(isThis,function () { my_media.release();yesNoLabAndButtons(); },function (err) { console.log("playAudio():Audio Error: " + err); } );
+if(device.platform.toLowerCase() === "android") isThis="/android_asset/www/"+isThis;
+isThisH=new Media(isThis,function () { isThisH.release();yesNoLabAndButtons(); },function (err) { console.log("playAudio():Audio Error: " + err); } );
 }
 $("#introBlueGoArra").on("click",function(){playInterface("click1"),$("#contentSign").empty(),defaultStatusString=modStrings[53],setStatusString(defaultStatusString),html='<div id="sign3_count">'+count+"/"+numPics+'</div><div id="contentSignPicLab"><div class="introPicG"></div><div id="yesNoLabel"><div id="yesNoLabelText"></div></div></div>',$("#contentSign").append(html),html='<div id="sign3_yes"><div id="graphic3_yes"></div></div><div id="sign3_no"><div id="graphic3_no"></div></div>',$("#contentSign").append(html),$("#sign3_yes,#sign3_no").hide(),addStars(1),
 
