@@ -14,8 +14,6 @@ $("#goGames").html(modStrings[2]);
 
 landed();
 
-
-
 function landed(){$("#back").css("visibility","hidden"),firstScreen=$("#content").html(),firstView=!0,first()}
 
 function first(){
@@ -64,7 +62,11 @@ $("#introPrev").on(pUp,function(){picNum>0&&(picNum-=1,i(picNum));$(this).css("b
 
 function prepareActivityArrays(){myArray="primary"==level?[0,1,2,3,4,5,6,7,8,9]:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],shuffle(myArray),starPicsArray=myArray.slice(),picNum=myArray.shift(),count=0}
 
-function fifth(){rightAnswers=0,sharedInterface(4),defaultStatusString=modStrings[56],setStatusString(defaultStatusString),$("#infoBrownTitle").text(modStrings[28]),$("#infoBrownText").text(modStrings[29]),myString=modStrings[28],myString=modStrings[42].replace("xxx",myString),$("#introBlueTitle").text(myString),myString="<p>"+modStrings[45]+"<br />"+modStrings[47]+"<br /><br />"+modStrings[48]+"</p>",$("#introBlueText").html(myString),myString=modStrings[66].replace("xxx",""),$("#introBlueGoArra").text(myString),prepareActivityArrays(),whatIsThis=new Howl({urls:[whatIsThis]}),$("#introBlueGoArra").on("click",function(){for(clickS.play(),$("#contentSign").empty(),defaultStatusString=modStrings[56],setStatusString(defaultStatusString),html='<div id="sign5_count">'+count+"/"+numPics+'</div><div id="contentSignPic5"></div><div id="labels1"></div><div id="labels2"></div><div id="labels3"></div><div id="labels4"></div><div id="labels5"></div><div id="labels6"></div><div id="labels7"></div><div id="labels8"></div><div id="labels9"></div><div id="labels10"></div>',$("#contentSign").append(html),j=184,i=1;i<11;i++)html='<div class="speaker" id="speaker-'+i+'"><div class="phoneGraphicWII">'+speaker(19,strokeCol)+"</div></div>",$("#contentSign").append(html),$("#labels"+i).hide(),$("#speaker-"+i).hide(),$("#labels"+i).css("top",j).on("click",whatIsItLabListener),$("#speaker-"+i).css("top",j).on("click",function(){myString=$(this).attr("id"),i=parseFloat(myString.substring(8)),i-=1,k>9&&(i+=10),playAudio("t",picsarray[i])}),j+=24;addStars(2),whatIsItPicAndQ()})}
+function fifth(){rightAnswers=0,sharedInterface(4),defaultStatusString=modStrings[56],setStatusString(defaultStatusString),$("#infoBrownTitle").text(modStrings[28]),$("#infoBrownText").text(modStrings[29]),myString=modStrings[28],myString=modStrings[42].replace("xxx",myString),$("#introBlueTitle").text(myString),myString="<p>"+modStrings[45]+"<br />"+modStrings[47]+"<br /><br />"+modStrings[48]+"</p>",$("#introBlueText").html(myString),myString=modStrings[66].replace("xxx",""),$("#introBlueGoArra").text(myString),prepareActivityArrays(),whatIsThis=new Howl({urls:[whatIsThis]});
+
+$("#introBlueGoArra").on(pUp,function(){for(clickS.play(),$("#contentSign").empty(),defaultStatusString=modStrings[56],setStatusString(defaultStatusString),html='<div id="sign5_count">'+count+"/"+numPics+'</div><div id="contentSignPic5"></div><div id="labels1"></div><div id="labels2"></div><div id="labels3"></div><div id="labels4"></div><div id="labels5"></div><div id="labels6"></div><div id="labels7"></div><div id="labels8"></div><div id="labels9"></div><div id="labels10"></div>',$("#contentSign").append(html),j=184,i=1;i<11;i++)html='<div class="speaker" id="speaker-'+i+'"><div class="phoneGraphicWII">'+speaker(19,strokeCol)+"</div></div>",$("#contentSign").append(html),$("#labels"+i).hide(),$("#speaker-"+i).hide(),$("#labels"+i).css("top",j).on(pUp,whatIsItLabListener),$("#speaker-"+i).css("top",j).on(pUp,function(){myString=$(this).attr("id"),i=parseFloat(myString.substring(8)),i-=1,k>9&&(i+=10),playAudio("t",picsarray[i])}),j+=24;addStars(2),whatIsItPicAndQ()})
+
+}
 
 function whatIsItLabListener(){myString=$(this).attr("name"),correct=answer1==myString?!0:!1,havingAnsweredWII()}
 function whatIsItPicAndQ(){count+=1,count>=numPics+1?whatIsItFinished():(myString=count+"/"+numPics,$("#sign5_count").text(myString),k=picNum,answer1=labelsarray[picNum],myString='<img src="'+bigPicsURL+picsarray[picNum]+'.png" width="150px" />',$("#contentSignPic5").html(myString),whatIsThis.play(),setTimeout(function(){whatIsItLabs()},1600))}

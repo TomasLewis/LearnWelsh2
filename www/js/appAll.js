@@ -34,7 +34,27 @@ function cross(e,t){var n='<svg width="'+e+'px" height="'+e+'px" viewBox="0 0 24
 function speaker(e,t){var n='<svg width="'+e+'px" height="'+e*.94+'px" viewBox="0 0 66 62"><polygon class="sp1" fill="'+t+'" points="0.001,21.335 0.001,40.716 13.36,40.716 30.021,53.691 30.021,8.361 13.361,21.335 "/><path class="sp2" fill="'+t+'" d="M50.135,0.002l-3.918,6.146C53.346,9.21,58.751,19.36,58.751,31.027c0,11.567-5.313,21.643-12.353,24.795 l3.832,6.177c9.209-4.685,15.769-16.782,15.769-30.972C65.999,16.786,59.395,4.649,50.135,0.002z"/><path class="sp3" fill="'+t+'" d="M42.516,11.955l-3.834,6.018c3.157,2.809,5.299,7.659,5.299,13.054c0,5.235-2.016,9.963-5.022,12.808 l3.78,6.09c5.109-4.026,8.49-10.983,8.49-18.898C51.229,22.997,47.749,15.954,42.516,11.955z"/></svg>';return n}
 function phone(e,t){var n='<svg width="'+e+'px" height="'+Math.floor(e*2.647)+'px" viewBox="0 0 17 45"><g><path class="ph1" fill="'+t+'" d="M16.361,1.31c0.579,0.332,0.772,0.763,0.547,1.526l-2.189,9.42c-0.103,0.478-0.489,1.134-1.158,1.028 l-1.867-0.431l2.607-12.239L16.361,1.31z"/><path class="ph1" fill="'+t+'" d="M10.276,32.455l2.343,12.458c-0.979,0.159-2.781,0.106-4.532-0.212c-1.648-0.318-3.296-0.85-4.224-1.486 C1.648,39.182,0,30.691,0,22.571c0-8.438,1.648-16.61,3.863-20.644c0.928-0.637,2.898-1.394,4.546-1.712 c1.751-0.318,3.264-0.245,4.54-0.033l-2.673,12.438c-1.069-0.211-0.927-0.299-1.803-0.299c-1.03,0-1.835,0.995-1.835,2.057 L6.593,30.902c0,1.063,0.741,1.918,1.719,1.918C9.188,32.82,9.504,32.614,10.276,32.455z"/><path class="ph1" fill="'+t+'" d="M14.682,33.131l1.969,9.738c0.053,0.531-0.283,1.182-0.836,1.477l-1.803,0.498l-2.318-12.455l1.803-0.266 C14.165,32.018,14.577,32.654,14.682,33.131z"/></g></svg>';return n}
 function triArra(e,t,n){var r='<svg width="'+e+'px" height="'+Math.floor(e*1.43)+'px" viewBox="0 0 14 20"><g id="tA"';if(n==1){r+=' transform="translate('+14+',0)scale(-1,1)"'}r+='><polyline id="bgFill" fill="'+t+'" points="0,20 0,0 14,10 "/></svg>';return r}
-function playAudio(e,t){if(e=="i"){t=soundURL+"interface/"+t}else if(e=="w"){t=soundURL+"winmusic/"+t}else if(e=="g"){t=soundURL+"games/"+t}else{t=soundURL+ilanguage+"/"+t+".mp3"}mySound=new Howl({urls:[t],autoplay:true})}
+
+function playMediaAudio(url) {console.log('playMediaAudio '+url);
+    var my_media = new Media(url,
+            // success callback
+             function () { console.log("playAudio():Audio Success");my_media.release(); },
+            // error callback
+             function (err) { console.log("playAudio():Audio Error: " + err); }
+    );
+           // Play audio
+    my_media.play();
+}
+function playAudio(e,t){if(e=="i"){t=soundURL+"interface/"+t}else if(e=="w"){t=soundURL+"winmusic/"+t}else if(e=="g"){t=soundURL+"games/"+t}else{t=soundURL+ilanguage+"/"+t+".mp3"}
+if(device.platform.toLowerCase() === "android"){
+t= "/android_asset/www/" + t;
+playMediaAudio(t);
+
+} else {
+mySound=new Howl({urls:[t],autoplay:true})
+}
+
+}
 
 //function insertJQRollover(e,t){$("selector").on("mouseenter",function(){$("#statusBar").text(t)}).on("mouseleave",function(){$("#statusBar").text(defaultStatusString)}).on("click",function(){clickS.play()})}
 
