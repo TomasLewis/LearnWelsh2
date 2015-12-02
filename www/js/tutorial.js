@@ -56,11 +56,11 @@ $("#transSign").on(pDown,function(i){return i.stopPropagation(),i.preventDefault
 
 $("#introNext,#introPrev").on(pStart,function(){
 $(this).css("background-color","#000");
-}).on(pEnd,function(){
+}).on(pLeave,function(){
 $(this).css("background-color",groundCol);
 })
-$("#introNext").on(pUp,function(){picNum<numPics-1?(picNum+=1,i(picNum)):t()}),
-$("#introPrev").on(pUp,function(){picNum>0&&(picNum-=1,i(picNum))}),i(picNum)})}
+$("#introNext").on(pUp,function(){picNum<numPics-1?(picNum+=1,i(picNum)):t();$(this).css("background-color",groundCol);}),
+$("#introPrev").on(pUp,function(){picNum>0&&(picNum-=1,i(picNum));$(this).css("background-color",groundCol);}),i(picNum)})}
 
 function prepareActivityArrays(){myArray="primary"==level?[0,1,2,3,4,5,6,7,8,9]:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],shuffle(myArray),starPicsArray=myArray.slice(),picNum=myArray.shift(),count=0}
 
