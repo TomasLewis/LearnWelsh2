@@ -1,3 +1,4 @@
+$("#backButton").on(pUp,function(){goBack()});
 function topics(){
 var Categories,sC,cV,dispLv,numTopics,myTopic,names=[],descriptions=[],displaynames=[],displayname,bw,bh,topicsJSON,firstScreen,firstView;
 
@@ -40,7 +41,6 @@ $("#11").text(modStrings[11]);
 $("#7").text(modStrings[7]);
 $("#catWords").find(".arraLabel").text(modStrings[3]);
 firstScreen=$("#content").html(),firstView=!0;
-$("#backButton").on(pUp,function(){goBack()});
 first();
 
 });

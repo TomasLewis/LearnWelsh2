@@ -1,5 +1,6 @@
 function tutorial(){
-
+function goBack(){console.log('goBack 1');clickS.play();first();$("#back").css("visibility","hidden");}
+$("#backButton").on(pUp,function(){goBack()});
 var picNum=0,correct=!1,answerTrue,rightAnswers,starPicsArray=[],starBoxVisible=!1,eoAudioArray=[],answer1,answer2,myString=soundURL+"interface/lang/"+shortCode+"/",isThis=myString+"is-this-a-picture-of.mp3",isThisH,isThisEO=myString+"is-this-a-picture-of.mp3",isThisEOH,orIsIt=myString+"or-is-it-a-picture-of.mp3",orIsItH,whatIsThis=myString+"what-is-this-a-picture-of.mp3",eoAns1,eoAns2,myString3,firstScreen,firstView;
 
 modStringsEN='["FULL LESSON<br />All Activities","LESSONS","No lesson thanks<br />GO TO THE GAMES","topics","SELECT YOUR<br />LESSON TYPE","Choose your lesson from the options","FULL LESSON","QUICK LESSON","Do all the activities to learn the language for this topic","Do a quick set of activities to remind yourself of the language for this topic","Play games to learn the language for this topic","Choose a different topic","Choose your lesson from the options","1. Introduction","2. Yes or No?","3. Either / Or","4. What is it?","Start the lesson","Listen to the words.","Say the words.","Look at how the words <br>are written.","Listen to the words again.","Write down the words.","YES or NO?","If the words match the picture click the tick.","Otherwise, click the cross button.","EITHER.. OR..","Click the button for the words that match the picture.","WHAT IS IT?","Click the words that match the picture.","INTRODUCTION","You will see the pictures for this topic.","You will see the words.","You will hear the words.","Listen to the words.","Say the the words.","Write down the words for each picture.","INTRODUCTION end","Now you have seen the pictures.","You have seen and heard the words.","To do that again click the small button.","That is the end of xxx","xxx ACTIVITY","For xxx click the big button.","You got xxx questions right.","You will see a picture.","You will see and hear two sets of words.","You will see ten choices of words.","Click the button for the words that match the picture.","You will see the pictures one at a time.","You will see and hear some words.","To play some games click the big button.","Listen to the words and look at the writing for these pictures","Click on the answer to the following Yes / No questions...","NOT QUITE RIGHT","Click the text that matches the picture for these Either / or questions...","Select the correct text for the following pictures...","Do that again","Start the activity","Do the next one","Activity complete. Select an option above.","The correct answer was YES.","The correct answer was NO.","This is a picture of :","Let\'s try the next one","Hard luck!","Start the xxx activity","SELECT AN OPTION","Introduction to the lesson","Play the games"]';
@@ -10,10 +11,10 @@ $("#1").html(modStrings[1]);
 $("#3").html(modStrings[3]);
 $("#introButton").html(modStrings[30]);
 $("#goGames").html(modStrings[2]);
-$("#backButton").on("touchend",function(){goBack()});
+
 landed();
 
-function goBack(){clickS.play();first();$("#back").css("visibility","hidden");}
+
 
 function landed(){$("#back").css("visibility","hidden"),firstScreen=$("#content").html(),firstView=!0,first()}
 
@@ -22,14 +23,14 @@ function first(){
 /* var i=modStrings[70].replace("xxx",language); */
 defaultStatusString=modStrings[5],setStatusString(defaultStatusString),
 
-$("#selButtonFull").on("touchstart",function(){setStatusString(modStrings[8]),setDefaultString}).on("touchend",second),
+$("#selButtonFull").on(pStart,function(){setStatusString(modStrings[8]),setDefaultString}).on(pUp,second),
 
-$("#goGames").on("touchstart",function(){setStatusString(modStrings[10]),setDefaultString}).on("touchend",function(){clickS.play();loadPage("games");});
+$("#goGames").on(pStart,function(){setStatusString(modStrings[10]),setDefaultString}).on(pUp,function(){clickS.play();loadPage("games");});
 
-$("#introButton").on("touchstart",function(){setStatusString(modStrings[68]),setDefaultString}).on("touchend",function(){
+$("#introButton").on(pStart,function(){setStatusString(modStrings[68]),setDefaultString}).on(pUp,function(){
 clickS.play();$("#pageInfoFX").css("display","block");});
 
-$("#topicsSign").on("touchstart",function(){setStatusString(modStrings[11]),setDefaultString}).on("touchend",function(){clickS.play();loadPage("topics");});
+$("#topicsSign").on(pStart,function(){setStatusString(modStrings[11]),setDefaultString}).on(pUp,function(){clickS.play();loadPage("topics");});
 }
 function sharedEndInterface(i){$("#introBlueGoArra").off("click").unbind("mouseenter mouseleave"),myString='<div id="introBlueTitle"></div><div id="introBlueText"></div><div id="introBlueAgain"><div class="arraSign">'+arra206+'<div class="arraLabel206">'+modStrings[57]+"</div></div></div>",
 
@@ -37,24 +38,29 @@ myString+="whatIsIt"!==i?'<div id="introBlueGoArra">'+modStrings[59]+"</div>":'<
 
 $("#contentSign").html(myString),$("#introBlueGoArra").hover(function(){myString=$(this).text(),setStatusString(myString)},setDefaultString).click(function(){"yesNo"==i?fourth():"eitherOr"==i?fifth():"introLang"==i?third():(myString=logamesURL,window.location.href=myString)}),$("#introBlueAgain").hover(function(){myString=$(this).text(),setStatusString(myString)},setDefaultString).click(function(){"yesNo"==i?third():"eitherOr"==i?fourth():"introLang"==i?second():fifth()})}
 
-function sharedInterface(i){$("#introBlueGoArra").off("click").unbind("mouseenter mouseleave"),$("#a1,#a2,#a3,#a4").off("click").unbind("mouseenter mouseleave"),$("#back").css("visibility","visible"),$("#contentSign").empty(),$("#content").empty(),html='<div id="hPipe3"><div class="pipeH"></div></div><div id="hPipe4"><div class="pipeH"></div></div><div id="hPipe5"><div class="pipeH"></div></div><div id="hPipe6"><div class="pipeH"></div></div><div id="sign_leftPipe"><div class="pipeV"></div></div><div id="sign_middle1"><div class="pipeV"></div></div><div id="sign_middle2"><div class="pipeV"></div></div><div id="sign_rightPipe"><div class="pipeV"></div></div>',html+='<div id="infoSign"><div id="infoBrownTitle"></div><div id="infoBrownText"></div></div>',html+='<div id="navSignTut"><div id="a1"><div class="arraSign">'+arra206+'<div class="arraLabel206a">'+modStrings[13]+'</div></div></div><div id="a2"><div class="arraSign">'+arra206+'<div class="arraLabel206a">'+modStrings[14]+'</div></div></div><div id="a3"><div class="arraSign">'+arra206+'<div class="arraLabel206a">'+modStrings[15]+'</div></div></div><div id="a4">',html+='<div class="arraSign">'+arra206+'<div class="arraLabel206a">'+modStrings[16]+"</div></div></div></div>",html+='<div id="contentSign"><div id="introBlueTitle"></div><div id="introBlueText"></div><div id="introBlueGoArra"></div></div>',$("#content").append(html),$(".arraSign").on("mouseenter",function(){chngArraSign($(this),"#fff","#000")}).on("mouseleave",function(){chngArraSign($(this),groundCol,strokeCol)}),$("#introBlueGoArra").hover(function(){myString=$(this).text(),setStatusString(myString)},setDefaultString),$("#a1,#a2,#a3,#a4").hover(function(){myString=$(this).text(),setStatusString(myString)},setDefaultString),$("#a1,#a2,#a3,#a4").on("click",function(){clickS.play();var i=$(this).attr("id");"a1"==i?second():"a2"==i?third():"a3"==i?fourth():fifth()}),myString=1==i?modStrings[13]:2==i?modStrings[14]:3==i?modStrings[15]:modStrings[16],$("#a"+i).html('<div class="navArraSelected"><p style="margin-left:22px;line-height:30px">'+myString+"</p></div>").off("click").unbind("mouseenter mouseleave")}
+function sharedInterface(i){$("#introBlueGoArra").off("click").unbind("mouseenter mouseleave"),$("#a1,#a2,#a3,#a4").off("click").unbind("mouseenter mouseleave"),$("#back").css("visibility","visible"),$("#contentSign").empty(),$("#content").empty(),html='<div id="hPipe3"><div class="pipeH"></div></div><div id="hPipe4"><div class="pipeH"></div></div><div id="hPipe5"><div class="pipeH"></div></div><div id="hPipe6"><div class="pipeH"></div></div><div id="sign_leftPipe"><div class="pipeV"></div></div><div id="sign_middle1"><div class="pipeV"></div></div><div id="sign_middle2"><div class="pipeV"></div></div><div id="sign_rightPipe"><div class="pipeV"></div></div>',html+='<div id="infoSign"><div id="infoBrownTitle"></div><div id="infoBrownText"></div></div>',html+='<div id="navSignTut"><div id="a1"><div class="arraSign">'+arra206+'<div class="arraLabel206a">'+modStrings[13]+'</div></div></div><div id="a2"><div class="arraSign">'+arra206+'<div class="arraLabel206a">'+modStrings[14]+'</div></div></div><div id="a3"><div class="arraSign">'+arra206+'<div class="arraLabel206a">'+modStrings[15]+'</div></div></div><div id="a4">',html+='<div class="arraSign">'+arra206+'<div class="arraLabel206a">'+modStrings[16]+"</div></div></div></div>",html+='<div id="contentSign"><div id="introBlueTitle"></div><div id="introBlueText"></div><div id="introBlueGoArra"></div></div>',$("#content").append(html);
+
+$(".arraSign").on(pStart,function(){chngArraSign($(this),"#fff","#000")}).on(pEnd,function(){chngArraSign($(this),groundCol,strokeCol)});
+$("#introBlueGoArra").on(pStart,function(){myString=$(this).text(),setStatusString(myString)});
+$("#a1,#a2,#a3,#a4").on(pStart,function(){myString=$(this).text(),setStatusString(myString)}).on(pUp,function(){clickS.play();var i=$(this).attr("id");"a1"==i?second():"a2"==i?third():"a3"==i?fourth():fifth()}),myString=1==i?modStrings[13]:2==i?modStrings[14]:3==i?modStrings[15]:modStrings[16],$("#a"+i).html('<div class="navArraSelected"><p style="margin-left:22px;line-height:30px">'+myString+"</p></div>").off("click").unbind("mouseenter mouseleave")}
 
 function second(){
 function i(i){var t='<img class="introPic" src="'+bigPicsURL+picsarray[i]+'.png" width="310px" height="310px" />';$(".introPicG").html(t),$("#introLabel").css({"font-size":"100px","line-height":"125px"}),$("#introLabel").text(labelsarray[i]),reduceToHtWdth("#introLabel"),$("#sign2_count").text(i+1+" / "+numPics),playAudio("t",picsarray[i])}
 function t(){$("#contentSign").empty(),sharedEndInterface("introLang"),defaultStatusString=modStrings[52],setStatusString(defaultStatusString),$("#introBlueTitle").text(modStrings[37]),myString="<p>"+modStrings[38]+"<br />"+modStrings[39]+"<br /><br />"+modStrings[40]+"<br />",myString2=modStrings[43].replace("xxx",modStrings[23]),myString+=myString2,$("#introBlueText").html(myString)}
-clickS.play(),sharedInterface(1),defaultStatusString=modStrings[52],setStatusString(defaultStatusString),$("#infoBrownTitle").text(modStrings[30]),myString=modStrings[18]+"<br />"+modStrings[21]+"<br /><br />"+modStrings[19]+"<br />"+modStrings[22],$("#infoBrownText").html(myString),$("#introBlueTitle").text(modStrings[30]),myString="<p>"+modStrings[31]+"<br />"+modStrings[32]+"<br />"+modStrings[33]+"<br /><br />"+modStrings[34],myString+="en"==shortCode?"<br />":" ",myString+=modStrings[35]+"<br />"+modStrings[36]+"</p>",$("#introBlueText").html(myString),$("#introBlueGoArra").text(modStrings[17]),
-$("#introBlueGoArra").on("click",function(){clickS.play(),setDefaultString(),picNum=0,$("#contentSign").empty(),html='<div id="sign2_count"></div><div id="pipe2_phone"><div class="pipeV"></div></div><div id="transSign">'+shortCode+'</div><div id="sign2_phone"><div id="sign2_phoneGraphic">'+phone(17,"#fff")+'</div></div><div id="contentSignPicLab"><div class="introPicG"></div><div id="introLabel"></div></div><div id="introPrev"><div id="introG">'+arraSm(42,strokeCol,1)+'</div></div><div id="introNext"><div id="introG">'+arraSm(42,strokeCol,0)+"</div></div>",
-$("#contentSign").append(html),
-$("#sign2_phone").on("click",function(){playAudio("t",picsarray[picNum])}),
-$("#transSign").on("touchstart",function(i){return i.stopPropagation(),i.preventDefault(),i.handled===!0?!1:($("#introLabel").text(translate(picNum,1)),reduceToHtWdth("#introLabel"),i.handled=!0,void 0)}).on("touchend",function(i){return i.stopPropagation(),i.preventDefault(),i.handled===!0?!1:($("#introLabel").text(translate(picNum,0)),reduceToHtWdth("#introLabel"),i.handled=!0,void 0)}),
+clickS.play(),sharedInterface(1),defaultStatusString=modStrings[52],setStatusString(defaultStatusString),$("#infoBrownTitle").text(modStrings[30]),myString=modStrings[18]+"<br />"+modStrings[21]+"<br /><br />"+modStrings[19]+"<br />"+modStrings[22],$("#infoBrownText").html(myString),$("#introBlueTitle").text(modStrings[30]),myString="<p>"+modStrings[31]+"<br />"+modStrings[32]+"<br />"+modStrings[33]+"<br /><br />"+modStrings[34],myString+="en"==shortCode?"<br />":" ",myString+=modStrings[35]+"<br />"+modStrings[36]+"</p>",$("#introBlueText").html(myString),$("#introBlueGoArra").text(modStrings[17]);
 
-$("#introNext,#introPrev").on("touchstart",function(){
+$("#introBlueGoArra").on(pUp,function(){clickS.play(),setDefaultString(),picNum=0,$("#contentSign").empty(),html='<div id="sign2_count"></div><div id="pipe2_phone"><div class="pipeV"></div></div><div id="transSign">'+shortCode+'</div><div id="sign2_phone"><div id="sign2_phoneGraphic">'+phone(17,"#fff")+'</div></div><div id="contentSignPicLab"><div class="introPicG"></div><div id="introLabel"></div></div><div id="introPrev"><div id="introG">'+arraSm(42,strokeCol,1)+'</div></div><div id="introNext"><div id="introG">'+arraSm(42,strokeCol,0)+"</div></div>",
+$("#contentSign").append(html),
+$("#sign2_phone").on(pUp,function(){playAudio("t",picsarray[picNum])}),
+$("#transSign").on(pDown,function(i){return i.stopPropagation(),i.preventDefault(),i.handled===!0?!1:($("#introLabel").text(translate(picNum,1)),reduceToHtWdth("#introLabel"),i.handled=!0,void 0)}).on(pUp,function(i){return i.stopPropagation(),i.preventDefault(),i.handled===!0?!1:($("#introLabel").text(translate(picNum,0)),reduceToHtWdth("#introLabel"),i.handled=!0,void 0)}),
+
+$("#introNext,#introPrev").on(pStart,function(){
 $(this).css("background-color","#000");
-}).on("touchend",function(){
+}).on(pEnd,function(){
 $(this).css("background-color",groundCol);
 })
-$("#introNext").on("click",function(){picNum<numPics-1?(picNum+=1,i(picNum)):t()}),
-$("#introPrev").on("click",function(){picNum>0&&(picNum-=1,i(picNum))}),i(picNum)})}
+$("#introNext").on(pUp,function(){picNum<numPics-1?(picNum+=1,i(picNum)):t()}),
+$("#introPrev").on(pUp,function(){picNum>0&&(picNum-=1,i(picNum))}),i(picNum)})}
 
 function prepareActivityArrays(){myArray="primary"==level?[0,1,2,3,4,5,6,7,8,9]:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],shuffle(myArray),starPicsArray=myArray.slice(),picNum=myArray.shift(),count=0}
 
