@@ -25,6 +25,7 @@
         <script type="text/javascript" src="phonegap.js"></script>
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="js/pep030.js"></script>
 		<script type="text/javascript" src="js/appNavB_1511.js"></script>
 		<script type="text/javascript">
 		var i,j,k;
@@ -37,7 +38,7 @@ var labelsarray,ilabelsarray;
 var resourceurl='',shadow='box-shadow:2px 2px 7px #333;',bigPicsURL='visuals/topics-sc/';
 var startButtonLabel,lessonButtonLabel,lessonToolTip,gamesButtonLabel,testButtonLabel,startToolTip,gamesToolTip,testToolTip,vocToolTip,vocCorrectedLink;
 var signGreen='#00703C';
-
+function setLevelCols(){
 if(level=='primary'){
 strokeCol='#FFF';
 groundCol='#0079C1';
@@ -49,6 +50,8 @@ xGroundCol='#0079C1';
 strokeCol='#000';
 xStrokeCol='#FFF';
 }
+}
+setLevelCols();
 
 if(shortCode=='en'){
 elanguage='welsh';language=ilanguage; 

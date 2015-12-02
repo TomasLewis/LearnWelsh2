@@ -1,18 +1,26 @@
 function topics(){
+var Categories,sC,cV,dispLv,numTopics,myTopic,names=[],descriptions=[],displaynames=[],displayname,bw,bh,topicsJSON,firstScreen,firstView,start="mousedown touchstart";
+
+//load json for topics + define variables
+$.getJSON("json/topics/"+level+"_"+shortCode+".json",function( data ) {
+
+topicsJSON=data;
+
 modStringsEN='["Choose a set of topics by clicking on a sign","Choose a topic by words or sentences","WORDS or SENTENCES","words","sentences","for primary / elementary","for secondary","pictures","Show me topics for","AGE","Choose a topic from a group","CATEGORIES","You have chosen the topic xxx","Go to the lesson with this topic (or go straight to the games)","Start the lesson","Straight to the games","Choose a word based topic by clicking on a sign","Choose a sentence based topic by clicking on a sign","You are here:","BEGINNERS","INTERMEDIATE","Choose a topic from this category by clicking on a sign","Choose a topic"]';
 modStrings=jQuery.parseJSON(modStringsEN);
 
-var topicsENprimary='{"topic":[{"name":"Family - members","category":"Family,People,Home","texttype":"words","description":"Close family members vocabulary as words"},{"name":"Family - my siblings","category":"Family,People,Home","texttype":"sentences","description":"Short sentences about brothers and sisters"},{"name":"Body - parts of the body","category":"Body,People","texttype":"words","description":"Words for naming parts of your body"},{"name":"Body - the head","category":"Body,People","texttype":"words","description":"Words for naming parts of your head"},{"name":"Body - hair colour and style","category":"Body,People","texttype":"words","description":"Words and phrases for describing hair styles"},{"name":"People - portraits","category":"People","texttype":"sentences","description":"Sentences that describe people\'s heads and faces"},{"name":"People - appearance","category":"People","texttype":"sentences","description":"Sentences that describe people\'s bodies"},{"name":"People - clothes 1","category":"People","texttype":"words","description":"Words naming items of clothing - 1"},{"name":"People - clothes 2","category":"People","texttype":"words","description":"Words naming items of clothing - 2"},{"name":"People - jobs","category":"People","texttype":"words","description":"Words for some jobs that people do"},{"name":"People - health problems","category":"People","texttype":"sentences","description":"Sentences for illnesses that people have"},{"name":"Animals - pets","category":"Animals","texttype":"words","description":"Words that name pet animals"},{"name":"Animals - farm","category":"Animals","texttype":"words","description":"Words that name farm animals"},{"name":"Activity - daily routine","category":"Activity,People","texttype":"sentences","description":"Sentences that describe your day"},{"name":"Activity - hobbies","category":"Activity,People","texttype":"sentences","description":"Sentences for hobbies that people have"},{"name":"Activity - sports","category":"Activity,People","texttype":"sentences","description":"Sentences about sports you do"},{"name":"Activity - holidays","category":"Activity,People","texttype":"sentences","description":"Sentences for things you do on holiday"},{"name":"Food - fruit","category":"Food","texttype":"words","description":"Names of fruit"},{"name":"Food - vegetables","category":"Food","texttype":"words","description":"Names of vegetables"},{"name":"Food - groceries","category":"Food","texttype":"words","description":"Words that name groceries you buy in a shop"},{"name":"Food - restaurant","category":"Food","texttype":"words","description":"Words that name food you buy in a restaurant"},{"name":"Food - drinks and snacks","category":"Food","texttype":"words","description":"Words that name drinks and snacks"},{"name":"Colours","category":"Colours","texttype":"words","description":"Words that name colours"},{"name":"Home - my room","category":"Home","texttype":"words","description":"Words that name things in your bedroom"},{"name":"Home - rooms in the house","category":"Home","texttype":"words","description":"Words that name rooms in a house"},{"name":"Home - helping at home 1","category":"Home,People","texttype":"sentences","description":"Sentences for things you do to help at home"},{"name":"Home - helping at home 2","category":"Home,People","texttype":"sentences","description":"More sentences for things you do to help"},{"name":"Home - in the garden","category":"Home","texttype":"words","description":"Words that name things in the garden"},{"name":"School - classroom objects","category":"School","texttype":"words","description":"Words that name things in the classroom"},{"name":"School - subjects","category":"School","texttype":"words","description":"Words that name school subjects"},{"name":"School - activities","category":"School,People","texttype":"sentences","description":"Sentences for things you do at school"},{"name":"Place - where I live","category":"Place,Home","texttype":"sentences","description":"Phrases that describe where you live"},{"name":"Place - homes","category":"Place,Home","texttype":"words","description":"Words that name buildings where people live"},{"name":"Place - shops","category":"Place","texttype":"words","description":"Words that name types of shop"},{"name":"Place - meeting places","category":"Place","texttype":"words","description":"Words that name places to meet"},{"name":"Place - places in town","category":"Place","texttype":"words","description":"Words that name places in a town"},{"name":"Go - means of transport","category":"Go","texttype":"words","description":"Words that name ways of getting around"},{"name":"Go - on holiday","category":"Go,Place","texttype":"words","description":"Words that name things to do with going on holiday"},{"name":"Go - which way?","category":"Go","texttype":"sentences","description":"Phrases that say which way to go"},{"name":"Go - where?","category":"Go,Place","texttype":"sentences","description":"Phrases that describe where a place is"},{"name":"World - European countries","category":"World,Place","texttype":"words","description":"Names of countries in Europe"},{"name":"World - environment","category":"World","texttype":"words","description":"Words you need to talk about the environment"},{"name":"World - weather","category":"World","texttype":"words","description":"Words that describe the weather"},{"name":"Time - what time is it?","category":"Time","texttype":"sentences","description":"Phrases that tell the time"},{"name":"Time - spring and summer","category":"Time","texttype":"words","description":"Words that describe the spring and summer"},{"name":"Time - autumn and winter","category":"Time","texttype":"words","description":"Words that describe the autumn and winter"},{"name":"Numbers - 1 to 10","category":"Numbers","texttype":"words","description":"The numbers from 1 to 10"},{"name":"Numbers - 11 to 20","category":"Numbers","texttype":"words","description":"The numbers from 11 to 20"},{"name":"Numbers - to 100 (1)","category":"Numbers","texttype":"words","description":"Numbers that are multiples of 10 up to 100"},{"name":"Numbers - to 100 (2)","category":"Numbers","texttype":"words","description":"Some numbers like 34 and 89 between 10 and 100"},{"name":"Grammar - adjectives 1","category":"Grammar","texttype":"words","description":"Words for describing things"},{"name":"Grammar - adjectives 2","category":"Grammar","texttype":"words","description":"More words that describe things"},{"name":"Grammar - verbs 1","category":"Grammar","texttype":"sentences","description":"Sentences using \'doing\' words"},{"name":"Grammar - verbs 2","category":"Grammar","texttype":"sentences","description":"More sentences using \'doing\' words"},{"name":"Grammar - prepositions 1","category":"Grammar","texttype":"words","description":"Words that describe one thing compared to another thing"},{"name":"Grammar - prepositions 2","category":"Grammar","texttype":"words","description":"More words that describe one thing compared to another thing"}]}';
-
-var Categories,sC,cV,dispLv,numTopics,myTopic,names=[],descriptions=[],displaynames=[],displayname,bw,bh,topicsJSON,firstScreen,firstView;
-topicsJSON=jQuery.parseJSON(topicsENprimary);
 "en"==shortCode?(Categories=["Activity","Animals","Body","Colours","Family","Food","Go","Grammar","Holidays","Home","Numbers","People","Place","School","Time","World"],"primary"==level&&Categories.splice(8,1)):"es"==shortCode&&(Categories=["Actividad","Alimentos","Animales","Colores","El cuerpo","El hogar","El mundo","El tiempo","Familia","Gramática","La escuela","Lugares","Números","Personas","Vacaciones","Viajar"],"primary"==level&&Categories.splice(14,1));
-
+//paint page
+$("#sCurrTop").css({"background-color":groundCol,"color":strokeCol,"border-color":strokeCol})
 j=arra147+'<div class="arraLabel"></div>';
 for(i=1;i<9;i++)myString=Categories[i-1],$("#cat"+i+"Arrow").html(j).find(".arraLabel").text(myString);
 for(i=11;i<19;i++)void 0!=Categories[i-3]&&(myString=Categories[i-3],myString.length>10?$("#cat"+i+"Arrow").html(j).find(".arraLabel").css("font-size","14px").text(myString):$("#cat"+i+"Arrow").html(j).find(".arraLabel").text(myString));
+
 $("#catWords").html(j).find(".arraLabel").text(modStrings[3]);
 $("#catSentences").html(j).find(".arraLabel").text(modStrings[4]);
+//set arra cols to level
+chngArraSign($(".ArrowSign"),groundCol,strokeCol);
+$("#currentTopic").css({"background-color":groundCol,"color":strokeCol,"border-color":strokeCol});
 if(level=="primary"){$("#numPics").text(10);myString=modStrings[20]}else{$("#numPics").text(20);myString=modStrings[19]}
 $("#switchL").html(j).find(".arraLabel").css("font-size","15px").text(myString);
 
@@ -21,7 +29,6 @@ if(topicsSelected=="0"){j=noTopic}else{j=displaytopic}
 j+="<br />";
 if(level=="primary"){ j+=modStrings[5]}else{ j+=modStrings[6] }
 $("#sCurrentTopicText").html(j);
-
 
 $("#sRedLeft").append(modStrings[22]),
 $("#18").text(modStrings[18]),
@@ -37,12 +44,24 @@ firstScreen=$("#content").html(),firstView=!0;
 $("#backButton").on("touchend",function(){goBack()});
 first();
 
+});
+
 function first(){
 0==firstView&&$("#content").html(firstScreen),firstView=!1,$("#loading").remove(),$("#sign_middle2").css("left","504px"),names.length=0,descriptions.length=0,displaynames.length=0,$("#back").css("visibility","hidden"),defaultStatusString=modStrings[0],setStatusString(defaultStatusString),
-chngArraSign("#switchLevelArra",xGroundCol,xStrokeCol),$("#switchLevelArra").on("click",function(){
+chngArraSign("#switchLevelArra",xGroundCol,xStrokeCol);
 
-clickS.play(),level="primary"==level?secLevel:primLevel;loadPage("topics");
-
+$("#switchLevelArra")
+.on("pointerenter pointerdown",function(e){e.preventDefault;
+console.log('switchLevelArra start enter');
+chngArraSign($(this),"#FFF","#000");
+})
+.on("pointerleave",function(e){
+e.preventDefault();
+chngArraSign($(this),xGroundCol,xStrokeCol)})
+.on("pointerup",function(){
+clickS.play(),level="primary"==level?secLevel:primLevel;
+switchLevel();//shared function makes level visual changes
+loadPage("topics");
 }),
 
 $("[id^=cat]").on("touchstart",function(){chngArraSign($(this),"#FFF","#000")}).on("touchend",function(){
@@ -115,12 +134,12 @@ topic = myTopic;
 displaytopic=displayname;
 
 //load json for this topic + define variables
-$.getJSON( "json/topics/"+level+"/"+topic+".json", function( data ) {
+$.getJSON("json/topics/"+level+"/"+topic+".json",function( data ) {
   i=data.media;
   picsarray=i.split(",");
   
   i=data.labels;
-  j=i.Welsh;
+  j=i.ilanguage;
   labelsarray=j.split("||");
 	if(shortCode=='es'){ j=i.Spanish}else{j=i.English}ilabelsarray=j.split("||");
   loadPage("tutorial");

@@ -1,3 +1,14 @@
+
+
+function switchLevel(){
+setLevelCols();//in index.html
+//navBar
+$("#navSign").css("background-color",groundCol);
+chngArraSign(".menuArrowSign",groundCol,strokeCol);
+$("#vocB").css("border-color",strokeCol);
+$("#vGra").css("fill",strokeCol);
+}
+
 function preload(e,t,n){function r(e){var t=new Image;t.onload=s;t.src=e;return t}function s(){u++;if(u>=o){$("#loading").css("visibility","hidden");n()}}$("#loading").css("visibility","visible");myArray=e.split(",");i=myArray.length;var o=i,u=0;for(j=0;j<o;j++){if(t=="small"){e=resourceurl+"visuals/topics-sc/"+myArray[j]+".png"}else{e=resourceurl+"visuals/topics-big-c/"+myArray[j]+".png"}r(e)}}
 
 function shuffle(e){for(var t,n,r=e.length;r;t=Math.floor(Math.random()*r),n=e[--r],e[r]=e[t],e[t]=n){}return e}
