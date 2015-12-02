@@ -1,9 +1,8 @@
 function topics(){
-var Categories,sC,cV,dispLv,numTopics,myTopic,names=[],descriptions=[],displaynames=[],displayname,bw,bh,topicsJSON,firstScreen,firstView,start="mousedown touchstart";
+var Categories,sC,cV,dispLv,numTopics,myTopic,names=[],descriptions=[],displaynames=[],displayname,bw,bh,topicsJSON,firstScreen,firstView;
 
 //load json for topics + define variables
 $.getJSON("json/topics/"+level+"_"+shortCode+".json",function( data ) {
-
 topicsJSON=data;
 
 modStringsEN='["Choose a set of topics by clicking on a sign","Choose a topic by words or sentences","WORDS or SENTENCES","words","sentences","for primary / elementary","for secondary","pictures","Show me topics for","AGE","Choose a topic from a group","CATEGORIES","You have chosen the topic xxx","Go to the lesson with this topic (or go straight to the games)","Start the lesson","Straight to the games","Choose a word based topic by clicking on a sign","Choose a sentence based topic by clicking on a sign","You are here:","BEGINNERS","INTERMEDIATE","Choose a topic from this category by clicking on a sign","Choose a topic"]';
@@ -41,7 +40,7 @@ $("#11").text(modStrings[11]);
 $("#7").text(modStrings[7]);
 $("#catWords").find(".arraLabel").text(modStrings[3]);
 firstScreen=$("#content").html(),firstView=!0;
-$("#backButton").on("touchend",function(){goBack()});
+$("#backButton").on(pUp,function(){goBack()});
 first();
 
 });
@@ -51,20 +50,20 @@ function first(){
 chngArraSign("#switchLevelArra",xGroundCol,xStrokeCol);
 
 $("#switchLevelArra")
-.on("pointerenter pointerdown",function(e){e.preventDefault;
-console.log('switchLevelArra start enter');
+.on(pStart,function(){
 chngArraSign($(this),"#FFF","#000");
 })
-.on("pointerleave",function(e){
-e.preventDefault();
+.on(pLeave,function(){
 chngArraSign($(this),xGroundCol,xStrokeCol)})
-.on("pointerup",function(){
+.on(pUp,function(){
 clickS.play(),level="primary"==level?secLevel:primLevel;
 switchLevel();//shared function makes level visual changes
 loadPage("topics");
 }),
 
-$("[id^=cat]").on("touchstart",function(){chngArraSign($(this),"#FFF","#000")}).on("touchend",function(){
+$("[id^=cat]").on(pStart,function(){chngArraSign($(this),"#FFF","#000")})
+.on(pLeave,function(){chngArraSign($(this),groundCol,strokeCol)})
+.on(pUp,function(){
 sC=$(this).text();
 second();
 });
@@ -75,9 +74,7 @@ function second(){
 clickS.play(),
 i=$(this).attr("id"),
 "catSentences"==i||"catWords"==i?(sC="catSentences"==i?"sentences":"words",cV="texttype"):(cV="category"),0==names.length&&(numTopics=topicsJSON.topic.length,$.each(topicsJSON.topic,function(e,t){"category"==cV?-1!=t.category.indexOf(sC)&&(names.push(t.name),displaynames.push("en"==shortCode?t.name:t.displayname),descriptions.push(t.description)):-1!=t.texttype.indexOf(sC)&&(names.push(t.name),displaynames.push("en"==shortCode?t.name:t.displayname),descriptions.push(t.description))})),
-
 $("#content").empty(),html="",$("#sign_middle2").css("left","440px"),
-
 html+='<div style="position:absolute;left:-1px;top:80px;width:757px;height:12px;"><div class="pipeH"></div></div>',
 html+='<div style="position:absolute;left:-1px;top:228px;width:757px;height:12px;"><div class="pipeH"></div></div>',
 html+='<div style="position:absolute;left:-1px;top:378px;width:757px;height:12px;"><div class="pipeH"></div></div><div id="topicSigns"></div>',
@@ -120,26 +117,28 @@ switch(topicsScreen){case 0:if(numTopics>9){n=true}break;default:r=true;o=(topic
 if(n==true){$("#forwardArra").css({visibility:"visible","z-index":"999"})}
 if(r==true){$("#backwardArra").css({visibility:"visible","z-index":"999"})}
 
-$("[id^=topicArraContent]").off().on("mouseenter",function(){chngArraSign($(this),"#FFF","#000")}).on("mouseleave",function(){chngArraSign($(this),groundCol,strokeCol)});
+$("[id^=topicArraContent]").off().on(pStart,function(){chngArraSign($(this),"#FFF","#000")}).on(pLeave,function(){chngArraSign($(this),groundCol,strokeCol)});
 }
 
 numTopics=numToShow=names.length,numTopics>9&&(numToShow=9),topicsScreen=0,startIndex=0,n(),
 
-$("#forwardArra,#backwardArra").on("touchstart",function(){$(this).find("#bgFill").css("fill","red")}),
-$("#forwardArra").on("touchend",function(){clickS.play(),$("#topicSigns").empty(),topicsScreen+=1,startIndex=9*topicsScreen,numToShow=startIndex+9,n()}),
-$("#backwardArra").on("touchend",function(){clickS.play(),$("#topicSigns").empty(),topicsScreen-=1,startIndex=9*topicsScreen,numToShow=startIndex+9,n()}),
-$("#content").off().on("touchend","div[class=greenTopSign]",function(){clickS.play(),myTopic=$(this).attr("name"),displayname=$(this).attr("title"),
+$("#forwardArra,#backwardArra").on(pStart,function(){$(this).find("#bgFill").css("fill","red")}).on(pLeave,function(){$(this).find("#bgFill").css("fill","#fff")}),
+$("#forwardArra").on(pUp,function(){clickS.play(),$("#topicSigns").empty(),topicsScreen+=1,startIndex=9*topicsScreen,numToShow=startIndex+9,n()}),
+$("#backwardArra").on(pUp,function(){clickS.play(),$("#topicSigns").empty(),topicsScreen-=1,startIndex=9*topicsScreen,numToShow=startIndex+9,n()}),
+$("#content").off().on(pUp,"div[class=greenTopSign]",function(){clickS.play(),myTopic=$(this).attr("name"),displayname=$(this).attr("title"),
 
 topic = myTopic;
 displaytopic=displayname;
-
+if(myTopic.slice(-1)=='?'){
+myTopic=myTopic.slice(0, -1)
+}
 //load json for this topic + define variables
-$.getJSON("json/topics/"+level+"/"+topic+".json",function( data ) {
-  i=data.media;
+$.getJSON("json/topics/"+level+"/"+myTopic+".json",function( data ) {
+  i=data.media; 
   picsarray=i.split(",");
   
   i=data.labels;
-  j=i.ilanguage;
+  j=i.Welsh;
   labelsarray=j.split("||");
 	if(shortCode=='es'){ j=i.Spanish}else{j=i.English}ilabelsarray=j.split("||");
   loadPage("tutorial");
@@ -148,7 +147,7 @@ $.getJSON("json/topics/"+level+"/"+topic+".json",function( data ) {
 
 })
 
-function e(){var e,n,o=!1,r=!1;for($("#topicSigns").empty(),html="",num=0,j=20,yLoc=20,xLoc=j,i=startIndex;i<numToShow;i++)num+=1,names[i]&&(myString=names[i],t=myString,s=t.length,"?"==t.substr(s-1,1)&&(t=t.substring(0,s-1)),t=resourceurl+"visuals/assets/topic-thumbs/"+t+".png",html+='<div class="greenTopSign" name="'+myString+'" title="'+displaynames[i]+'" style="position:absolute;left:'+xLoc+"px;top:"+yLoc+"px;width:222px;height:126px;border:4px solid white;border-radius:15px;"+shadow+"background:"+signGreen+';cursor:pointer;">',html+='<div style="position:absolute;left:8px;top:6px;width:66px;height:66px;border:2px solid #fff;border-radius:7px;overflow:hidden;"><img src="'+t+'" width="66px" height="66px"/></div>',html+='<div style="position:absolute;right:6px;top:8px;width:130px;height:70px;overflow:hidden;color:white;"><p style="text-align:left;line-height:16px;font-size:13px;">'+descriptions[i]+"</p></div>",html+='<div class="arraSign" id="topicArraContent">'+arra206+'<div class="arraLabel206">',html+="en"==shortCode?names[i]:displaynames[i],html+="</div></div></div>",xLoc+=244,3==num&&(xLoc=j,num=0,yLoc+=148));switch(html+="</div>",$("#topicSigns").append(html),$(".arraLabel206").each(function(i){if(e=$(".arraLabel206")[i].scrollWidth,e>182)for(var t=16;t>8&&($(this).css("font-size",String(t+"px")),e=$(".arraLabel206")[i].scrollWidth,!(182>=e));t--);}),$("#forwardArra").css("visibility","hidden"),$("#backwardArra").css("visibility","hidden"),topicsScreen){case 0:numTopics>9&&(o=!0);break;default:r=!0,n=9*(topicsScreen+1),numTopics>n&&(o=!0)}1==o&&$("#forwardArra").css({visibility:"visible","z-index":"999"}),1==r&&$("#backwardArra").css({visibility:"visible","z-index":"999"}),$("[id^=topicArraContent]").off().on("touchstart",function(){chngArraSign($(this),"#FFF","#000")}).on("touchend",function(){chngArraSign($(this),groundCol,strokeCol)})}
+function e(){var e,n,o=!1,r=!1;for($("#topicSigns").empty(),html="",num=0,j=20,yLoc=20,xLoc=j,i=startIndex;i<numToShow;i++)num+=1,names[i]&&(myString=names[i],t=myString,s=t.length,"?"==t.substr(s-1,1)&&(t=t.substring(0,s-1)),t=resourceurl+"visuals/assets/topic-thumbs/"+t+".png",html+='<div class="greenTopSign" name="'+myString+'" title="'+displaynames[i]+'" style="position:absolute;left:'+xLoc+"px;top:"+yLoc+"px;width:222px;height:126px;border:4px solid white;border-radius:15px;"+shadow+"background:"+signGreen+';cursor:pointer;">',html+='<div style="position:absolute;left:8px;top:6px;width:66px;height:66px;border:2px solid #fff;border-radius:7px;overflow:hidden;"><img src="'+t+'" width="66px" height="66px"/></div>',html+='<div style="position:absolute;right:6px;top:8px;width:130px;height:70px;overflow:hidden;color:white;"><p style="text-align:left;line-height:16px;font-size:13px;">'+descriptions[i]+"</p></div>",html+='<div class="arraSign" id="topicArraContent">'+arra206+'<div class="arraLabel206">',html+="en"==shortCode?names[i]:displaynames[i],html+="</div></div></div>",xLoc+=244,3==num&&(xLoc=j,num=0,yLoc+=148));switch(html+="</div>",$("#topicSigns").append(html),$(".arraLabel206").each(function(i){if(e=$(".arraLabel206")[i].scrollWidth,e>182)for(var t=16;t>8&&($(this).css("font-size",String(t+"px")),e=$(".arraLabel206")[i].scrollWidth,!(182>=e));t--);}),$("#forwardArra").css("visibility","hidden"),$("#backwardArra").css("visibility","hidden"),topicsScreen){case 0:numTopics>9&&(o=!0);break;default:r=!0,n=9*(topicsScreen+1),numTopics>n&&(o=!0)}1==o&&$("#forwardArra").css({visibility:"visible","z-index":"999"}),1==r&&$("#backwardArra").css({visibility:"visible","z-index":"999"}),$("[id^=topicArraContent]").off().on(pStart,function(){chngArraSign($(this),"#FFF","#000")}).on(pEnd,function(){chngArraSign($(this),groundCol,strokeCol)})}
 
 }
 function goBack(){clickS.play();first();$("#back").css("visibility","hidden");}

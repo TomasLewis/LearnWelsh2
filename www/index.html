@@ -33,11 +33,13 @@
 		var screenWidth=window.innerWidth,screenHeight=window.innerHeight;
 var level='primary',shortCode='en',topicsSelected='0',noTopic,soundURL='sounds/',modStrings,modStringsEN,modStringsES,xGroundCol,xStrokeCol,strokeCol,groundCol;
 
-var displaytopic,topic,topicMedia,picsarray,secLevel,primLevel;
-var labelsarray,ilabelsarray;
-var resourceurl='',shadow='box-shadow:2px 2px 7px #333;',bigPicsURL='visuals/topics-sc/';
-var startButtonLabel,lessonButtonLabel,lessonToolTip,gamesButtonLabel,testButtonLabel,startToolTip,gamesToolTip,testToolTip,vocToolTip,vocCorrectedLink;
-var signGreen='#00703C';
+var displaytopic,topic,topicMedia,picsarray,secLevel,primLevel,
+labelsarray,ilabelsarray,
+resourceurl='',shadow='box-shadow:2px 2px 7px #333;',bigPicsURL='visuals/topics-sc/',
+startButtonLabel,lessonButtonLabel,lessonToolTip,gamesButtonLabel,testButtonLabel,startToolTip,gamesToolTip,testToolTip,vocToolTip,vocCorrectedLink,
+pEnter="pointerenter",pDown="pointerdown",pLeave="pointerleave",pUp="pointerup",
+pStart=pEnter+" "+pDown,pEnd=pLeave+" "+pUp,
+signGreen='#00703C';
 function setLevelCols(){
 if(level=='primary'){
 strokeCol='#FFF';
