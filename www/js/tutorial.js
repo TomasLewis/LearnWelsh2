@@ -60,16 +60,15 @@ $("#transSign").on("mousedown touchstart",function(e){e.stopPropagation();e.prev
 $("#introNext,#introPrev").on(pStart,function(e){
 e.stopPropagation();e.preventDefault();
 $(this).css("background-color","#000");
-});
-/*
+})
 .on(pEnd,function(e){e.stopPropagation();e.preventDefault();
 $(this).css("background-color",groundCol);
 })
-*/
+
 $("#introNext").on(pUp,function(e){e.stopPropagation();e.preventDefault();
-picNum<numPics-1?(picNum+=1,i(picNum)):t();$(this).css("background-color",groundCol);}),
+picNum<numPics-1?(picNum+=1,i(picNum)):t();}),
 $("#introPrev").on(pUp,function(e){e.stopPropagation();e.preventDefault();
-picNum>0&&(picNum-=1,i(picNum));$(this).css("background-color",groundCol);});
+picNum>0&&(picNum-=1,i(picNum));});
 i(picNum);
 
 });
@@ -154,6 +153,13 @@ function eoPlayFour(){
 eoAns2.play();
 $("#eitherOrLabel2").show();reduceToHtWdth("#eitherOrLabelText2");
 
+$("#eitherOrLabel1,#eitherOrLabel2").on(pStart,function(){
+$(this).css({"background-color":"#000","color":"#fff"});
+})
+.on(pEnd,function(){
+$(this).css({"background-color":groundCol,"color":strokeCol});
+})
+
 $("#eitherOrLabel1").on(pUp,onClick1);
 $("#eitherOrLabel2").on(pUp,onClick2);
 
@@ -165,8 +171,6 @@ function onClick2(){correct=1==answerTrue?!1:!0,havingAnsweredEO()}
 function havingAnsweredEO(){setTimeout(function(){havingAnsweredEO2()},400),1==correct?(playInterface("highPop"),rightAnswers+=1,starRight(1)):(wrongOverlay("eitherOr"),playInterface("wrong"),starWrong(1))}
 
 function havingAnsweredEO2(){
-$("#eitherOrLabel1,#eitherOrLabel2,#sign4_phone1,#sign4_phone2").off(pUp);
-$("#eitherOrLabel1,#eitherOrLabel2").css("border-color",groundCol);
 $("#eitherOrLabel1,#eitherOrLabel2,#sign4_phone1,#sign4_phone2").hide(),1==correct&&(picNum=myArray.shift(),eitherOrPicAndQ(picNum))
 
 }
