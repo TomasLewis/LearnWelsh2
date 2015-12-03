@@ -30,11 +30,24 @@ playInterface("click1");$("#pageInfoFX").css("display","block");});
 
 $("#topicsSign").on(pStart,function(){setStatusString(modStrings[11]),setDefaultString}).on(pUp,function(){playInterface("click1");loadPage("topics");});
 }
-function sharedEndInterface(i){$("#introBlueGoArra").off("click").unbind("mouseenter mouseleave"),myString='<div id="introBlueTitle"></div><div id="introBlueText"></div><div id="introBlueAgain"><div class="arraSign">'+arra206+'<div class="arraLabel206">'+modStrings[57]+"</div></div></div>",
+function sharedEndInterface(i){
+$("#introBlueGoArra").off(pEnd).off(pStart);
+myString='<div id="introBlueTitle"></div><div id="introBlueText"></div><div id="introBlueAgain"><div class="arraSign">'+arra206+'<div class="arraLabel206">'+modStrings[57]+"</div></div></div>";
 
 myString+="whatIsIt"!==i?'<div id="introBlueGoArra">'+modStrings[59]+"</div>":'<div id="introBlueGoArra">'+modStrings[69]+"</div>",
 
-$("#contentSign").html(myString),$("#introBlueGoArra").hover(function(){myString=$(this).text(),setStatusString(myString)},setDefaultString).click(function(){"yesNo"==i?fourth():"eitherOr"==i?fifth():"introLang"==i?third():(myString=logamesURL,window.location.href=myString)}),$("#introBlueAgain").hover(function(){myString=$(this).text(),setStatusString(myString)},setDefaultString).click(function(){"yesNo"==i?third():"eitherOr"==i?fourth():"introLang"==i?second():fifth()})}
+$("#contentSign").html(myString);
+
+$("#introBlueGoArra")
+.on(pStart,function(){myString=$(this).text();setStatusString(myString)}).on(pEnd,function(){setStatusString(defaultStatusString);})
+.on(pUp,function(){if(i=="yesNo"){fourth()}else if(i=="eitherOr"){fifth()}else if(i=="introLang"){third()}else{loadPage("games");}});
+
+$("#introBlueAgain")
+.on(pStart,function(){myString=$(this).text();setStatusString(myString)}).on(pEnd,function(){setStatusString(defaultStatusString);})
+.on(pUp,function(){if(i=="yesNo"){third()}else if(i=="eitherOr"){fourth()}else if(i=="introLang"){second()}else{fifth()}
+});
+
+}
 
 function sharedInterface(i){$("#introBlueGoArra").off("click").unbind("mouseenter mouseleave"),$("#a1,#a2,#a3,#a4").off("click").unbind("mouseenter mouseleave"),$("#back").css("visibility","visible"),$("#contentSign").empty(),$("#content").empty(),html='<div id="hPipe3"><div class="pipeH"></div></div><div id="hPipe4"><div class="pipeH"></div></div><div id="hPipe5"><div class="pipeH"></div></div><div id="hPipe6"><div class="pipeH"></div></div><div id="sign_leftPipe"><div class="pipeV"></div></div><div id="sign_middle1"><div class="pipeV"></div></div><div id="sign_middle2"><div class="pipeV"></div></div><div id="sign_rightPipe"><div class="pipeV"></div></div>',html+='<div id="infoSign"><div id="infoBrownTitle"></div><div id="infoBrownText"></div></div>',html+='<div id="navSignTut"><div id="a1"><div class="arraSign">'+arra206+'<div class="arraLabel206a">'+modStrings[13]+'</div></div></div><div id="a2"><div class="arraSign">'+arra206+'<div class="arraLabel206a">'+modStrings[14]+'</div></div></div><div id="a3"><div class="arraSign">'+arra206+'<div class="arraLabel206a">'+modStrings[15]+'</div></div></div><div id="a4">',html+='<div class="arraSign">'+arra206+'<div class="arraLabel206a">'+modStrings[16]+"</div></div></div></div>",html+='<div id="contentSign"><div id="introBlueTitle"></div><div id="introBlueText"></div><div id="introBlueGoArra"></div></div>',$("#content").append(html);
 
@@ -143,13 +156,13 @@ answer1=labelsarray[picNum];
 k=returnRandom(5);
 multipleChoiceArray[k]=picNum;myString='<img src="'+bigPicsURL+picsarray[picNum]+'.png" width="150px" />';$("#contentSignPic5").html(myString);whatIsThis.play();setTimeout(function(){whatIsItLabs()},1800)}}
 
-function whatIsItLabs(){var e,t;for(i=1;i<6;i++){e="#labels"+i;myString=labelsarray[multipleChoiceArray[i-1]];$(e).attr("name",myString);$("#labelText"+i).text(myString).css({height:"43px","font-size":"28px",margin:"2px 0 0 2px"});$(e).show();k=getRows($("#labelText"+i));if(k>1){reduceToHtWdth("#labelText"+i)}$("#speaker-"+i).off().on(pUp,function(){myString=$(this).attr("id");k=parseFloat(myString.substring(8));k-=1;j=multipleChoiceArray[k];playAudio("t",picsarray[j])});$("#speaker-"+i).show()}}
+function whatIsItLabs(){var e,t;for(i=1;i<6;i++){e="#labels"+i;myString=labelsarray[multipleChoiceArray[i-1]];$(e).attr("name",myString);$("#labelText"+i).text(myString).css({height:"43px","font-size":"32px",margin:"2px 0 0 2px"});$(e).show();k=getRows($("#labelText"+i));if(k>1){reduceToHtWdth("#labelText"+i)}$("#speaker-"+i).off(pUp).on(pUp,function(){myString=$(this).attr("id");k=parseFloat(myString.substring(8));k-=1;j=multipleChoiceArray[k];playAudio("t",picsarray[j])});$("#speaker-"+i).show()}}
 
 function havingAnsweredWII(){setTimeout(function(){havingAnsweredWIITwo()},400);if(correct==true){playInterface("highPop");starRight(2);rightAnswers+=1}else{wrongOverlay("whatIsIt");playInterface("wrong");starWrong(2)}for(i=1;i<6;i++){$("#labels"+i).hide();$("#speaker-"+i).hide()}}
 
 function havingAnsweredWIITwo(){1==correct&&(picNum=myArray.shift(),whatIsItPicAndQ())}
 
-function whatIsItFinished(){$("#contentSign").empty(),sharedEndInterface("whatIsIt"),defaultStatusString=modStrings[60],setStatusString(defaultStatusString),myString=modStrings[42].replace("xxx",""),myString=modStrings[28]+myString,$("#introBlueTitle").text(myString),myString=modStrings[41].replace("xxx",modStrings[28]),myString2="<p>"+myString+"<br />",myString=modStrings[44].replace("xxx",rightAnswers),myString+="en"==shortCode?"<br /><br />":"<br />",myString2+=myString+modStrings[40]+"<br />",myString=modStrings[51],myString2+=myString,$("#introBlueText").html(myString2),i="primary"==level?rightAnswers>8?1:rightAnswers>6?2:rightAnswers>4?3:4:rightAnswers>16?1:rightAnswers>12?2:rightAnswers>8?3:4,$("#infoBrownTitle").html('<div id="smilieGraphic'+i+'"></div>'),$("#infoBrownText").html('<p style="font-size:19px;margin-top:128px">'+rightAnswers+' / '+numPics+'</p>')}
+function whatIsItFinished(){$("#contentSign").empty(),sharedEndInterface("whatIsIt"),defaultStatusString=modStrings[60],setStatusString(defaultStatusString),myString=modStrings[42].replace("xxx",""),myString=modStrings[28]+myString,$("#introBlueTitle").text(myString),myString=modStrings[41].replace("xxx",modStrings[28]),myString2="<p>"+myString+"<br />",myString=modStrings[44].replace("xxx",rightAnswers),myString+="en"==shortCode?"<br /><br />":"<br />",myString2+=myString+modStrings[40]+"<br />",myString=modStrings[51],myString2+=myString,$("#introBlueText").html(myString2),i="primary"==level?rightAnswers>8?1:rightAnswers>6?2:rightAnswers>4?3:4:rightAnswers>16?1:rightAnswers>12?2:rightAnswers>8?3:4,$("#infoBrownTitle").html('<div id="smilieGraphic'+i+'"></div>'),$("#infoBrownText").html('<p style="font-size:19px;margin-top:120px">'+rightAnswers+' / '+numPics+'</p>')}
 
 /////////////////////////////////////////////////////////////////////////////////
 //fourth = = either or
@@ -303,7 +316,7 @@ function onClickNo(){correct=0==answerTrue?!0:!1,havingAnswered()}
 function havingAnswered(){setTimeout(function(){havingAnswered2()},400),1==correct?(playInterface("highPop"),rightAnswers+=1,starRight(1)):(playInterface("wrong"),wrongOverlay("yesNo"),starWrong(1))}
 function havingAnswered2(){$("#yesNoLabel,#sign3_yes,#sign3_no").hide(),1==correct&&(picNum=myArray.shift(),yesNoPicAndQ(picNum))}
 
-function onYesNoFinished(){$("#contentSign").empty(),sharedEndInterface("yesNo"),defaultStatusString=modStrings[60],setStatusString(defaultStatusString),myString=modStrings[42].replace("xxx",""),myString=modStrings[23]+myString,$("#introBlueTitle").text(myString),myString=modStrings[41].replace("xxx",modStrings[23]),myString2="<p>"+myString+"<br />",myString=modStrings[44].replace("xxx",rightAnswers),myString+="en"==shortCode?"<br /><br />":"<br />",myString2+=myString+modStrings[40]+"<br />",myString=modStrings[43].replace("xxx",modStrings[26]),myString2+=myString,$("#introBlueText").html(myString2),i="primary"==level?rightAnswers>8?1:rightAnswers>6?2:rightAnswers>4?3:4:rightAnswers>16?1:rightAnswers>12?2:rightAnswers>8?3:4,$("#infoBrownTitle").html('<div id="smilieGraphic'+i+'"></div>'),$("#infoBrownText").html('<p style="font-size:19px;margin-top:128px">'+rightAnswers+' / '+numPics+'</p>')}
+function onYesNoFinished(){$("#contentSign").empty(),sharedEndInterface("yesNo"),defaultStatusString=modStrings[60],setStatusString(defaultStatusString),myString=modStrings[42].replace("xxx",""),myString=modStrings[23]+myString,$("#introBlueTitle").text(myString),myString=modStrings[41].replace("xxx",modStrings[23]),myString2="<p>"+myString+"<br />",myString=modStrings[44].replace("xxx",rightAnswers),myString+="en"==shortCode?"<br /><br />":"<br />",myString2+=myString+modStrings[40]+"<br />",myString=modStrings[43].replace("xxx",modStrings[26]),myString2+=myString,$("#introBlueText").html(myString2),i="primary"==level?rightAnswers>8?1:rightAnswers>6?2:rightAnswers>4?3:4:rightAnswers>16?1:rightAnswers>12?2:rightAnswers>8?3:4,$("#infoBrownTitle").html('<div id="smilieGraphic'+i+'"></div>'),$("#infoBrownText").html('<p style="font-size:19px;margin-top:120px">'+rightAnswers+' / '+numPics+'</p>')}
 
 function wrongOverlay(i){myString3=modStrings[64],"whatIsIt"!==i?(myString2=labelsarray[picNum],myString=1==answerTrue?modStrings[61]:modStrings[62],myString=myString+"<br />"+modStrings[63],html='<div id="wrongBgSign"><div id="wrongTitle">'+modStrings[54]+'</div><div id="wrongText1">'+myString+'</div><div id="wrongRightAnswer">'+myString2+'</div><div id="wrongOKbtn">OK</div><div id="wrongPic"><img src="'+bigPicsURL+picsarray[picNum]+'.png" width="310px" height="310px" /></div><div id="wrongTextTwo">'+myString3+"</div></div>"):(myString=modStrings[65]+"<br />"+modStrings[63],html='<div id="wrongBgSign"><div id="wrongTitle">'+modStrings[54]+'</div><div id="wrongText1">'+myString+'</div><div id="wrongRightAnswer">'+answer1+'</div><div id="wrongOKbtn">OK</div><div id="wrongPic"><img src="'+bigPicsURL+picsarray[picNum]+'.png" width="310px" height="310px" /></div><div id="wrongTextTwo">'+myString3+"</div></div>"),$("#content").append(html),$("#wrongOKbtn").off("click").on("click",function(){$("#wrongBgSign").remove(),picNum=myArray.shift(),"yesNo"==i?yesNoPicAndQ(picNum):"eitherOr"==i?eitherOrPicAndQ(picNum):whatIsItPicAndQ()})}
 
