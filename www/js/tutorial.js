@@ -49,16 +49,28 @@ playInterface("click1"),sharedInterface(1),defaultStatusString=modStrings[52],se
 
 $("#introBlueGoArra").on(pUp,function(){playInterface("click1"),setDefaultString(),picNum=0,$("#contentSign").empty(),html='<div id="sign2_count"></div><div id="pipe2_phone"><div class="pipeV"></div></div><div id="transSign">'+shortCode+'</div><div id="sign2_phone"><div id="sign2_phoneGraphic">'+phone(17,"#fff")+'</div></div><div id="contentSignPicLab"><div class="introPicG"></div><div id="introLabel"></div></div><div id="introPrev"><div id="introG">'+arraSm(42,strokeCol,1)+'</div></div><div id="introNext"><div id="introG">'+arraSm(42,strokeCol,0)+"</div></div>",
 $("#contentSign").append(html),
-$("#sign2_phone").on(pUp,function(){playAudio("t",picsarray[picNum])}),
+$("#sign2_phone").on(pUp,function(){
+$(this).css("background-color",signBrown);
+playAudio("t",picsarray[picNum]);
+
+}),
 $("#transSign").on(pDown,function(i){return i.stopPropagation(),i.preventDefault(),i.handled===!0?!1:($("#introLabel").text(translate(picNum,1)),reduceToHtWdth("#introLabel"),i.handled=!0,void 0)}).on(pUp,function(i){return i.stopPropagation(),i.preventDefault(),i.handled===!0?!1:($("#introLabel").text(translate(picNum,0)),reduceToHtWdth("#introLabel"),i.handled=!0,void 0)}),
 
-$("#introNext,#introPrev").off(pStart).off(pEnd).on(pStart,function(){
+$("#introNext,#introPrev").on(pStart,function(e){
+e.stopPropagation();e.preventDefault();
 $(this).css("background-color","#000");
-}).on(pLeave,function(){
+}).on(pLeave,function(e){e.stopPropagation();e.preventDefault();
 $(this).css("background-color",groundCol);
 })
-$("#introNext").on(pUp,function(){picNum<numPics-1?(picNum+=1,i(picNum)):t();$(this).css("background-color",groundCol);}),
-$("#introPrev").on(pUp,function(){picNum>0&&(picNum-=1,i(picNum));$(this).css("background-color",groundCol);}),i(picNum)})}
+$("#introNext").on(pUp,function(e){e.stopPropagation();e.preventDefault();
+picNum<numPics-1?(picNum+=1,i(picNum)):t();$(this).css("background-color",groundCol);}),
+$("#introPrev").on(pUp,function(e){e.stopPropagation();e.preventDefault();
+picNum>0&&(picNum-=1,i(picNum));$(this).css("background-color",groundCol);});
+i(picNum);
+
+});
+
+}
 
 function prepareActivityArrays(){myArray="primary"==level?[0,1,2,3,4,5,6,7,8,9]:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],shuffle(myArray),starPicsArray=myArray.slice(),picNum=myArray.shift(),count=0}
 
@@ -73,7 +85,7 @@ function whatIsItPicAndQ(){count+=1,count>=numPics+1?whatIsItFinished():(myStrin
 function whatIsItLabs(){for(i="primary"==level?labelsarray[0].length:labelsarray[10].length,i>=40?(xLoc=-1,yLoc=432):(xLoc=15,yLoc=400),j=11,i=1;i<11;i++)k<10?($("#labels"+i).html(i+".&nbsp;&nbsp;&nbsp;&nbsp;"+labelsarray[i-1]).attr("name",labelsarray[i-1]),10==i&&$("#labels10").html("10.&nbsp;&nbsp;"+labelsarray[9])):($("#labels"+i).html(j+".&nbsp;&nbsp;&nbsp;&nbsp;"+labelsarray[j-1]).attr("name",labelsarray[j-1]),10==i&&$("#labels10").html("20.&nbsp;&nbsp;&nbsp;"+labelsarray[19]),j+=1),num=getRows($("#labels"+i)),num>1&&reduceToHtWdth("#labels"+i),$("#speaker-"+i).css("left",xLoc),$("#labels"+i).css({left:xLoc+29,width:yLoc}),$("#labels"+i).show(),$("#speaker-"+i).show()}
 function havingAnsweredWII(){for(setTimeout(function(){havingAnsweredWIITwo()},400),1==correct?(playInterface("highPop"),starRight(2),rightAnswers+=1):(wrongOverlay("whatIsIt"),playInterface("wrong"),starWrong(2)),i=1;i<11;i++)$("#labels"+i).hide(),$("#speaker-"+i).hide()}
 function havingAnsweredWIITwo(){1==correct&&(picNum=myArray.shift(),whatIsItPicAndQ())}
-function whatIsItFinished(){$("#contentSign").empty(),sharedEndInterface("whatIsIt"),defaultStatusString=modStrings[60],setStatusString(defaultStatusString),myString=modStrings[42].replace("xxx",""),myString=modStrings[28]+myString,$("#introBlueTitle").text(myString),myString=modStrings[41].replace("xxx",modStrings[28]),myString2="<p>"+myString+"<br />",myString=modStrings[44].replace("xxx",rightAnswers),myString+="en"==shortCode?"<br /><br />":"<br />",myString2+=myString+modStrings[40]+"<br />",myString=modStrings[51],myString2+=myString,$("#introBlueText").html(myString2),i="primary"==level?rightAnswers>8?1:rightAnswers>6?2:rightAnswers>4?3:4:rightAnswers>16?1:rightAnswers>12?2:rightAnswers>8?3:4,$("#infoBrownTitle").html('<div id="smilieGraphic'+i+'"></div>'),$("#infoBrownText").html('<p style="font-size:19px;margin-top:138px">'+rightAnswers+' / '+numPics+'</p>')}
+function whatIsItFinished(){$("#contentSign").empty(),sharedEndInterface("whatIsIt"),defaultStatusString=modStrings[60],setStatusString(defaultStatusString),myString=modStrings[42].replace("xxx",""),myString=modStrings[28]+myString,$("#introBlueTitle").text(myString),myString=modStrings[41].replace("xxx",modStrings[28]),myString2="<p>"+myString+"<br />",myString=modStrings[44].replace("xxx",rightAnswers),myString+="en"==shortCode?"<br /><br />":"<br />",myString2+=myString+modStrings[40]+"<br />",myString=modStrings[51],myString2+=myString,$("#introBlueText").html(myString2),i="primary"==level?rightAnswers>8?1:rightAnswers>6?2:rightAnswers>4?3:4:rightAnswers>16?1:rightAnswers>12?2:rightAnswers>8?3:4,$("#infoBrownTitle").html('<div id="smilieGraphic'+i+'"></div>'),$("#infoBrownText").html('<p style="font-size:19px;margin-top:128px">'+rightAnswers+' / '+numPics+'</p>')}
 
 /////////////////////////////////////////////////////////////////////////////////
 //fourth = = either or
@@ -186,7 +198,13 @@ $(this).css({"background":groundCol,"border":"2px solid "+strokeCol});
 $("#sign3_yes").off("click").on("click",onClickYes),
 $("#sign3_no").off("click").on("click",onClickNo),yesNoPicAndQ(picNum)})}
 
-function yesNoPicAndQ(i){if(count+=1,count>=numPics+1)onYesNoFinished();else{$("#sign3_count").text(count+"/"+numPics);var t='<img class="introPic" src="'+bigPicsURL+picsarray[i]+'.png" width="310px" height="310px" />';$(".introPicG").html(t),isThisH.play();}}
+function yesNoPicAndQ(e){
+count+=1;
+if(count>=numPics+1){
+onYesNoFinished()}else{
+$("#sign3_count").text(count+"/"+numPics);var t='<img class="introPic" src="'+bigPicsURL+picsarray[e]+'.png" width="310px" height="310px" />';$(".introPicG").html(t);isThisH.play()
+}
+}
 
 function yesNoLabAndButtons(){if(answerTrue=returnRandom(2),1==answerTrue?(myString=labelsarray[picNum],playAudio("t",picsarray[picNum])):(returnDifferentRandom(numPics,picNum),myString=labelsarray[rndNum],playAudio("t",picsarray[rndNum])),$("#yesNoLabelText").text(myString).css({"font-size":"28px","line-height":"150%","margin-top":"2px"}),$("#yesNoLabel,#sign3_yes,#sign3_no").show(),i=getRows($("#yesNoLabelText")),i>1){var t=document.getElementById("yesNoLabelText");reduceFontToFitHeight(t,64,30,"150%")}i=getRows($("#yesNoLabelText")),1==i&&$("#yesNoLabelText").css("margin-top","12px")}
 
@@ -194,7 +212,7 @@ function onClickYes(){correct=1==answerTrue?!0:!1,havingAnswered()}
 function onClickNo(){correct=0==answerTrue?!0:!1,havingAnswered()}
 function havingAnswered(){setTimeout(function(){havingAnswered2()},400),1==correct?(playInterface("highPop"),rightAnswers+=1,starRight(1)):(playInterface("wrong"),wrongOverlay("yesNo"),starWrong(1))}
 function havingAnswered2(){$("#yesNoLabel,#sign3_yes,#sign3_no").hide(),1==correct&&(picNum=myArray.shift(),yesNoPicAndQ(picNum))}
-function onYesNoFinished(){$("#contentSign").empty(),sharedEndInterface("yesNo"),defaultStatusString=modStrings[60],setStatusString(defaultStatusString),myString=modStrings[42].replace("xxx",""),myString=modStrings[23]+myString,$("#introBlueTitle").text(myString),myString=modStrings[41].replace("xxx",modStrings[23]),myString2="<p>"+myString+"<br />",myString=modStrings[44].replace("xxx",rightAnswers),myString+="en"==shortCode?"<br /><br />":"<br />",myString2+=myString+modStrings[40]+"<br />",myString=modStrings[43].replace("xxx",modStrings[26]),myString2+=myString,$("#introBlueText").html(myString2),i="primary"==level?rightAnswers>8?1:rightAnswers>6?2:rightAnswers>4?3:4:rightAnswers>16?1:rightAnswers>12?2:rightAnswers>8?3:4,$("#infoBrownTitle").html('<div id="smilieGraphic'+i+'"></div>'),$("#infoBrownText").html('<p style="font-size:19px;margin-top:138px">'+rightAnswers+' / '+numPics+'</p>')}
+function onYesNoFinished(){$("#contentSign").empty(),sharedEndInterface("yesNo"),defaultStatusString=modStrings[60],setStatusString(defaultStatusString),myString=modStrings[42].replace("xxx",""),myString=modStrings[23]+myString,$("#introBlueTitle").text(myString),myString=modStrings[41].replace("xxx",modStrings[23]),myString2="<p>"+myString+"<br />",myString=modStrings[44].replace("xxx",rightAnswers),myString+="en"==shortCode?"<br /><br />":"<br />",myString2+=myString+modStrings[40]+"<br />",myString=modStrings[43].replace("xxx",modStrings[26]),myString2+=myString,$("#introBlueText").html(myString2),i="primary"==level?rightAnswers>8?1:rightAnswers>6?2:rightAnswers>4?3:4:rightAnswers>16?1:rightAnswers>12?2:rightAnswers>8?3:4,$("#infoBrownTitle").html('<div id="smilieGraphic'+i+'"></div>'),$("#infoBrownText").html('<p style="font-size:19px;margin-top:128px">'+rightAnswers+' / '+numPics+'</p>')}
 function wrongOverlay(i){myString3=modStrings[64],"whatIsIt"!==i?(myString2=labelsarray[picNum],myString=1==answerTrue?modStrings[61]:modStrings[62],myString=myString+"<br />"+modStrings[63],html='<div id="wrongBgSign"><div id="wrongTitle">'+modStrings[54]+'</div><div id="wrongText1">'+myString+'</div><div id="wrongRightAnswer">'+myString2+'</div><div id="wrongOKbtn">OK</div><div id="wrongPic"><img src="'+bigPicsURL+picsarray[picNum]+'.png" width="310px" height="310px" /></div><div id="wrongTextTwo">'+myString3+"</div></div>"):(myString=modStrings[65]+"<br />"+modStrings[63],html='<div id="wrongBgSign"><div id="wrongTitle">'+modStrings[54]+'</div><div id="wrongText1">'+myString+'</div><div id="wrongRightAnswer">'+answer1+'</div><div id="wrongOKbtn">OK</div><div id="wrongPic"><img src="'+bigPicsURL+picsarray[picNum]+'.png" width="310px" height="310px" /></div><div id="wrongTextTwo">'+myString3+"</div></div>"),$("#content").append(html),$("#wrongOKbtn").off("click").on("click",function(){$("#wrongBgSign").remove(),picNum=myArray.shift(),"yesNo"==i?yesNoPicAndQ(picNum):"eitherOr"==i?eitherOrPicAndQ(picNum):whatIsItPicAndQ()})}
 function starRight(i){myString=2!==i?"#star"+count:"#WIIstar"+count,$(myString).html('<div class="star-right"></div>').on("click",{answer:"right"},starShowBox).on("mouseleave",starClearBox).on("mouseenter",{answer:"right"},starShowBox)}
 function starShowBox(t){if(0==starBoxVisible){var r=t.data.answer;myString=$(this).attr("id"),i=myString.substring("s"==myString.substring(0,1)?4:7);var n=starPicsArray[i-1];offset=$(this).offset(),myString="right"==r?"starBoxRight":"starBoxWrong",html='<div id="'+myString+'"><div id="starBC"><img src="'+bigPicsURL+picsarray[n]+'.png" width="40px" height="40px" />&nbsp;&nbsp;'+labelsarray[n]+"</div></div>",$("#contentSign").append(html),myString="#"+myString,i=labelsarray[n].length,i>40?(j=16,k=0):i>30?(j=20,k=-1):(j=24,k=-6),$(myString).css("font-size",j),myString2=myString+" img",$(myString2).css("top",k),width=$(myString).width(),xLoc=offset.left-width-20,yLoc=offset.top-12,$("#starBoxRight,#starBoxWrong").offset({top:yLoc,left:xLoc}),$("#starBoxRight,#starBoxWrong").on("click",starClearBox),starBoxVisible=!0}}
