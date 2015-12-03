@@ -1,7 +1,7 @@
 function tutorial(){
 function goBack(){console.log('goBack 1');playInterface("click1");first();$("#back").css("visibility","hidden");}
 $("#backButton").on(pUp,function(){goBack()});
-var picNum=0,correct=!1,answerTrue,rightAnswers,starPicsArray=[],starBoxVisible=!1,eoAudioArray=[],answer1,answer2,myString=soundURL+"interface/lang/"+shortCode+"/",isThis=myString+"is-this-a-picture-of.mp3",isThisH,isThisEO=myString+"is-this-a-picture-of.mp3",isThisEOH,orIsIt=myString+"or-is-it-a-picture-of.mp3",orIsItH,whatIsThis=myString+"what-is-this-a-picture-of.mp3",eoAns1,eoAns2,myString3,firstScreen,firstView;
+var picNum=0,correct=!1,answerTrue,rightAnswers,starPicsArray=[],starBoxVisible=!1,eoAudioArray=[],answer1,answer2,myString=soundURL+"interface/lang/"+shortCode+"/",isThis=myString+"is-this-a-picture-of.mp3",isThisH,isThisEO=myString+"is-this-a-picture-of.mp3",isThisEOH,orIsIt=myString+"or-is-it-a-picture-of.mp3",orIsItH,whatIsThis=myString+"what-is-this-a-picture-of.mp3",eoAns1,eoAns2,myString3,firstScreen,firstView,multipleChoiceArray;
 
 modStringsEN='["FULL LESSON<br />All Activities","LESSONS","No lesson thanks<br />GO TO THE GAMES","topics","SELECT YOUR<br />LESSON TYPE","Choose your lesson from the options","FULL LESSON","QUICK LESSON","Do all the activities to learn the language for this topic","Do a quick set of activities to remind yourself of the language for this topic","Play games to learn the language for this topic","Choose a different topic","Choose your lesson from the options","1. Introduction","2. Yes or No?","3. Either / Or","4. What is it?","Start the lesson","Listen to the words.","Say the words.","Look at how the words <br>are written.","Listen to the words again.","Write down the words.","YES or NO?","If the words match the picture click the tick.","Otherwise, click the cross button.","EITHER.. OR..","Click the button for the words that match the picture.","WHAT IS IT?","Click the words that match the picture.","INTRODUCTION","You will see the pictures for this topic.","You will see the words.","You will hear the words.","Listen to the words.","Say the the words.","Write down the words for each picture.","INTRODUCTION end","Now you have seen the pictures.","You have seen and heard the words.","To do that again click the small button.","That is the end of xxx","xxx ACTIVITY","For xxx click the big button.","You got xxx questions right.","You will see a picture.","You will see and hear two sets of words.","You will see ten choices of words.","Click the button for the words that match the picture.","You will see the pictures one at a time.","You will see and hear some words.","To play some games click the big button.","Listen to the words and look at the writing for these pictures","Click on the answer to the following Yes / No questions...","NOT QUITE RIGHT","Click the text that matches the picture for these Either / or questions...","Select the correct text for the following pictures...","Do that again","Start the activity","Do the next one","Activity complete. Select an option above.","The correct answer was YES.","The correct answer was NO.","This is a picture of :","Let\'s try the next one","Hard luck!","Start the xxx activity","SELECT AN OPTION","Introduction to the lesson","Play the games"]';
 modStrings=jQuery.parseJSON(modStringsEN);
@@ -88,17 +88,67 @@ i(picNum);
 
 function prepareActivityArrays(){myArray="primary"==level?[0,1,2,3,4,5,6,7,8,9]:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],shuffle(myArray),starPicsArray=myArray.slice(),picNum=myArray.shift(),count=0}
 
-function fifth(){rightAnswers=0,sharedInterface(4),defaultStatusString=modStrings[56],setStatusString(defaultStatusString),$("#infoBrownTitle").text(modStrings[28]),$("#infoBrownText").text(modStrings[29]),myString=modStrings[28],myString=modStrings[42].replace("xxx",myString),$("#introBlueTitle").text(myString),myString="<p>"+modStrings[45]+"<br />"+modStrings[47]+"<br /><br />"+modStrings[48]+"</p>",$("#introBlueText").html(myString),myString=modStrings[66].replace("xxx",""),$("#introBlueGoArra").text(myString),prepareActivityArrays(),whatIsThis=new Howl({urls:[whatIsThis]});
+// //////////////////////////////////////////////////////////
+//what is it
 
-$("#introBlueGoArra").on(pUp,function(){for(playInterface("click1"),$("#contentSign").empty(),defaultStatusString=modStrings[56],setStatusString(defaultStatusString),html='<div id="sign5_count">'+count+"/"+numPics+'</div><div id="contentSignPic5"></div><div id="labels1"></div><div id="labels2"></div><div id="labels3"></div><div id="labels4"></div><div id="labels5"></div><div id="labels6"></div><div id="labels7"></div><div id="labels8"></div><div id="labels9"></div><div id="labels10"></div>',$("#contentSign").append(html),j=184,i=1;i<11;i++)html='<div class="speaker" id="speaker-'+i+'"><div class="phoneGraphicWII">'+speaker(19,strokeCol)+"</div></div>",$("#contentSign").append(html),$("#labels"+i).hide(),$("#speaker-"+i).hide(),$("#labels"+i).css("top",j).on(pUp,whatIsItLabListener),$("#speaker-"+i).css("top",j).on(pUp,function(){myString=$(this).attr("id"),i=parseFloat(myString.substring(8)),i-=1,k>9&&(i+=10),playAudio("t",picsarray[i])}),j+=24;addStars(2),whatIsItPicAndQ()})
+function fifth(){rightAnswers=0,sharedInterface(4),defaultStatusString=modStrings[56],setStatusString(defaultStatusString),$("#infoBrownTitle").text(modStrings[28]),$("#infoBrownText").text(modStrings[29]),myString=modStrings[28],myString=modStrings[42].replace("xxx",myString),$("#introBlueTitle").text(myString),myString="<p>"+modStrings[45]+"<br />"+modStrings[47]+"<br /><br />"+modStrings[48]+"</p>",$("#introBlueText").html(myString),myString=modStrings[66].replace("xxx",""),$("#introBlueGoArra").text(myString),prepareActivityArrays();
+
+if(rippleTest==true){
+whatIsThis=new Howl({urls:[whatIsThis]});
+}else{
+whatIsThis=new Media(whatIsThis,function(){isThisEOH.release();},function(err){console.log(err);});
+}
+
+$("#introBlueGoArra").on(pUp,function(){playInterface("click1");
+$("#contentSign").empty();defaultStatusString=modStrings[56];setStatusString(defaultStatusString);
+
+html='<div id="sign5_count">'+count+"/"+numPics+'</div><div id="contentSignPic5"></div><div class="wiL" id="labels1"><div id="labelText1"></div></div><div class="wiL" id="labels2"><div id="labelText2"></div></div><div class="wiL" id="labels3"><div id="labelText3"></div></div><div class="wiL" id="labels4"><div id="labelText4"></div></div><div class="wiL" id="labels5"><div id="labelText5"></div></div>';$("#contentSign").append(html);j=184;
+
+for(i=1;i<6;i++){html='<div class="speaker" id="speaker-'+i+'"><div style="padding:9px 5px;">'+speaker(29,strokeCol)+"</div></div>";$("#contentSign").append(html);
+
+
+$("#labels"+i).css("top",j).hide();
+
+$("#speaker-"+i).css("top",j).hide();
+j+=48
+
+}
+$(".wiL, .speaker")
+.on(pStart,function(e){
+e.stopPropagation();e.preventDefault();
+$(this).css({"background-color":"#000","color":"#fff"});
+})
+.on(pEnd,function(e){e.stopPropagation();e.preventDefault();
+$(this).css({"background-color":groundCol,"color":strokeCol});
+})
+
+$(".wiL")
+.on(pUp,whatIsItLabListener);
+addStars(2);
+whatIsItPicAndQ()})
 
 }
 
-function whatIsItLabListener(){myString=$(this).attr("name"),correct=answer1==myString?!0:!1,havingAnsweredWII()}
-function whatIsItPicAndQ(){count+=1,count>=numPics+1?whatIsItFinished():(myString=count+"/"+numPics,$("#sign5_count").text(myString),k=picNum,answer1=labelsarray[picNum],myString='<img src="'+bigPicsURL+picsarray[picNum]+'.png" width="150px" />',$("#contentSignPic5").html(myString),whatIsThis.play(),setTimeout(function(){whatIsItLabs()},1600))}
-function whatIsItLabs(){for(i="primary"==level?labelsarray[0].length:labelsarray[10].length,i>=40?(xLoc=-1,yLoc=432):(xLoc=15,yLoc=400),j=11,i=1;i<11;i++)k<10?($("#labels"+i).html(i+".&nbsp;&nbsp;&nbsp;&nbsp;"+labelsarray[i-1]).attr("name",labelsarray[i-1]),10==i&&$("#labels10").html("10.&nbsp;&nbsp;"+labelsarray[9])):($("#labels"+i).html(j+".&nbsp;&nbsp;&nbsp;&nbsp;"+labelsarray[j-1]).attr("name",labelsarray[j-1]),10==i&&$("#labels10").html("20.&nbsp;&nbsp;&nbsp;"+labelsarray[19]),j+=1),num=getRows($("#labels"+i)),num>1&&reduceToHtWdth("#labels"+i),$("#speaker-"+i).css("left",xLoc),$("#labels"+i).css({left:xLoc+29,width:yLoc}),$("#labels"+i).show(),$("#speaker-"+i).show()}
-function havingAnsweredWII(){for(setTimeout(function(){havingAnsweredWIITwo()},400),1==correct?(playInterface("highPop"),starRight(2),rightAnswers+=1):(wrongOverlay("whatIsIt"),playInterface("wrong"),starWrong(2)),i=1;i<11;i++)$("#labels"+i).hide(),$("#speaker-"+i).hide()}
+function whatIsItLabListener(){myString=$(this).attr("name");if(answer1==myString){correct=true}else{correct=false}havingAnsweredWII()}
+
+function whatIsItPicAndQ(){
+count+=1;if(count>=numPics+1){whatIsItFinished()}else{
+if(level=="primary"){multipleChoiceArray=[0,1,2,3,4,5,6,7,8,9]}else{multipleChoiceArray=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]}
+var e=multipleChoiceArray.indexOf(picNum);
+multipleChoiceArray.splice(e,1);
+shuffle(multipleChoiceArray);
+
+$("#sign5_count").text(count+"/10");
+answer1=labelsarray[picNum];
+k=returnRandom(5);
+multipleChoiceArray[k]=picNum;myString='<img src="'+bigPicsURL+picsarray[picNum]+'.png" width="150px" />';$("#contentSignPic5").html(myString);whatIsThis.play();setTimeout(function(){whatIsItLabs()},1800)}}
+
+function whatIsItLabs(){var e,t;for(i=1;i<6;i++){e="#labels"+i;myString=labelsarray[multipleChoiceArray[i-1]];$(e).attr("name",myString);$("#labelText"+i).text(myString).css({height:"43px","font-size":"28px",margin:"2px 0 0 2px"});$(e).show();k=getRows($("#labelText"+i));if(k>1){reduceToHtWdth("#labelText"+i)}$("#speaker-"+i).off().on(pUp,function(){myString=$(this).attr("id");k=parseFloat(myString.substring(8));k-=1;j=multipleChoiceArray[k];playAudio("t",picsarray[j])});$("#speaker-"+i).show()}}
+
+function havingAnsweredWII(){setTimeout(function(){havingAnsweredWIITwo()},400);if(correct==true){playInterface("highPop");starRight(2);rightAnswers+=1}else{wrongOverlay("whatIsIt");playInterface("wrong");starWrong(2)}for(i=1;i<6;i++){$("#labels"+i).hide();$("#speaker-"+i).hide()}}
+
 function havingAnsweredWIITwo(){1==correct&&(picNum=myArray.shift(),whatIsItPicAndQ())}
+
 function whatIsItFinished(){$("#contentSign").empty(),sharedEndInterface("whatIsIt"),defaultStatusString=modStrings[60],setStatusString(defaultStatusString),myString=modStrings[42].replace("xxx",""),myString=modStrings[28]+myString,$("#introBlueTitle").text(myString),myString=modStrings[41].replace("xxx",modStrings[28]),myString2="<p>"+myString+"<br />",myString=modStrings[44].replace("xxx",rightAnswers),myString+="en"==shortCode?"<br /><br />":"<br />",myString2+=myString+modStrings[40]+"<br />",myString=modStrings[51],myString2+=myString,$("#introBlueText").html(myString2),i="primary"==level?rightAnswers>8?1:rightAnswers>6?2:rightAnswers>4?3:4:rightAnswers>16?1:rightAnswers>12?2:rightAnswers>8?3:4,$("#infoBrownTitle").html('<div id="smilieGraphic'+i+'"></div>'),$("#infoBrownText").html('<p style="font-size:19px;margin-top:128px">'+rightAnswers+' / '+numPics+'</p>')}
 
 /////////////////////////////////////////////////////////////////////////////////
