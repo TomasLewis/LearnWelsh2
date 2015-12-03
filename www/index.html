@@ -43,8 +43,6 @@ signGreen='#00703C';
 
 var rippleTest=true;
 
-if(device.platform.toLowerCase() === "android")soundURL="/android_asset/www/"+soundURL;
-
 function setLevelCols(){
 if(level=='primary'){
 strokeCol='#FFF';
@@ -99,12 +97,9 @@ arra206='<svg width="206px" height="36px" viewBox="0 0 206 36"><g><g id="b"><pol
 backG='<svg width="14px" height="18px" viewBox="0 0 14 18"><path fill="#FFF" d="M6.412,5.92c0,0,0.619,2.95,0.619,3.021c0,0.274-0.223,0.494-0.496,0.494c-0.105,0-0.287-0.086-0.287-0.086 L0.154,5.096C0.061,5.006,0,4.88,0,4.739S0.061,4.47,0.154,4.38l6.098-4.26c0.08-0.055,0.178-0.089,0.283-0.089 c0.273,0,0.496,0.221,0.496,0.494c0,0.071-0.619,3.025-0.619,3.025h3.027C11.957,3.55,14,5.58,14,8.089v9.942h-2.375v-9.96 c0-1.203-0.979-2.151-2.186-2.151H6.412z"/></svg>',
 vocG='<svg width="20px" height="19px" viewBox="0 0 20 19"><path id="vGra" fill="'+strokeCol+'" d="M20,0v0.507c-0.685,0.11-1.295,0.472-1.831,1.083c-0.388,0.458-0.967,1.53-1.733,3.219L9.958,19H9.5 L3.051,4.233c-0.777-1.781-1.297-2.826-1.56-3.137C1.228,0.787,0.73,0.589,0,0.507V0h9.015v0.507H8.71 c-0.814,0-1.369,0.102-1.664,0.301C6.833,0.945,6.727,1.146,6.727,1.411c0,0.164,0.037,0.357,0.111,0.583 c0.073,0.223,0.323,0.824,0.749,1.8l4.008,9.247l3.718-8.233c0.443-0.994,0.716-1.661,0.818-2c0.101-0.336,0.152-0.624,0.152-0.863 c0-0.274-0.074-0.515-0.223-0.726c-0.148-0.209-0.365-0.37-0.651-0.479c-0.398-0.155-0.926-0.233-1.581-0.233V0H20z"></path></svg>',
 arraSign,
-
 navB='<div id="info"><div id="infoButton"><div id="infoGraphic">'+infoG+'</div></div></div>';
 navB+='<div id="back"><div id="backButton"><div id="backGraphic">'+backG+'</div></div></div>';
 navB+='<div class="menuArrowSign" id="menuArrowSign1"><div class="ArrowSignInMenu">'+arra147+'</div><div class="arraLabel" id="nL1">'+startButtonLabel+'</div></div>';
-
-
 navB+='<div class="menuArrowSign" id="menuArrowSign2"><div class="ArrowSignInMenu">'+arra147+'</div><div class="arraLabel" id="nL2">'+lessonButtonLabel+'</div></div><div class="menuArrowSign" id="menuArrowSign3"><div class="ArrowSignInMenu">'+arra147+'</div><div class="arraLabel" id="nL3">'+gamesButtonLabel+'</div></div><div class="menuArrowSign" id="menuArrowSign4"><div class="ArrowSignInMenu">'+arra147+'</div><div class="arraLabel" id="nL4">'+testButtonLabel+'</div></div><div id="vocB"><div id="vocG">'+vocG+'</div></div>';
 
 </script>
