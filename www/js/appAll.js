@@ -37,7 +37,6 @@ function triArra(e,t,n){var r='<svg width="'+e+'px" height="'+Math.floor(e*1.43)
 
 function playInterface(i){
 var t=soundURL+"interface/"+i+".mp3";
-if(device.platform.toLowerCase() === "android") t="/android_asset/www/"+t;
 if(rippleTest==true){
 mySound=new Howl({urls:[t],autoplay:true})
 }else{
@@ -56,7 +55,6 @@ function playMediaAudio(url) {console.log('playMediaAudio '+url);
     my_media.play();
 }
 function playAudio(e,t){if(e=="i"){t=soundURL+"interface/"+t}else if(e=="w"){t=soundURL+"winmusic/"+t}else if(e=="g"){t=soundURL+"games/"+t}else{t=soundURL+ilanguage+"/"+t+".mp3"}
-if(device.platform.toLowerCase() === "android") t= "/android_asset/www/" + t;
 if(rippleTest==true){
 mySound=new Howl({urls:[t],autoplay:true})
 } else {

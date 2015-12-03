@@ -41,7 +41,9 @@ pEnter="pointerenter",pDown="pointerdown",pLeave="pointerleave",pUp="pointerup",
 pStart=pEnter+" "+pDown,pEnd=pLeave+" "+pUp,
 signGreen='#00703C';
 
-var rippleTest=false;
+var rippleTest=true;
+
+if(device.platform.toLowerCase() === "android")soundURL="/android_asset/www/"+soundURL;
 
 function setLevelCols(){
 if(level=='primary'){
