@@ -48,46 +48,36 @@ function t(){$("#contentSign").empty(),sharedEndInterface("introLang"),defaultSt
 playInterface("click1"),sharedInterface(1),defaultStatusString=modStrings[52],setStatusString(defaultStatusString),$("#infoBrownTitle").text(modStrings[30]),myString=modStrings[18]+"<br />"+modStrings[21]+"<br /><br />"+modStrings[19]+"<br />"+modStrings[22],$("#infoBrownText").html(myString),$("#introBlueTitle").text(modStrings[30]),myString="<p>"+modStrings[31]+"<br />"+modStrings[32]+"<br />"+modStrings[33]+"<br /><br />"+modStrings[34],myString+="en"==shortCode?"<br />":" ",myString+=modStrings[35]+"<br />"+modStrings[36]+"</p>",$("#introBlueText").html(myString),$("#introBlueGoArra").text(modStrings[17]);
 
 $("#introBlueGoArra").on(pUp,function(){playInterface("click1"),setDefaultString(),picNum=0,$("#contentSign").empty(),html='<div id="sign2_count"></div><div id="pipe2_phone"><div class="pipeV"></div></div><div id="transSign">'+shortCode+'</div><div id="sign2_phone"><div id="sign2_phoneGraphic">'+phone(17,"#fff")+'</div></div><div id="contentSignPicLab"><div class="introPicG"></div><div id="introLabel"></div></div><div id="introPrev"><div id="introG">'+arraSm(42,strokeCol,1)+'</div></div><div id="introNext"><div id="introG">'+arraSm(42,strokeCol,0)+"</div></div>",
-$("#contentSign").append(html),
+$("#contentSign").append(html);
+
+$("#sign2_phone,#transSign").off(pStart).off(pEnd).on(pStart,function(e){e.preventDefault();
+$(this).css("background-color","#000");
+})
+.on(pEnd,function(e){e.preventDefault();
+$(this).css("background-color","#630");
+});
 
 $("#sign2_phone").on(pUp,function(){
 $(this).css("background-color",signBrown);
 playAudio("t",picsarray[picNum]);
-}),
+});
 
 $("#transSign").on("mousedown touchstart",function(e){e.stopPropagation();e.preventDefault();if(e.handled!==true){$("#introLabel").text(translate(picNum,1));reduceToHtWdth("#introLabel");e.handled=true}else{return false}})
 .on("mouseup touchend",function(e){e.stopPropagation();e.preventDefault();if(e.handled!==true){$("#introLabel").text(translate(picNum,0));reduceToHtWdth("#introLabel");e.handled=true}else{return false}});
 
-$("#sign2_phone,#transSign").on(pStart,function(){
-$(this).css("background-color","#000");
-})
-.on(pEnd,function(){
-$(this).css("background-color","#630");
-});
-
-/*
-$("#introNext,#introPrev").on(pStart,function(e){
+$("#introNext,#introPrev").off(pStart).off(pEnd).on(pStart,function(e){
 e.stopPropagation();e.preventDefault();
 $(this).css("background-color","#000");
 })
-.on(pEnd,function(e){e.stopPropagation();e.preventDefault();
-$(this).css("background-color",groundCol);
-})
-$("#introNext").on(pUp,function(e){e.stopPropagation();e.preventDefault();
-picNum<numPics-1?(picNum+=1,i(picNum)):t();}),
-$("#introPrev").on(pUp,function(e){e.stopPropagation();e.preventDefault();
-picNum>0&&(picNum-=1,i(picNum));});
-*/
-$("#introNext,#introPrev").on(pStart,function(){
-$(this).css("background-color","#000");
-})
-.on(pEnd,function(){
+.on(pEnd,function(e){
+e.stopPropagation();e.preventDefault();
 $(this).css("background-color",groundCol);
 });
-
-$("#introNext").on(pUp,function(){
+$("#introNext").on(pUp,function(e){
+e.stopPropagation();e.preventDefault();
 picNum<numPics-1?(picNum+=1,i(picNum)):t();}),
-$("#introPrev").on(pUp,function(){
+$("#introPrev").on(pUp,function(e){
+e.stopPropagation();e.preventDefault();
 picNum>0&&(picNum-=1,i(picNum));});
 
 i(picNum);
@@ -127,7 +117,7 @@ orIsItH=new Media(orIsIt,function(){orIsItH.release();eoPlayFour();},function(er
 
 $("#introBlueGoArra").on(pUp,function(){playInterface("click1"),$("#contentSign").empty(),defaultStatusString=modStrings[55],setStatusString(defaultStatusString),html='<div id="sign3_count">'+count+"/"+numPics+'</div><div id="contentSignPicLab"><div class="introPicG"></div><div id="eitherOrLabel1"><div id="eitherOrLabelText1"></div></div><div id="eitherOrLabel2"><div id="eitherOrLabelText2"></div></div></div>',$("#contentSign").append(html),html='<div id="sign4_phone1"><div class="phoneGraphicEO">'+speaker(24,strokeCol)+'</div></div><div id="sign4_phone2"><div class="phoneGraphicEO">'+speaker(24,strokeCol)+"</div></div>",$("#contentSign").append(html);addStars(1);
 
-$("#eitherOrLabel1,#eitherOrLabel2").on(pStart,function(e){
+$("#eitherOrLabel1,#eitherOrLabel2,#sign4_phone1,#sign4_phone2").off(pStart).off(pEnd).on(pStart,function(e){
 e.stopPropagation();e.preventDefault();
 $(this).css({"background-color":"#000","color":"#fff"});
 })
@@ -174,10 +164,7 @@ eoAns2=new Media(soundURL+ilanguage+"/"+eoAudioArray[1]+".mp3",function(){eoAns2
 }
 
 $("#eitherOrLabelText1").text(answer1).css({"font-size":"28px","line-height":"38px"}),$("#eitherOrLabelText2").text(answer2).css({"font-size":"28px","line-height":"38px"}),$("#eitherOrLabel1,#eitherOrLabel2").css("border-color",strokeCol),myString='<img class="introPic" src="'+bigPicsURL+picsarray[i]+'.png" width="310px" height="310px" />',$(".introPicG").html(myString),
-/*
-$("#sign4_phone1").on(pUp,function(){playAudio("t",eoAudioArray[0])});
-$("#sign4_phone2").on(pUp,function(){playAudio("t",eoAudioArray[1])});
-*/
+
 isThisEOH.play();
 }
 }
@@ -230,15 +217,26 @@ isThisH=new Howl({urls:[isThis],autoplay:!1,onend:function(){yesNoLabAndButtons(
 }else{
 isThisH=new Media(isThis,function () { isThisH.release();yesNoLabAndButtons(); },function (err) { console.log("playAudio():Audio Error: " + err); } );
 }
-$("#introBlueGoArra").on("click",function(){playInterface("click1"),$("#contentSign").empty(),defaultStatusString=modStrings[53],setStatusString(defaultStatusString),html='<div id="sign3_count">'+count+"/"+numPics+'</div><div id="contentSignPicLab"><div class="introPicG"></div><div id="yesNoLabel"><div id="yesNoLabelText"></div></div></div>',$("#contentSign").append(html),html='<div id="sign3_yes"><div id="graphic3_yes"></div></div><div id="sign3_no"><div id="graphic3_no"></div></div>',$("#contentSign").append(html),$("#sign3_yes,#sign3_no").hide(),addStars(1),
+$("#introBlueGoArra").on("click",function(){playInterface("click1"),$("#contentSign").empty(),defaultStatusString=modStrings[53],setStatusString(defaultStatusString),html='<div id="sign3_count">'+count+"/"+numPics+'</div><div id="contentSignPicLab"><div class="introPicG"></div><div id="yesNoLabel"><div id="yesNoLabelText"></div></div></div>',$("#contentSign").append(html),html='<div id="sign3_yes"><div id="graphic3_yes"></div></div><div id="sign3_no"><div id="graphic3_no"></div></div>',$("#contentSign").append(html),$("#sign3_yes,#sign3_no").hide(),addStars(1);
 
+$("#sign3_yes, #sign3_no").off(pStart).off(pEnd).on(pStart,function(e){
+e.stopPropagation();e.preventDefault();
+$(this).css({"background-color":"#fff","border-color":"#000"});
+})
+.on(pEnd,function(e){e.stopPropagation();e.preventDefault();
+$(this).css({"background-color":groundCol,"border-color":strokeCol});
+})
+/*
 $("#sign3_yes, #sign3_no").on("touchstart",function(){
 $(this).css({"background":"white","border":"2px solid black"});
 }).on("touchend",function(){
 $(this).css({"background":groundCol,"border":"2px solid "+strokeCol});
 });
-$("#sign3_yes").off("click").on("click",onClickYes),
-$("#sign3_no").off("click").on("click",onClickNo),yesNoPicAndQ(picNum)})}
+*/
+$("#sign3_yes").on(pUp,onClickYes),
+$("#sign3_no").on(pUp,onClickNo),yesNoPicAndQ(picNum)})
+
+}
 
 function yesNoPicAndQ(e){
 count+=1;
@@ -254,12 +252,18 @@ function onClickYes(){correct=1==answerTrue?!0:!1,havingAnswered()}
 function onClickNo(){correct=0==answerTrue?!0:!1,havingAnswered()}
 function havingAnswered(){setTimeout(function(){havingAnswered2()},400),1==correct?(playInterface("highPop"),rightAnswers+=1,starRight(1)):(playInterface("wrong"),wrongOverlay("yesNo"),starWrong(1))}
 function havingAnswered2(){$("#yesNoLabel,#sign3_yes,#sign3_no").hide(),1==correct&&(picNum=myArray.shift(),yesNoPicAndQ(picNum))}
+
 function onYesNoFinished(){$("#contentSign").empty(),sharedEndInterface("yesNo"),defaultStatusString=modStrings[60],setStatusString(defaultStatusString),myString=modStrings[42].replace("xxx",""),myString=modStrings[23]+myString,$("#introBlueTitle").text(myString),myString=modStrings[41].replace("xxx",modStrings[23]),myString2="<p>"+myString+"<br />",myString=modStrings[44].replace("xxx",rightAnswers),myString+="en"==shortCode?"<br /><br />":"<br />",myString2+=myString+modStrings[40]+"<br />",myString=modStrings[43].replace("xxx",modStrings[26]),myString2+=myString,$("#introBlueText").html(myString2),i="primary"==level?rightAnswers>8?1:rightAnswers>6?2:rightAnswers>4?3:4:rightAnswers>16?1:rightAnswers>12?2:rightAnswers>8?3:4,$("#infoBrownTitle").html('<div id="smilieGraphic'+i+'"></div>'),$("#infoBrownText").html('<p style="font-size:19px;margin-top:128px">'+rightAnswers+' / '+numPics+'</p>')}
+
 function wrongOverlay(i){myString3=modStrings[64],"whatIsIt"!==i?(myString2=labelsarray[picNum],myString=1==answerTrue?modStrings[61]:modStrings[62],myString=myString+"<br />"+modStrings[63],html='<div id="wrongBgSign"><div id="wrongTitle">'+modStrings[54]+'</div><div id="wrongText1">'+myString+'</div><div id="wrongRightAnswer">'+myString2+'</div><div id="wrongOKbtn">OK</div><div id="wrongPic"><img src="'+bigPicsURL+picsarray[picNum]+'.png" width="310px" height="310px" /></div><div id="wrongTextTwo">'+myString3+"</div></div>"):(myString=modStrings[65]+"<br />"+modStrings[63],html='<div id="wrongBgSign"><div id="wrongTitle">'+modStrings[54]+'</div><div id="wrongText1">'+myString+'</div><div id="wrongRightAnswer">'+answer1+'</div><div id="wrongOKbtn">OK</div><div id="wrongPic"><img src="'+bigPicsURL+picsarray[picNum]+'.png" width="310px" height="310px" /></div><div id="wrongTextTwo">'+myString3+"</div></div>"),$("#content").append(html),$("#wrongOKbtn").off("click").on("click",function(){$("#wrongBgSign").remove(),picNum=myArray.shift(),"yesNo"==i?yesNoPicAndQ(picNum):"eitherOr"==i?eitherOrPicAndQ(picNum):whatIsItPicAndQ()})}
-function starRight(i){myString=2!==i?"#star"+count:"#WIIstar"+count,$(myString).html('<div class="star-right"></div>').on("click",{answer:"right"},starShowBox).on("mouseleave",starClearBox).on("mouseenter",{answer:"right"},starShowBox)}
-function starShowBox(t){if(0==starBoxVisible){var r=t.data.answer;myString=$(this).attr("id"),i=myString.substring("s"==myString.substring(0,1)?4:7);var n=starPicsArray[i-1];offset=$(this).offset(),myString="right"==r?"starBoxRight":"starBoxWrong",html='<div id="'+myString+'"><div id="starBC"><img src="'+bigPicsURL+picsarray[n]+'.png" width="40px" height="40px" />&nbsp;&nbsp;'+labelsarray[n]+"</div></div>",$("#contentSign").append(html),myString="#"+myString,i=labelsarray[n].length,i>40?(j=16,k=0):i>30?(j=20,k=-1):(j=24,k=-6),$(myString).css("font-size",j),myString2=myString+" img",$(myString2).css("top",k),width=$(myString).width(),xLoc=offset.left-width-20,yLoc=offset.top-12,$("#starBoxRight,#starBoxWrong").offset({top:yLoc,left:xLoc}),$("#starBoxRight,#starBoxWrong").on("click",starClearBox),starBoxVisible=!0}}
+
+function starRight(e){if(e!==2){myString="#star"+count}else{myString="#WIIstar"+count}$(myString).html('<div class="star-right"></div>').on(pStart,{answer:"right"},starShowBox).on(pEnd,starClearBox)}
+
+function starShowBox(e){if(starBoxVisible==false){var t=e.data.answer;myString=$(this).attr("id");if(myString.substring(0,1)=="s"){i=myString.substring(4)}else{i=myString.substring(7)}var n=starPicsArray[i-1];offset=$(this).offset();if(t=="right"){myString="starBoxRight"}else{myString="starBoxWrong"}html='<div id="'+myString+'"><div id="starBC"><img src="'+bigPicsURL+picsarray[n]+'.png" width="40px" height="40px" />&nbsp;&nbsp;'+labelsarray[n]+"</div></div>";$("#contentSign").append(html);myString="#"+myString;i=labelsarray[n].length;if(i>40){j=16;k=0}else if(i>30){j=20;k=-1}else{j=24;k=-6}$(myString).css("font-size",j);myString2=myString+" img";$(myString2).css("top",k);width=$(myString).width();xLoc=offset.left-width-20;yLoc=offset.top-12;$("#starBoxRight,#starBoxWrong").offset({top:yLoc,left:xLoc});$("#starBoxRight,#starBoxWrong").on(pEnd,starClearBox);starBoxVisible=true}}
+
 function starClearBox(){$("#starBoxRight").remove(),$("#starBoxWrong").remove(),starBoxVisible=!1}
 function starWrong(i){myString=2!==i?"#star"+count:"#WIIstar"+count,$(myString).html('<div class="star-wrong"></div>').on("mouseenter",{answer:"wrong"},starShowBox).on("mouseleave",starClearBox).on("mouseenter",{answer:"wrong"},starShowBox)}
+
 function addStars(t){if(1==t){"primary"==level?(html='<div id="starsPrimary">',i=11):(html='<div id="starsSecondary">',i=21);for(var r=1;r<i;r++)html+='<div id="star'+r+'"><div class="star-grey"></div></div>'}else{"primary"==level?(html='<div id="starsPrimaryWII">',i=11):(html='<div id="starsSecondaryWII">',i=21);for(var r=1;r<i;r++)html+='<div id="WIIstar'+r+'"><div class="star-grey"></div></div>'}html+="</div>",$("#contentSign").append(html)}
 
 }
