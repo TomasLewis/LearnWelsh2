@@ -153,15 +153,16 @@ function eoPlayFour(){
 eoAns2.play();
 $("#eitherOrLabel2").show();reduceToHtWdth("#eitherOrLabelText2");
 
-$("#eitherOrLabel1,#eitherOrLabel2").on(pStart,function(){
+$("#eitherOrLabel1,#eitherOrLabel2").off(pStart).on(pStart,function(e){
+e.stopPropagation();e.preventDefault();
 $(this).css({"background-color":"#000","color":"#fff"});
 })
-.on(pEnd,function(){
+.off(pEnd).on(pEnd,function(e){e.stopPropagation();e.preventDefault();
 $(this).css({"background-color":groundCol,"color":strokeCol});
 })
 
-$("#eitherOrLabel1").on(pUp,onClick1);
-$("#eitherOrLabel2").on(pUp,onClick2);
+$("#eitherOrLabel1").off(pUp).on(pUp,onClick1);
+$("#eitherOrLabel2").off(pUp).on(pUp,onClick2);
 
 $("#sign4_phone1,#sign4_phone2").show()}
 
