@@ -49,14 +49,23 @@ playInterface("click1"),sharedInterface(1),defaultStatusString=modStrings[52],se
 
 $("#introBlueGoArra").on(pUp,function(){playInterface("click1"),setDefaultString(),picNum=0,$("#contentSign").empty(),html='<div id="sign2_count"></div><div id="pipe2_phone"><div class="pipeV"></div></div><div id="transSign">'+shortCode+'</div><div id="sign2_phone"><div id="sign2_phoneGraphic">'+phone(17,"#fff")+'</div></div><div id="contentSignPicLab"><div class="introPicG"></div><div id="introLabel"></div></div><div id="introPrev"><div id="introG">'+arraSm(42,strokeCol,1)+'</div></div><div id="introNext"><div id="introG">'+arraSm(42,strokeCol,0)+"</div></div>",
 $("#contentSign").append(html),
+
 $("#sign2_phone").on(pUp,function(){
 $(this).css("background-color",signBrown);
 playAudio("t",picsarray[picNum]);
-
 }),
+
 $("#transSign").on("mousedown touchstart",function(e){e.stopPropagation();e.preventDefault();if(e.handled!==true){$("#introLabel").text(translate(picNum,1));reduceToHtWdth("#introLabel");e.handled=true}else{return false}})
 .on("mouseup touchend",function(e){e.stopPropagation();e.preventDefault();if(e.handled!==true){$("#introLabel").text(translate(picNum,0));reduceToHtWdth("#introLabel");e.handled=true}else{return false}});
 
+$("#sign2_phone,#transSign").on(pStart,function(){
+$(this).css("background-color","#000");
+})
+.on(pEnd,function(){
+$(this).css("background-color","#630");
+});
+
+/*
 $("#introNext,#introPrev").on(pStart,function(e){
 e.stopPropagation();e.preventDefault();
 $(this).css("background-color","#000");
@@ -64,11 +73,23 @@ $(this).css("background-color","#000");
 .on(pEnd,function(e){e.stopPropagation();e.preventDefault();
 $(this).css("background-color",groundCol);
 })
-
 $("#introNext").on(pUp,function(e){e.stopPropagation();e.preventDefault();
 picNum<numPics-1?(picNum+=1,i(picNum)):t();}),
 $("#introPrev").on(pUp,function(e){e.stopPropagation();e.preventDefault();
 picNum>0&&(picNum-=1,i(picNum));});
+*/
+$("#introNext,#introPrev").on(pStart,function(){
+$(this).css("background-color","#000");
+})
+.on(pEnd,function(){
+$(this).css("background-color",groundCol);
+});
+
+$("#introNext").on(pUp,function(){
+picNum<numPics-1?(picNum+=1,i(picNum)):t();}),
+$("#introPrev").on(pUp,function(){
+picNum>0&&(picNum-=1,i(picNum));});
+
 i(picNum);
 
 });
@@ -104,7 +125,27 @@ isThisEOH=new Media(isThisEO,function(){isThisEOH.release();eoPlayTwo();},functi
 orIsItH=new Media(orIsIt,function(){orIsItH.release();eoPlayFour();},function(err){console.log("playAudio():Audio Error: " + err);});
 }
 
-$("#introBlueGoArra").on(pUp,function(){playInterface("click1"),$("#contentSign").empty(),defaultStatusString=modStrings[55],setStatusString(defaultStatusString),html='<div id="sign3_count">'+count+"/"+numPics+'</div><div id="contentSignPicLab"><div class="introPicG"></div><div id="eitherOrLabel1"><div id="eitherOrLabelText1"></div></div><div id="eitherOrLabel2"><div id="eitherOrLabelText2"></div></div></div>',$("#contentSign").append(html),html='<div id="sign4_phone1"><div class="phoneGraphicEO">'+speaker(24,strokeCol)+'</div></div><div id="sign4_phone2"><div class="phoneGraphicEO">'+speaker(24,strokeCol)+"</div></div>",$("#contentSign").append(html),addStars(1),eitherOrPicAndQ(picNum)})}
+$("#introBlueGoArra").on(pUp,function(){playInterface("click1"),$("#contentSign").empty(),defaultStatusString=modStrings[55],setStatusString(defaultStatusString),html='<div id="sign3_count">'+count+"/"+numPics+'</div><div id="contentSignPicLab"><div class="introPicG"></div><div id="eitherOrLabel1"><div id="eitherOrLabelText1"></div></div><div id="eitherOrLabel2"><div id="eitherOrLabelText2"></div></div></div>',$("#contentSign").append(html),html='<div id="sign4_phone1"><div class="phoneGraphicEO">'+speaker(24,strokeCol)+'</div></div><div id="sign4_phone2"><div class="phoneGraphicEO">'+speaker(24,strokeCol)+"</div></div>",$("#contentSign").append(html);addStars(1);
+
+$("#eitherOrLabel1,#eitherOrLabel2").on(pStart,function(e){
+e.stopPropagation();e.preventDefault();
+$(this).css({"background-color":"#000","color":"#fff"});
+})
+.on(pEnd,function(e){e.stopPropagation();e.preventDefault();
+$(this).css({"background-color":groundCol,"color":strokeCol});
+})
+
+$("#eitherOrLabel1").on(pUp,onClick1);
+$("#eitherOrLabel2").on(pUp,onClick2);
+
+$("#sign4_phone1").on(pUp,function(){playAudio("t",eoAudioArray[0])});
+$("#sign4_phone2").on(pUp,function(){playAudio("t",eoAudioArray[1])});
+
+eitherOrPicAndQ(picNum);
+
+})
+
+}
 
 function setWrongAnswer(i){returnDifferentRandom(numPics,picNum),1==i?(answer1=labelsarray[rndNum],eoAudioArray[0]=picsarray[rndNum]):(answer2=labelsarray[rndNum],eoAudioArray[1]=picsarray[rndNum])}
 
@@ -133,9 +174,10 @@ eoAns2=new Media(soundURL+ilanguage+"/"+eoAudioArray[1]+".mp3",function(){eoAns2
 }
 
 $("#eitherOrLabelText1").text(answer1).css({"font-size":"28px","line-height":"38px"}),$("#eitherOrLabelText2").text(answer2).css({"font-size":"28px","line-height":"38px"}),$("#eitherOrLabel1,#eitherOrLabel2").css("border-color",strokeCol),myString='<img class="introPic" src="'+bigPicsURL+picsarray[i]+'.png" width="310px" height="310px" />',$(".introPicG").html(myString),
-
+/*
 $("#sign4_phone1").on(pUp,function(){playAudio("t",eoAudioArray[0])});
 $("#sign4_phone2").on(pUp,function(){playAudio("t",eoAudioArray[1])});
+*/
 isThisEOH.play();
 }
 }
@@ -153,16 +195,7 @@ function eoPlayFour(){
 eoAns2.play();
 $("#eitherOrLabel2").show();reduceToHtWdth("#eitherOrLabelText2");
 
-$("#eitherOrLabel1,#eitherOrLabel2").off(pStart).on(pStart,function(e){
-e.stopPropagation();e.preventDefault();
-$(this).css({"background-color":"#000","color":"#fff"});
-})
-.off(pEnd).on(pEnd,function(e){e.stopPropagation();e.preventDefault();
-$(this).css({"background-color":groundCol,"color":strokeCol});
-})
 
-$("#eitherOrLabel1").off(pUp).on(pUp,onClick1);
-$("#eitherOrLabel2").off(pUp).on(pUp,onClick2);
 
 $("#sign4_phone1,#sign4_phone2").show()}
 
