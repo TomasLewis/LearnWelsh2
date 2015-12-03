@@ -54,14 +54,18 @@ $(this).css("background-color",signBrown);
 playAudio("t",picsarray[picNum]);
 
 }),
-$("#transSign").on(pDown,function(i){return i.stopPropagation(),i.preventDefault(),i.handled===!0?!1:($("#introLabel").text(translate(picNum,1)),reduceToHtWdth("#introLabel"),i.handled=!0,void 0)}).on(pUp,function(i){return i.stopPropagation(),i.preventDefault(),i.handled===!0?!1:($("#introLabel").text(translate(picNum,0)),reduceToHtWdth("#introLabel"),i.handled=!0,void 0)}),
+$("#transSign").on("mousedown touchstart",function(e){e.stopPropagation();e.preventDefault();if(e.handled!==true){$("#introLabel").text(translate(picNum,1));reduceToHtWdth("#introLabel");e.handled=true}else{return false}})
+.on("mouseup touchend",function(e){e.stopPropagation();e.preventDefault();if(e.handled!==true){$("#introLabel").text(translate(picNum,0));reduceToHtWdth("#introLabel");e.handled=true}else{return false}});
 
 $("#introNext,#introPrev").on(pStart,function(e){
 e.stopPropagation();e.preventDefault();
 $(this).css("background-color","#000");
-}).on(pLeave,function(e){e.stopPropagation();e.preventDefault();
+});
+/*
+.on(pEnd,function(e){e.stopPropagation();e.preventDefault();
 $(this).css("background-color",groundCol);
 })
+*/
 $("#introNext").on(pUp,function(e){e.stopPropagation();e.preventDefault();
 picNum<numPics-1?(picNum+=1,i(picNum)):t();$(this).css("background-color",groundCol);}),
 $("#introPrev").on(pUp,function(e){e.stopPropagation();e.preventDefault();
