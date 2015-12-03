@@ -56,7 +56,7 @@ chngArraSign($(this),"#FFF","#000");
 .on(pLeave,function(){
 chngArraSign($(this),xGroundCol,xStrokeCol)})
 .on(pUp,function(){
-clickS.play(),level="primary"==level?secLevel:primLevel;
+playInterface("click1"),level="primary"==level?secLevel:primLevel;
 switchLevel();//shared function makes level visual changes
 loadPage("topics");
 }),
@@ -71,7 +71,7 @@ second();
 }
 
 function second(){
-clickS.play(),
+playInterface("click1"),
 i=$(this).attr("id"),
 "catSentences"==i||"catWords"==i?(sC="catSentences"==i?"sentences":"words",cV="texttype"):(cV="category"),0==names.length&&(numTopics=topicsJSON.topic.length,$.each(topicsJSON.topic,function(e,t){"category"==cV?-1!=t.category.indexOf(sC)&&(names.push(t.name),displaynames.push("en"==shortCode?t.name:t.displayname),descriptions.push(t.description)):-1!=t.texttype.indexOf(sC)&&(names.push(t.name),displaynames.push("en"==shortCode?t.name:t.displayname),descriptions.push(t.description))})),
 $("#content").empty(),html="",$("#sign_middle2").css("left","440px"),
@@ -123,9 +123,9 @@ $("[id^=topicArraContent]").off().on(pStart,function(){chngArraSign($(this),"#FF
 numTopics=numToShow=names.length,numTopics>9&&(numToShow=9),topicsScreen=0,startIndex=0,n(),
 
 $("#forwardArra,#backwardArra").on(pStart,function(){$(this).find("#bgFill").css("fill","red")}).on(pLeave,function(){$(this).find("#bgFill").css("fill","#fff")}),
-$("#forwardArra").on(pUp,function(){clickS.play(),$("#topicSigns").empty(),topicsScreen+=1,startIndex=9*topicsScreen,numToShow=startIndex+9,n()}),
-$("#backwardArra").on(pUp,function(){clickS.play(),$("#topicSigns").empty(),topicsScreen-=1,startIndex=9*topicsScreen,numToShow=startIndex+9,n()}),
-$("#content").off().on(pUp,"div[class=greenTopSign]",function(){clickS.play(),myTopic=$(this).attr("name"),displayname=$(this).attr("title"),
+$("#forwardArra").on(pUp,function(){playInterface("click1"),$("#topicSigns").empty(),topicsScreen+=1,startIndex=9*topicsScreen,numToShow=startIndex+9,n()}),
+$("#backwardArra").on(pUp,function(){playInterface("click1"),$("#topicSigns").empty(),topicsScreen-=1,startIndex=9*topicsScreen,numToShow=startIndex+9,n()}),
+$("#content").off().on(pUp,"div[class=greenTopSign]",function(){playInterface("click1"),myTopic=$(this).attr("name"),displayname=$(this).attr("title"),
 
 topic = myTopic;
 displaytopic=displayname;
@@ -150,5 +150,5 @@ $.getJSON("json/topics/"+level+"/"+myTopic+".json",function( data ) {
 function e(){var e,n,o=!1,r=!1;for($("#topicSigns").empty(),html="",num=0,j=20,yLoc=20,xLoc=j,i=startIndex;i<numToShow;i++)num+=1,names[i]&&(myString=names[i],t=myString,s=t.length,"?"==t.substr(s-1,1)&&(t=t.substring(0,s-1)),t=resourceurl+"visuals/assets/topic-thumbs/"+t+".png",html+='<div class="greenTopSign" name="'+myString+'" title="'+displaynames[i]+'" style="position:absolute;left:'+xLoc+"px;top:"+yLoc+"px;width:222px;height:126px;border:4px solid white;border-radius:15px;"+shadow+"background:"+signGreen+';cursor:pointer;">',html+='<div style="position:absolute;left:8px;top:6px;width:66px;height:66px;border:2px solid #fff;border-radius:7px;overflow:hidden;"><img src="'+t+'" width="66px" height="66px"/></div>',html+='<div style="position:absolute;right:6px;top:8px;width:130px;height:70px;overflow:hidden;color:white;"><p style="text-align:left;line-height:16px;font-size:13px;">'+descriptions[i]+"</p></div>",html+='<div class="arraSign" id="topicArraContent">'+arra206+'<div class="arraLabel206">',html+="en"==shortCode?names[i]:displaynames[i],html+="</div></div></div>",xLoc+=244,3==num&&(xLoc=j,num=0,yLoc+=148));switch(html+="</div>",$("#topicSigns").append(html),$(".arraLabel206").each(function(i){if(e=$(".arraLabel206")[i].scrollWidth,e>182)for(var t=16;t>8&&($(this).css("font-size",String(t+"px")),e=$(".arraLabel206")[i].scrollWidth,!(182>=e));t--);}),$("#forwardArra").css("visibility","hidden"),$("#backwardArra").css("visibility","hidden"),topicsScreen){case 0:numTopics>9&&(o=!0);break;default:r=!0,n=9*(topicsScreen+1),numTopics>n&&(o=!0)}1==o&&$("#forwardArra").css({visibility:"visible","z-index":"999"}),1==r&&$("#backwardArra").css({visibility:"visible","z-index":"999"}),$("[id^=topicArraContent]").off().on(pStart,function(){chngArraSign($(this),"#FFF","#000")}).on(pEnd,function(){chngArraSign($(this),groundCol,strokeCol)})}
 
 }
-function goBack(){clickS.play();first();$("#back").css("visibility","hidden");}
+function goBack(){playInterface("click1");first();$("#back").css("visibility","hidden");}
 }
