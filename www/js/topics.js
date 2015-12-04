@@ -1,6 +1,7 @@
-$("#backButton").on(pUp,function(){goBack()});
+
 function topics(){
 var Categories,sC,cV,dispLv,numTopics,myTopic,names=[],descriptions=[],displaynames=[],displayname,bw,bh,topicsJSON,firstScreen,firstView;
+$("#backButton").off(pUp).on(pUp,function(){goBack()});
 
 //load json for topics + define variables
 $.getJSON("json/topics/"+level+"_"+shortCode+".json",function( data ) {
@@ -70,10 +71,9 @@ second();
 
 }
 
-function second(){
+function second(e){
 playInterface("click1"),
-i=$(this).attr("id"),
-"catSentences"==i||"catWords"==i?(sC="catSentences"==i?"sentences":"words",cV="texttype"):(cV="category"),0==names.length&&(numTopics=topicsJSON.topic.length,$.each(topicsJSON.topic,function(e,t){"category"==cV?-1!=t.category.indexOf(sC)&&(names.push(t.name),displaynames.push("en"==shortCode?t.name:t.displayname),descriptions.push(t.description)):-1!=t.texttype.indexOf(sC)&&(names.push(t.name),displaynames.push("en"==shortCode?t.name:t.displayname),descriptions.push(t.description))})),
+"sentences"==sC||"words"==sC?(cV="texttype"):(cV="category"),0==names.length&&(numTopics=topicsJSON.topic.length,$.each(topicsJSON.topic,function(e,t){"category"==cV?-1!=t.category.indexOf(sC)&&(names.push(t.name),displaynames.push("en"==shortCode?t.name:t.displayname),descriptions.push(t.description)):-1!=t.texttype.indexOf(sC)&&(names.push(t.name),displaynames.push("en"==shortCode?t.name:t.displayname),descriptions.push(t.description))})),
 $("#content").empty(),html="",$("#sign_middle2").css("left","440px"),
 html+='<div style="position:absolute;left:-1px;top:80px;width:757px;height:12px;"><div class="pipeH"></div></div>',
 html+='<div style="position:absolute;left:-1px;top:228px;width:757px;height:12px;"><div class="pipeH"></div></div>',
@@ -100,7 +100,7 @@ xLoc+=244;
 if(num==3){xLoc=j;num=0;yLoc+=148}
 }}
 $("#topicSigns").append(html);
-
+chngArraSign($(".arraSign"),groundCol,strokeCol);
 $(".arraLabel206").each(function(t){e=$(".arraLabel206")[t].scrollWidth;
 console.log('for t='+t+', e = '+e);
 if(e>182){

@@ -8,7 +8,7 @@
         <title>Learn Welsh</title>
     </head>
     <body>
-	<div id="container">
+	<div id="container" touch-action="none">
         <div id="topNavBar"><div id="bgColour"></div><div class="pipes7"><div class="np1"><div class="pipeV"></div></div><div class="np2"><div class="pipeV"></div></div><div class="np3"><div class="pipeV"></div></div><div class="np4"><div class="pipeV"></div></div></div><div id="navLeftPipe"></div>
 		<div id="navSign"></div><!--inject navButtons here -->
 		</div>
@@ -31,25 +31,29 @@
 		var i,j,k;
 		var ilanguage='Welsh';
 		var screenWidth=window.innerWidth,screenHeight=window.innerHeight;
-var level='primary',shortCode='en',topicsSelected='0',noTopic,soundURL='sounds/',modStrings,modStringsEN,modStringsES,xGroundCol,xStrokeCol,strokeCol,groundCol;
+var level='primary',shortCode='en',topicsSelected='0',noTopic,soundURL='sounds/',modStrings,modStringsEN,modStringsES,xGroundCol,xStrokeCol,strokeCol,groundCol,numPics;
 
 var displaytopic,topic,topicMedia,picsarray,secLevel,primLevel,
 labelsarray,ilabelsarray,
 resourceurl='',shadow='box-shadow:2px 2px 7px #333;',bigPicsURL='visuals/topics-sc/',
 startButtonLabel,lessonButtonLabel,lessonToolTip,gamesButtonLabel,testButtonLabel,startToolTip,gamesToolTip,testToolTip,vocToolTip,vocCorrectedLink,
-pEnter="pointerenter",pDown="touchstart",pLeave="pointerleave",pUp="touchend",
-pStart=pEnter+" "+pDown,pEnd=pLeave+" "+pUp,
-signGreen='#00703C',signBrown='#663300';
+//pEnter="pointerenter",pDown="touchstart",pLeave="pointerleave",pUp="touchend",
+pEnter="pointerenter",pDown="pointerdown",pLeave="pointerleave",pUp="pointerup",
 
-var rippleTest=false;
+pStart=pEnter+" "+pDown,pEnd=pLeave+" "+pUp,
+signGreen='#00703C',signBrown='#663300',signBlue='#0079C1';
+
+var rippleTest=true;
 
 function setLevelCols(){
 if(level=='primary'){
+numPics=10;
 strokeCol='#FFF';
 groundCol='#0079C1';
 xGroundCol='#EFB538';
 xStrokeCol='#000'
 } else {
+numPics=20;
 groundCol='#EFB538';
 xGroundCol='#0079C1';
 strokeCol='#000';

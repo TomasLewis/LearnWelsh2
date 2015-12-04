@@ -7,7 +7,6 @@ var thumbNailsPath = 'visuals/assets/lo_game-thumbs/',gamesJSON,num,names=[],des
 jQuery.getJSON("json/games.json", function(data){         
     gamesJSON=data.game;
 	
-
 num = gamesJSON.length;
 
 for(i=0;i<num;i++){
@@ -32,6 +31,7 @@ for(i=0;i<num;i++){
 }
 
 $("#gameSigns").html(html);
+chngArraSign($(".arraSign"),groundCol,strokeCol);
 	
 for(k=$('[id^="al"]').length,i=0;i<k;i++)
 if(e=$("#al"+i)[0].scrollWidth,e>182)for(var t=18;t>8&&($("#al"+i).css("font-size",String(t+"px")),e=$("#al"+i)[0].scrollWidth,!(e<=182));t--);
@@ -40,10 +40,13 @@ $("#loading").remove(),
 $("#backButton").css("visibility","hidden"),
 defaultStatusString=modStrings[1],
 $("#statusBar").text(defaultStatusString),
-$(".gameGreen").on("touchstart",function(){i=$(this).attr("id"),chngArraSign($("#a"+i),"#FFF","#000")})
-.on("touchend",function(){
-clickS.play();
-chngArraSign($(".arraSign"),groundCol,strokeCol);
+$(".gameGreen").on(pStart,function(){
+i=$(this).attr("id");
+chngArraSign($("#as"+i),"#FFF","#000");
+})
+.on(pEnd,function(){chngArraSign($("#as"+i),groundCol,strokeCol);})
+.on(pUp,function(){
+playInterface("click1");
 loadPage(gamesJSON[i].url);
 })
 

@@ -21,8 +21,45 @@ function setStatusString(e){$("#statusBar").text(e)}
 function setDefaultString(){$("#statusBar").text(defaultStatusString)}
 function reduceTextLines(e,t){var n=getRows(e);if(n>t){var r=$(e).css("font-size");r=parseFloat(r);for(var i=r;i>8;i--){$(e).css({"font-size":i+"px"});n=getRows(e);if(n<=t){return i}}}}
 function reduceFontToFitHeight(e,t,n){var r=e.scrollHeight;if(r>t){for(var i=n;i>8;i--){e.style.fontSize=String(i+"px");r=e.scrollHeight;if(r<t){var s=i;return s}}}}
-function reduceToHtWdth(e){var t,n,r,i,s,o;t=$(e)[0].scrollHeight;n=$(e).height();s=$(e)[0].scrollWidth;o=$(e).width();r=parseInt($(e).css("font-size"));if(t>n||s>o){for(i=r;i>4;i--){$(e).css({"font-size":i+"px","line-height":Math.floor(i*1.3)+"px"});t=$(e)[0].scrollHeight;s=$(e)[0].scrollWidth;if(t<=n){if(s<=o){return i}}}}}
 
+function reduceToHtWdth(e){
+var sH,h,fS,i,sW,w,j;
+sH=$(e)[0].scrollHeight;
+h=$(e).height();
+sW=$(e)[0].scrollWidth;w=$(e).width();
+fS=parseInt($(e).css("font-size"));
+
+if(sH>h||sW>w){for(i=fS;i>10;i--){
+//j=Math.floor((1000/i)*0.95);
+$(e).css({"font-size":i+"px","line-height":Math.floor(i*1.3)+"px"});
+//$(e).css({"font-size":i+"px"});
+sH=$(e)[0].scrollHeight;
+sW=$(e)[0].scrollWidth;
+if(sH<=h){if(sW<=w){
+j=Math.floor((100/i)*9);
+//$(e).css({"line-height":j+"px"});
+console.log('reduceToHtWdth, fs='+i+', lh='+j);return i}}
+}
+
+}}
+/*
+function reduceToHtWdth(e){
+var t,n,r,i,s,o,j;
+t=$(e)[0].scrollHeight;
+n=$(e).height();
+s=$(e)[0].scrollWidth;o=$(e).width();
+r=parseInt($(e).css("font-size"));
+
+if(t>n||s>o){for(i=r;i>10;i--){
+j=Math.floor((1000/i)*0.95);
+$(e).css({"font-size":i+"px","line-height":j+"px"});
+t=$(e)[0].scrollHeight;
+s=$(e)[0].scrollWidth;
+if(t<=n){if(s<=o){console.log('reduceToHtWdth, fs='+i+', lh='+j);return i}}
+}
+
+}}
+*/
 function arrowSign(e,t,n,r,i){var s;if(r==0){s='<svg class="svgShadow" width="'+e+'px" height="'+e*(31/150)+'px" viewBox="0 0 150 31"><g id="svgArrow"';if(i==1){s+=' transform="translate('+150+',0)scale(-1,1)"'}s+='><g><polygon id="bgFill" fill="'+n+'" points="1,30 1,1 140.479,1 148.846,15.166 140.465,30 "/><path id="bgStroke" fill="'+t+'" d="M139.907,2l7.782,13.177L139.882,29H2V2H139.907 M141.049,0H0v31h141.049L150,15.154L141.049,0L141.049,0z"/></g><polygon id="arraFill" fill="'+t+'" points="137.721,27 130,27 136,15 130,4 137.721,4 144,15"/></g></svg>'}else{s='<svg width="'+e+'px" height="'+e*(31/180)+'px" viewBox="0 0 180 31"><g id="svgArrow"';if(i==1){s+=' transform="translate('+180+',0)scale(-1,1)"'}s+='><g><polygon id="bgFill" fill="'+n+'" points="1,30 1,1 170.479,1 178.846,15.165 170.465,30"/><path id="bgStroke" fill="'+t+'" d="M169.908,2l7.781,13.177L169.883,29H2V2H169.908 M171.049,0H0v31h171.049L180,15.154L171.049,0L171.049,0z"/></g><polygon id="arraFill" fill="'+t+'" points="167.721,27 160,27 166,15 160,4 167.721,4 174.5,15"/></g></svg>'}return s}
 function arraSm(e,t,n){var r='<svg width="'+e+'" height="'+e*.5+'" viewBox="0 0 40 20"><g id="sA"';if(n==1){r+=' transform="translate('+40+',0)scale(-1,1)"'}r+='><path id="arraSmFill" fill="'+t+'" d="M27.01,19.565L40,10L27.01,0.435c-0.687-0.545-1.431-0.545-1.889-0.182 c-0.572,0.424-0.857,1.151-0.572,1.999l1.202,3.934H0v7.628h25.751l-1.202,3.936c-0.285,0.847,0,1.574,0.572,1.997 C25.579,20.11,26.323,20.11,27.01,19.565z"/></g></svg>';return r}
 function chngArraSign(e,t,n){$(e).find("#bgFill").css("fill",t).end().find("#bgStroke").css("fill",n).end().find("#arraFill").css("fill",n).end().find(".arraLabel,.arraLabel206,.arraLabel206a").css("color",n)}
