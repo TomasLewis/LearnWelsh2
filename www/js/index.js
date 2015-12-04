@@ -67,11 +67,11 @@ $("#pageInfoFX").css("display","none");
 });
 
 //nav Buttons
-$(".menuArrowSign").on("touchstart",function(){
-clickS.play();
-chngArraSign($(this),"#FFF","#000");
-}).on("touchend",function(){
-chngArraSign($(this),groundCol,strokeCol);
+$(".menuArrowSign").on(pStart,function(){
+chngArraSign($(this),"#FFF","#000")})
+.on(pEnd,function(){chngArraSign($(this),groundCol,strokeCol)})
+.on(pUp,function(){
+playInterface("click1");
 i=$(this).attr("id");
 if(i=='menuArrowSign1'){
 j="topics";
