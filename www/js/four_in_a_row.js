@@ -46,6 +46,7 @@ function onClickLabel(e){e.stopPropagation();clickCount+=1;myString=$(this).find
 function onClickSpeaker(e){e.stopPropagation();i=$(this).attr("name");j=labelsarray.indexOf(i);playAudio("t",picsarray[j])}
 
 function doWinThings(){
+/*
 var e=45,t,n,r,i,s,o;
 k=win[winList][0];
 t=$("#cell"+k);
@@ -62,7 +63,7 @@ html='<div id="winCanvDiv"><canvas id="myCanvas" width="500" height="400"; ></ca
 $("#grid").append(html);
 o=document.getElementById("myCanvas");
 if(o.getContext){s=o.getContext("2d");s.lineWidth=15;s.lineCap="round";s.strokeStyle="#ff0000";s.beginPath();s.moveTo(n.left,n.top);s.lineTo(i.left,i.top);s.stroke()}
-
+*/
 $("#grid,#overlaySign").off();clearInterval(timerID);defaultStatusString=modStrings[8];$("#statusBar").text(defaultStatusString);
 jQuery.getJSON("json/endGame.json", function(data){
 i=data.htm;
