@@ -94,8 +94,13 @@ loadPage(j);
  */
 function loadPage(url) {
 	var jsurl="js/"+url+".js";
-	
-	
+	/*
+	if(eGameName=='the_frog_flies'){if(gameSettings==0){
+	$.getScript("js/phaser230.js", function(){
+	console.log('phaser laoded');
+	});
+	}}
+	*/
 	
 	var hurl=url+".html";
 	if(!topic){

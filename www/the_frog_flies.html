@@ -1,0 +1,65 @@
+<style>
+#sign,#qBox,#cHSBox{position:absolute;left:28px;top:12px;width:596px;height:436px;background:#000;border:solid 5px #fff;color:#fff;}
+#sign_leftPipe,#sign_rightPipe,#info_Pipe{position:absolute;left:126px;width:12px;height:471px;z-index:0;}
+#sign_rightPipe{left:566px;}
+#info_Pipe{left:692px;height:390px;}
+#sign_brown_count,#sign_brown_time,#pause,#count,#cHSBtn{position:absolute;left:650px;top:20px;width:90px;height:90px;border:3px solid white;border-radius:55px;background:#630;color:white;font-size:26px;line-height:90px;}
+#sign_brown_time,#count{top:155px;height:50px;border-radius:9px;font-size:22px;font-weight:600;line-height:50px;}
+#count{top:230px;}
+#cHSBtn{left:670px;top:303px;width:50px;height:50px;line-height:62px;}
+#pause{top:380px;height:65px;border-color:black;background:yellow;border-radius:15px;cursor:pointer}
+#pause1,#pause2{position:absolute;top:15px;left:29px;width:12px;height:35px;background:#000}
+#pause2{left:49px;}
+#arrow-right {position:absolute;top:13px;left:36px;
+	width: 0; 
+	height: 0; 
+	border-bottom: 20px solid transparent;
+	border-top: 20px solid transparent; 
+	border-left: 30px solid #000000; 
+	font-size: 0;
+	line-height: 0;
+}
+/*full screen button added to top div */
+#fsBtn{position:absolute;top:310px;cursor:pointer;}
+
+#qPics{position:absolute;top:50px;width:100%;}
+#qPic1,#qPic2,#qPic3{position:absolute;top:0;width:115px;height:115px;cursor:pointer;border:3px solid #fff}
+#qPic1{left:50px;background:#cc0}
+#qPic2{left:236px;background:#000}
+#qPic3{right:50px;background:#ff0}
+
+#qBox,#cHSBox{display:none;}
+
+#qTitle,#qText,#qTime{position:absolute;bottom:25px;text-align:center;font-size:24px;font-weight:600;color:#fff;}
+#qTitle,#qTime{left:18px;width:460px;padding:10px;border:3px solid #fff;border-radius:15px;background:#630}
+#qTime{left:auto;right:20px;width:25px;}
+#qText{top:240px;width:100%;font-size:28px;}
+
+#finalScore,#highScore{display:none;position:absolute;left:60px;text-align:left;font-size:20px;line-height:36px;font-weight:600;color:yellow}
+#finalScore{top:40px;}
+#highScore{top:240px;left:30px;width:510px;height:150px;padding:10px 0 0 20px;border-radius:25px;border:2px dotted #999;color:#fff}
+form{margin-top:15px;}
+button, input, select, textarea {
+  font-family : inherit;
+  font-size   : 100%;
+}
+input{width:400px;margin-left:25px;margin-bottom:10px;padding-left:10px;-moz-box-sizing:border-box;box-sizing:border-box;border:2px solid yellow;}
+.button {margin:0 auto;text-align:center;cursor:pointer}
+
+#cHSBox{display:none;font-size:20px;line-height:36px;font-weight:600;color:yellow}
+</style>
+
+<div id="sign_leftPipe"><div class="pipeV"></div></div>
+<div id="sign_rightPipe"><div class="pipeV"></div></div>
+<div id="info_Pipe"><div class="pipeV"></div></div>
+<div id="sign"></div>
+<div id="sign_brown_count">0</div><div id="sign_brown_time">00:00</div><div id="count">1 / 8</div><div id="pause"><div id="pause1"></div><div id="pause2"></div></div><div id="qBox"><img src="visuals/assets/gameAssets/frogFly/sky.png" width="596px" height="436px" /><div id="qTitle">Click the picture that matches the text</div><div id="qTime">5</div><div id="qPics"><div id="qPic1"></div><div id="qPic2"></div><div id="qPic3"></div></div><div id="qText"></div></div><div id="cHSBtn"></div><div id="cHSBox"></div>
+<!-- end game content-->
+
+<div id="back" style="visibility:hidden;"></div><div id="info"></div>
+<div id="pageInfoFX"><div id="pageInfo">
+<div id="close">X</div>
+<h1>Play The frog flies</h1>
+<p class="emMid"><img class="imgOnWhite" width="400" height="272" src="visuals/site/Welsh/screenshots/400/learn-welsh-chooseatopic.png" /></p>
+<p>Click on the "1. Start" button in the top navigation bar - that brings you to this topic selection screen. Here you will see that the topic selection is divided up in different ways:</p><ol><li>Beginner or Intermediate (the arrow at the bottom of the red sign)</li><li>By whether they contain words or sentences (second column)</li><li>Into simple categories (right hand of page)</li></ol><p>Choose either Beginner or Intermediate level topics in the red sign. Now the categories for that level will load. Click on any sign to view the topics that fit the category description. For example, if you choose the Beginner category 'Animals' you will see a choice of two topics: "Animals - pets" and "Animals - farm". When you click on the name of the topic, the pictures, writing and spoken language for that topic will load (once the topic has loaded it will be available for all activities and will not have to be loaded again).<br /><br />With the topic loaded you can choose whether to proceed to the lesson for that topic, or to jump straight to the games (tablet users are taken straight to the lesson when they choose a topic).</p></div></div>
+
