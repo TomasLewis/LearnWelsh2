@@ -19,7 +19,7 @@ $("#ctT").text(overlayStrings[2]);
 $("#ctN").text(displaytopic);
 
 defaultStatusString=overlayStrings[0];setStatusString(defaultStatusString);
-myString=overlayStrings[1];$("#playButton").find("#playG").html(arrowSign(250,strokeCol,groundCol,0)).end().find(".arraLabel").css({top:lblTop,width:"220px","font-size":lblFntS,"font-weight":"700"}).text(myString).end().on(pStart,function(){setStatusString(overlayStrings[1]);chngArraSign($(this),"#fff","#000")}).on(pEnd,function(){setStatusString(defaultStatusString);chngArraSign($(this),groundCol,strokeCol)}).on(pUp,function(){playInterface("click1");gameSettings=0;loadPage(eGameName);});
+myString=overlayStrings[1];$("#playButton").find("#playG").html(arrowSign(250,strokeCol,groundCol,0)).end().find(".arraLabel").css({top:lblTop,width:"220px","font-size":lblFntS,"font-weight":"700","color":strokeCol}).text(myString).end().on(pStart,function(){setStatusString(overlayStrings[1]);chngArraSign($(this),"#fff","#000")}).on(pEnd,function(){setStatusString(defaultStatusString);chngArraSign($(this),groundCol,strokeCol)}).on(pUp,function(){playInterface("click1");gameSettings=0;loadPage(eGameName);});
 
 $("#loading").remove();
 gameSettings=0;

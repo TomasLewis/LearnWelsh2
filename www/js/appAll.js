@@ -131,7 +131,8 @@ jQuery.cachedScript=function(e,t){t=$.extend(t||{},{dataType:"script",cache:true
 */
 
 
-function gameEnd(){console.log('appAll.js, gameOver');
+function gameEnd(){
+//console.log('appAll.js, gameOver');
 var mo=1,j=Math.floor(Math.random()*6+1);
 if(rippleTest==true){
 winHowl=new Howl({urls:[soundURL+"winmusic/music"+j+".mp3"],loop:true,});
@@ -160,7 +161,7 @@ overlayStrings=jQuery.parseJSON(overlayStringsEN);
 $("#endTitle").text(overlayStrings[5]);
 if(goDS==false){defaultStatusString=overlayStrings[8];setStatusString(defaultStatusString);goDS=true};
 
-$("#gameOver_playagain").find(".onGreenBtn").html(overlayStrings[6]).on(pStart,function(){$(this).css("background-color","#000");setStatusString(overlayStrings[9])}).on(pEnd,function(){$(this).css("background-color",signGreen);setStatusString(defaultStatusString)}).on("click",function(){cWinMusic(0);loadPage(eGameName)});
+$("#gameOver_playagain").find(".onGreenBtn").html(overlayStrings[6]).on(pStart,function(){$(this).css("background-color","#000");setStatusString(overlayStrings[9])}).on(pEnd,function(){$(this).css("background-color",signGreen);setStatusString(defaultStatusString)}).on(pUp,function(){cWinMusic(0);loadPage(eGameName)});
 $("#gameOver_changegame").find(".onGreenBtn").html(overlayStrings[13]).on(pStart,function(){$(this).css("background-color","#000");setStatusString(overlayStrings[10])}).on(pEnd,function(){$(this).css("background-color",signGreen);setStatusString(defaultStatusString)}).on(pUp,function(){cWinMusic(0);playInterface("click1");loadPage("games")});
 $("#gameOver_test").find(".onGreenBtn").html(overlayStrings[7]).on(pStart,function(){$(this).css("background-color","#000");setStatusString(overlayStrings[11])}).on(pEnd,function(){$(this).css("background-color",signGreen);setStatusString(defaultStatusString)}).on(pUp,function(){cWinMusic(0);playInterface("click1");loadPage("test")});
 
