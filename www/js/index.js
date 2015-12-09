@@ -94,6 +94,17 @@ loadPage(j);
  */
 function loadPage(url) {
 	var jsurl="js/"+url+".js";
+	
+	$.getScript(jsurl, function(){
+    console.log("Running new.js");
+	});
+/*
+$('<script>')
+    .attr('type', 'text/javascript')
+    .text(jsurl)
+    .replaceAll('#modScript');
+	*/
+	
 	var hurl=url+".html";
 	console.log('loadPage function, url = '+url);
 	if(!topic){
@@ -102,18 +113,23 @@ function loadPage(url) {
 			return;
 	}
 	}
-    // If onleave function specified
-   // if (onleave) { onleave(url);}
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange=function(){
         if(xmlhttp.readyState === 4){
             if (xmlhttp.status === 200) {
+				$( "#modContent" ).empty();
+                document.getElementById('modContent').innerHTML = xmlhttp.responseText;
+				//window[url]();
 				
-                document.getElementById('game').innerHTML = xmlhttp.responseText;
-				window[url]();
+				if(gameSettings==0){
+					window[url]();
+				}else{
+					settings_page_games();
+				}
 
                 //post load
+				//if game, overlay
 				if(topic){$("#currentTopic").text(topic)}
 				//close button on infoButton
 				$("#close").on("touchstart",function(){
@@ -124,7 +140,7 @@ $("#pageInfoFX").css("display","none")});
 				
             }
             else {
-                document.getElementById('game').innerHTML = "Error loading page " + url;
+                document.getElementById('modContent').innerHTML = "Error loading page " + url;
             }
         }
     };

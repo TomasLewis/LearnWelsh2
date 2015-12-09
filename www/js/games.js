@@ -47,7 +47,13 @@ chngArraSign($("#as"+i),"#FFF","#000");
 .on(pEnd,function(){chngArraSign($("#as"+i),groundCol,strokeCol);})
 .on(pUp,function(){
 playInterface("click1");
-loadPage(gamesJSON[i].url);
+eGameName=gamesJSON[i].url;
+gameSettings=1;
+jQuery.getJSON("json/games/"+eGameName+".json", function(data){         
+    modStrings=data.modStringsEN;
+	loadPage(eGameName);
+});
+
 })
 
 

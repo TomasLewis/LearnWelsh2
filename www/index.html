@@ -6,6 +6,7 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Learn Welsh</title>
+		<script id="modScript" type="text/javascript" src="js/topics.js"></script>
     </head>
     <body>
 	<div id="container" touch-action="none">
@@ -14,7 +15,7 @@
 		</div>
 		<div id="Div3DBannerFX">
 		<div id="behind-game"></div>
-		<div id="interface"><div id="game"></div><!--inject content here -->
+		<div id="interface"><div id="modContent"></div><!--inject content here -->
 		
 		<div id="f_lV"><div class="pipeV"></div></div><div id="f_rV"><div class="pipeV1"></div></div><div id="f_lC"></div><div id="f_b"><div class="pipeH"></div></div><div id="f_rC"></div><div id="currentTopic">123</div><div id="statusBar">456</div></div>
 		
@@ -26,7 +27,6 @@
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 		<script type="text/javascript" src="js/pep030.js"></script>
-		<script type="text/javascript" src="js/appNavB_1511.js"></script>
 		<script type="text/javascript">
 		var i,j,k;
 		var ilanguage='Welsh';
@@ -35,7 +35,10 @@ var level='primary',shortCode='en',topicsSelected='0',noTopic,soundURL='sounds/'
 
 var displaytopic,topic,topicMedia,picsarray,secLevel,primLevel,
 labelsarray,ilabelsarray,
-resourceurl='',shadow='box-shadow:2px 2px 7px #333;',bigPicsURL='visuals/topics-sc/',
+gameSettings=0,/* names start function for game called by settings_page_game */
+winMusic=1, /* whether win music plays on win */
+eGameName,
+resourceurl='',shadow='box-shadow:2px 2px 7px #333;',bigPicsURL=smallPicsURL='visuals/topics-sc/',
 startButtonLabel,lessonButtonLabel,lessonToolTip,gamesButtonLabel,testButtonLabel,startToolTip,gamesToolTip,testToolTip,vocToolTip,vocCorrectedLink,
 //pEnter="pointerenter",pDown="touchstart",pLeave="pointerleave",pUp="touchend",
 pEnter="pointerenter",pDown="pointerdown",pLeave="pointerleave",pUp="pointerup",
@@ -43,7 +46,7 @@ pEnter="pointerenter",pDown="pointerdown",pLeave="pointerleave",pUp="pointerup",
 pStart=pEnter+" "+pDown,pEnd=pLeave+" "+pUp,
 signGreen='#00703C',signBrown='#663300',signBlue='#0079C1';
 
-var rippleTest=false;
+var rippleTest=true;
 
 function setLevelCols(){
 if(level=='primary'){
@@ -108,10 +111,12 @@ navB+='<div class="menuArrowSign" id="menuArrowSign2"><div class="ArrowSignInMen
 
 </script>
 		<script type="text/javascript" src="js/appAll.js"></script>
-		<script type="text/javascript" src="js/topics.js"></script>
+		<!--<script type="text/javascript" src="js/topics.js"></script>
 		<script type="text/javascript" src="js/tutorial.js"></script>
-		<script type="text/javascript" src="js/games.js"></script>
-		<script type="text/javascript" src="js/test.js"></script>
+		<script type="text/javascript" src="js/games.js"></script> -->
+		<script type="text/javascript" src="js/settings_page_game.js"></script>
+		<!--<script type="text/javascript" src="js/four_in_a_row.js"></script>
+		<script type="text/javascript" src="js/test.js"></script>-->
         <script type="text/javascript" src="js/index.js"></script>
 		
         <script type="text/javascript">

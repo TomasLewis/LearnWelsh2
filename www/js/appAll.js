@@ -129,3 +129,59 @@ $("#back").on("click",function(){clickS.play();location.reload()});
 function goBack(e){location.reload()}
 jQuery.cachedScript=function(e,t){t=$.extend(t||{},{dataType:"script",cache:true,url:e});return jQuery.ajax(t)}
 */
+
+
+function gameEnd(){console.log('appAll.js, gameOver');
+var mo=1,j=Math.floor(Math.random()*6+1);
+if(rippleTest==true){
+winHowl=new Howl({urls:[soundURL+"winmusic/music"+j+".mp3"],loop:true,});
+}else{
+winHowl=soundURL+"winmusic/music"+j+".mp3";
+}
+function cWinMusic(a){
+if(a==1){
+if(rippleTest==true){
+winHowl.play();
+}else{
+playMediaAudio(winHowl)
+}
+}else{
+winHowl.stop();
+}
+}
+
+if(winMusic==1){
+cWinMusic(1);
+}else{
+$("#gameOver_music").find(".onGreenBtn").css("border-color","#66CC66").find("#horn").css("fill","#66CC66");
+}
+var goDS=false,overlayStringsEN='["Click on PLAY to start the game, or change topic with the CHANGE TOPIC button","PLAY","CURRENT TOPIC","CHANGE<br />TOPIC","Click this button to go to the Start page to choose a new topic","GAME OVER","PLAY<br />again","do<br />TEST","Game over - choose an option from the top menu or the buttons above","Click this button to play this game again","Click this button to choose a new game to play","Click this button to take the tests for this topic","Click this button to switch the music on and off","CHANGE<br />game","Click on a topic from the list, or switch levels to see other topics"]';
+overlayStrings=jQuery.parseJSON(overlayStringsEN);
+$("#endTitle").text(overlayStrings[5]);
+if(goDS==false){defaultStatusString=overlayStrings[8];setStatusString(defaultStatusString);goDS=true};
+
+$("#gameOver_playagain").find(".onGreenBtn").html(overlayStrings[6]).on(pStart,function(){$(this).css("background-color","#000");setStatusString(overlayStrings[9])}).on(pEnd,function(){$(this).css("background-color",signGreen);setStatusString(defaultStatusString)}).on("click",function(){cWinMusic(0);loadPage(eGameName)});
+$("#gameOver_changegame").find(".onGreenBtn").html(overlayStrings[13]).on(pStart,function(){$(this).css("background-color","#000");setStatusString(overlayStrings[10])}).on(pEnd,function(){$(this).css("background-color",signGreen);setStatusString(defaultStatusString)}).on(pUp,function(){cWinMusic(0);playInterface("click1");loadPage("games")});
+$("#gameOver_test").find(".onGreenBtn").html(overlayStrings[7]).on(pStart,function(){$(this).css("background-color","#000");setStatusString(overlayStrings[11])}).on(pEnd,function(){$(this).css("background-color",signGreen);setStatusString(defaultStatusString)}).on(pUp,function(){cWinMusic(0);playInterface("click1");loadPage("test")});
+
+$("#gameOver_music").on(pStart,function(){setStatusString(overlayStrings[12])}).on(pEnd,function(){setStatusString(defaultStatusString)}).on(pUp,function(){
+if(winMusic==1){
+if (mo==1){
+cWinMusic(0);
+$(this).find(".onGreenBtn").css("border-color","#66CC66").find("#horn").css("fill","#66CC66");
+winMusic=0;
+}else{
+cWinMusic(1);
+$(this).find(".onGreenBtn").css("border-color","#fff").find("#horn").css("fill","#fff");
+winMusic=1;
+}
+if(mo==1){mo=0}else{mo=1}
+}else{
+//was off, so now back on
+cWinMusic(1);
+$(this).find(".onGreenBtn").css("border-color","#fff").find("#horn").css("fill","#fff");
+winMusic=1;mo=1;
+}
+
+});
+}

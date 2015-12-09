@@ -1,0 +1,31 @@
+<style>#game{visibility:hidden;}#sign_leftPipe,#sign_rightPipe,#info_Pipe,#phone_pipe{position:absolute;left:60px;width:12px;height:473px;z-index:0;}#sign_rightPipe{left:506px;}#info_Pipe{left:655px;height:205px;}
+
+#sign,#overlaySign{background:#0079C1;border:solid 5px #fff;color:#fff;border-radius:10px;font-size:12px;font-family:Helvetica,Arial,sans-serif;display:block;position:absolute;left:18px;top:12px;width:550px;height:435px;box-shadow:2px 2px 7px #333;}
+
+#overlaySign{width:720px;font-size:16px;font-family:"Comic Sans MS",Helvetica,Arial,sans-serif;visibility:hidden;}
+
+#sign_brown_count,#sign_brown_time{width:90px;height:90px;border:3px solid white;border-radius:45px;background:#663300;position:relative;left:613px;top:40px;color:white;font-size:26px;line-height:90px;box-shadow:2px 2px 7px #333;}
+
+#sign_brown_time{left:600px;top:106px;width:130px;height:50px;border-radius:9px;font-family:Courier, monospace;font-size:24px;font-weight:600;line-height:50px;}
+
+#topRowNums,#columnLetters{display:block;position:absolute;top:2px;left:30px;color:white;}.num{display:inline-block;width:94px;}#columnLetters{top:25px;left:6px;width:10px;line-height:94px;}#grid{position:absolute;left:35px;top:30px;padding:0;margin:0;width:481px;height:385px;border:3px solid black;background:#666;}.cell{float:left;width:90px;height:90px;border:3px solid #666;background-color:white;cursor:pointer;background-image:url("visuals/assets/game-sprites.png");}
+
+#cell1,#cell2,#cell3,#cell4,#cell5,#cell6,#cell7,#cell8,#cell9,#cell10,#cell11,#cell12,#cell13,#cell14,#cell15,#cell16,#cell17,#cell18,#cell19,#cell20{position:absolute;width:90px;height:90px;border:3px solid #666;background-color:white;cursor:pointer;background-image:url("visuals/assets/game-sprites.png")}
+
+#cell1,#cell2,#cell3,#cell4,#cell5{top:0;}#cell6,#cell7,#cell8,#cell9,#cell10{top:96px;}#cell11,#cell12,#cell13,#cell14,#cell15{top:192px;}#cell16,#cell17,#cell18,#cell19,#cell20{top:288px;}#cell1,#cell6,#cell11,#cell16{ left:0;}#cell2,#cell7,#cell12,#cell17{ left:96px;}#cell3,#cell8,#cell13,#cell18{ left:192px;}#cell4,#cell9,#cell14,#cell19{ left:288px;}#cell5,#cell10,#cell15,#cell20{left:384px;}#winCanvDiv{position:absolute;left:0;top:0;width:500px;height:400px;zIndex:1000;}#overlayPic{position:relative;top:15px;left:265px;padding:2px;background-color:#000;width:115px;height:115px;border:2px solid #fff;}#labelRow{position:absolute;left:15px;bottom:5px;width:690px;}#labels1,#labels2,#labels3,#labels4,#labels5{float:left;width:620px;height:46px;text-align:center;border:2px solid #fff;overflow:hidden;cursor:pointer;margin-bottom:7px;border-radius:4px;}#labelsText1,#labelsText2,#labelsText3,#labelsText4,#labelsText5{font-family:"Comic Sans MS","Comic Sans",Helvetica,Arial,sans-serif;line-height:44px;}
+
+.speaker{float:right;width:46px;height:43px;background:#0079C1;border:2px solid #fff;padding:3px 2px 0 3px;cursor:pointer;margin-bottom:7px;border-radius:4px;}
+#gameOver_sign{box-shadow:2px 2px 7px #333;}
+</style>
+
+<div id="game"><div id="sign_leftPipe"><div class="pipeV"></div></div><div id="sign_rightPipe"><div class="pipeV"></div></div><div id="info_Pipe"><div class="pipeV"></div></div><div id="sign_brown_count">0</div><div id="sign_brown_time">0 sec</div><div id="sign"><div id="columnLetters">A<br />B<br />C<br />D</div><div id="topRowNums"><div class="num">1</div><div class="num">2</div><div class="num">3</div><div class="num">4</div><div class="num">5</div></div><div id="grid"></div></div><div id="overlaySign"><div id="overlayPic"></div><div id="labelRow"><div id="labels1"><div id="labelsText1"></div></div><div class="speaker" id="speaker-1"></div><div id="labels2"><div id="labelsText2"></div></div><div class="speaker" id="speaker-2"></div><div id="labels3"><div id="labelsText3"></div></div><div class="speaker" id="speaker-3"></div><div id="labels4"><div id="labelsText4"></div></div><div class="speaker" id="speaker-4"></div><div id="labels5"><div id="labelsText5"></div></div><div class="speaker" id="speaker-5"></div></div></div></div>
+
+<!-- end game content-->
+
+<div id="back" style="visibility:hidden;"></div><div id="info"></div>
+<div id="pageInfoFX"><div id="pageInfo">
+<div id="close">X</div>
+<h1>Play Four in a row</h1>
+<p class="emMid"><img class="imgOnWhite" width="400" height="272" src="visuals/site/Welsh/screenshots/400/learn-welsh-chooseatopic.png" /></p>
+<p>Click on the "1. Start" button in the top navigation bar - that brings you to this topic selection screen. Here you will see that the topic selection is divided up in different ways:</p><ol><li>Beginner or Intermediate (the arrow at the bottom of the red sign)</li><li>By whether they contain words or sentences (second column)</li><li>Into simple categories (right hand of page)</li></ol><p>Choose either Beginner or Intermediate level topics in the red sign. Now the categories for that level will load. Click on any sign to view the topics that fit the category description. For example, if you choose the Beginner category 'Animals' you will see a choice of two topics: "Animals - pets" and "Animals - farm". When you click on the name of the topic, the pictures, writing and spoken language for that topic will load (once the topic has loaded it will be available for all activities and will not have to be loaded again).<br /><br />With the topic loaded you can choose whether to proceed to the lesson for that topic, or to jump straight to the games (tablet users are taken straight to the lesson when they choose a topic).</p></div></div>
+
