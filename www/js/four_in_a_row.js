@@ -1,4 +1,5 @@
 function four_in_a_row(){
+
 console.log('four_in_a_row');
 var checkList=[],myCurrentOccupiers=[],gameWon=false,timerID=0,winList,winMusic=1,cellNumber,clickCount=0,correctAnswers=0,timerTime=0,win1=[1,2,3,4],win2=[2,3,4,5],win3=[6,7,8,9],win4=[7,8,9,10],win5=[11,12,13,14],win6=[12,13,14,15],win7=[16,17,18,19],win8=[17,18,19,20],win9=[1,6,11,16],win10=[2,7,12,17],win11=[3,8,13,18],win12=[4,9,14,19],win13=[5,10,15,20],win14=[1,7,13,19],win15=[2,8,14,20],win16=[4,8,12,16],win17=[5,9,13,17],win=[win1,win2,win3,win4,win5,win6,win7,win8,win9,win10,win11,win12,win13,win14,win15,win16,win17],answersArray,ans,ht=40;
 
@@ -15,7 +16,7 @@ $("#gameSettings").remove();
 
 function timeCount(){timerTime+=1;$("#sign_brown_time").text(timerTime+" "+sec)}
 
-$("#game").css("visibility","visible");
+//$("#game").css("visibility","visible");
 
 $(".label").on(pStart,function(){$(this).css({"background-color":"#000","border-color":"#000",color:"white"});playInterface("click1")})
 .on(pEnd,function(){$(this).css({"background-color":groundCol,"border-color":strokeCol,color:strokeCol})}).on(pUp,onClickLabel);
@@ -67,7 +68,7 @@ if(o.getContext){s=o.getContext("2d");s.lineWidth=15;s.lineCap="round";s.strokeS
 $("#grid,#overlaySign").off();clearInterval(timerID);defaultStatusString=modStrings[8];$("#statusBar").text(defaultStatusString);
 jQuery.getJSON("json/endGame.json", function(data){
 i=data.htm;
-$("#modContent").append(i);
+$("#game").append(i);
 gameEnd();
 });
 

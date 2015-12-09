@@ -170,9 +170,9 @@ k=returnRandom(5);
 multipleChoiceArray[k]=picNum;myString='<img src="'+bigPicsURL+picsarray[picNum]+'.png" width="150px" />';$("#contentSignPic5").html(myString);whatIsThis.play();setTimeout(function(){whatIsItLabs()},1800)}}
 
 function whatIsItLabs(){var e,t;for(i=1;i<6;i++){e="#labels"+i;myString=labelsarray[multipleChoiceArray[i-1]];$(e).attr("name",myString);$("#labelText"+i).css({"font-size":"32px","line-height":"40px"}).text(myString);$(e).show();
-/*k=getRows($("#labelText"+i));if(k>1){ */
+
 reduceToOneLine("#labelText"+i);
-//}
+
 $("#speaker-"+i).show()}
 
 

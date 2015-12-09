@@ -95,18 +95,9 @@ loadPage(j);
 function loadPage(url) {
 	var jsurl="js/"+url+".js";
 	
-	$.getScript(jsurl, function(){
-    console.log("Running new.js");
-	});
-/*
-$('<script>')
-    .attr('type', 'text/javascript')
-    .text(jsurl)
-    .replaceAll('#modScript');
-	*/
+	
 	
 	var hurl=url+".html";
-	console.log('loadPage function, url = '+url);
 	if(!topic){
 		if(url!="topics"){
 			alert("Please choose a topic first");
@@ -118,15 +109,23 @@ $('<script>')
     xmlhttp.onreadystatechange=function(){
         if(xmlhttp.readyState === 4){
             if (xmlhttp.status === 200) {
-				$( "#modContent" ).empty();
-                document.getElementById('modContent').innerHTML = xmlhttp.responseText;
-				//window[url]();
+				$( "#game" ).empty();
+                document.getElementById('game').innerHTML = xmlhttp.responseText;
+				console.log('html loaded');
 				
-				if(gameSettings==0){
+				$.getScript(jsurl, function(){
+    console.log("ajax javascript loaded, gameSettings="+gameSettings);
+	if(gameSettings==0){
+					console.log('gameSettings=0');
 					window[url]();
 				}else{
+					console.log('gameSettings!=0');
 					settings_page_games();
 				}
+	
+	});
+				
+				
 
                 //post load
 				//if game, overlay
@@ -140,7 +139,7 @@ $("#pageInfoFX").css("display","none")});
 				
             }
             else {
-                document.getElementById('modContent').innerHTML = "Error loading page " + url;
+                document.getElementById('game').innerHTML = "Error loading page " + url;
             }
         }
     };

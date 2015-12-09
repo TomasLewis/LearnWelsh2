@@ -51,6 +51,7 @@ eGameName=gamesJSON[i].url;
 gameSettings=1;
 jQuery.getJSON("json/games/"+eGameName+".json", function(data){         
     modStrings=data.modStringsEN;
+	console.log('eGameName='+eGameName+', gameSettings='+gameSettings);
 	loadPage(eGameName);
 });
 
