@@ -174,8 +174,7 @@ var groundA,groundB,ground1;
 totalTime = 0; // time elapsed in the whole game
     
 game.add.sprite(0, 0, 'bg');
-//playMediaAudio(soundURL+'games/frog-chorus.mp3)
- playAudio("g","frog-chorus.mp3");
+ //playAudioLoop("g","frog-chorus.mp3");
 ////game.bgSnd = game.add.audio('bgSnd');
 ////game.bgSnd.loopFull(0.5);
 
@@ -420,7 +419,7 @@ if (!plbi) {
 	//start timer
 	g=window.setInterval(clearRightWrong,3000);
 	//show bird eat
-	//playAudio("g","bombBang.mp3");
+	playAudio("g","bombBang.mp3");
 	//$("#eBox").css("display","block");
 	game.explosion.x=game.player.body.x-128;
 	game.explosion.y=game.player.body.y-96;
@@ -440,7 +439,7 @@ if (!plfl) {
 
 	game.frogH.revive();
 	//game.eatFly.play();
-   // playAudio('g','eatFly.mp3);
+   playAudio("g","eatFly.mp3");
 	game.frogH.animations.play('chomp');
 	removeFly();
 	removeBird();
